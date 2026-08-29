@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CHEVY Hair & Beauty | Private Natural Hair Suite</title>
+  <meta name="description" content="Upscale natural hair studio specializing in loc maintenance, custom braids, natural care, and gentle kids' styling. Private 1-on-1 suite experience.">
+  
+  <!-- Typography & Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#FDF8F5',
+            'cream-mid': '#F5EBE6',
+            espresso: '#110E0C',
+            gold: '#C5A059',
+            'gold-hover': '#B08D47',
+            rose: '#C29B8A'
+          },
+          fontFamily: {
+            serif: ['Cinzel', 'Georgia', 'serif'],
+            sans: ['Montserrat', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#FDF8F5] text-[#110E0C] font-sans antialiased min-h-screen flex flex-col">
+
+  <!-- ELEGANT HEADER NAVBAR -->
+  <header class="bg-white/95 backdrop-blur-md border-b border-[#C29B8A]/30 sticky top-0 z-50 shadow-sm">
+    <nav class="max-w-[1280px] mx-auto px-6 py-4 pl-24 flex items-center justify-between relative">
+      <!-- Logo Branding -->
+      <a onclick="switchPublicView('home')" class="flex items-center gap-3 cursor-pointer select-none">
+         <div class="logo">
+                <img src="logo.PNG" alt="CHEVY Hair & Beauty" class="h-20 md:h-28 w-auto object-contain absolute top-2 left-4 z-50 drop-shadow-md">
+            </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <div class="hidden md:flex items-center gap-8">
+        <button onclick="switchPublicView('home')" data-route="home" class="nav-btn cursor-pointer text-xs font-semibold uppercase tracking-[0.2em] text-[#110E0C] hover:text-[#C5A059] transition-colors py-1">Home</button>
+        <button onclick="switchPublicView('about')" data-route="about" class="nav-btn cursor-pointer text-xs font-semibold uppercase tracking-[0.2em] text-[#110E0C] hover:text-[#C5A059] transition-colors py-1">About</button>
+        <button onclick="switchPublicView('services')" data-route="services" class="nav-btn cursor-pointer text-xs font-semibold uppercase tracking-[0.2em] text-[#110E0C] hover:text-[#C5A059] transition-colors py-1">Services</button>
+        <button onclick="switchPublicView('gallery')" data-route="gallery" class="nav-btn cursor-pointer text-xs font-semibold uppercase tracking-[0.2em] text-[#110E0C] hover:text-[#C5A059] transition-colors py-1">Gallery</button>
+        <button onclick="switchPublicView('contact')" data-route="contact" class="nav-btn cursor-pointer text-xs font-semibold uppercase tracking-[0.2em] text-[#110E0C] hover:text-[#C5A059] transition-colors py-1">Contact & Policies</button>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="hamburger-toggle" aria-label="Toggle Navigation Menu" class="md:hidden flex flex-col justify-between w-7 h-5 bg-transparent border-none cursor-pointer p-0 z-50">
+        <span class="hamburger-bar w-full h-[2px] bg-[#110E0C] transition-all duration-300"></span>
+        <span class="hamburger-bar w-full h-[2px] bg-[#110E0C] transition-all duration-300"></span>
+        <span class="hamburger-bar w-full h-[2px] bg-[#110E0C] transition-all duration-300"></span>
+      </button>
+
+      <!-- Mobile Navigation Drawer -->
+      <div id="mobile-nav-drawer" class="hidden md:hidden absolute top-full left-0 w-full bg-white border-b border-[#C29B8A]/40 py-6 px-6 shadow-xl flex-col text-center gap-5 z-40">
+        <button onclick="switchPublicView('home')" class="text-xs font-semibold uppercase tracking-[0.2em] text-[#110E0C] hover:text-[#C5A059]">Home</button>
+        <button onclick="switchPublicView('about')" class="text-xs font-semibold uppercase tracking-[0.2em] text-[#110E0C] hover:text-[#C5A059]">About</button>
+        <button onclick="switchPublicView('services')" class="text-xs font-semibold uppercase tracking-[0.2em] text-[#110E0C] hover:text-[#C5A059]">Services</button>
+        <button onclick="switchPublicView('gallery')" class="text-xs font-semibold uppercase tracking-[0.2em] text-[#110E0C] hover:text-[#C5A059]">Gallery</button>
+        <button onclick="switchPublicView('contact')" class="text-xs font-semibold uppercase tracking-[0.2em] text-[#110E0C] hover:text-[#C5A059]">Contact & Policies</button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- EMPTY PUBLIC VIEWPORT CONTAINER -->
+  <main id="public-viewport" class="flex-1 w-full min-h-[60vh]"></main>
+
+  <!-- SCRIPT LINKING INTERFACE (Global Window Component Loader) -->
+  <script src="views/homeView.js"></script>
+  <script src="views/aboutView.js"></script>
+  <script src="views/servicesView.js"></script>
+  <script src="views/galleryView.js"></script>
+  <script src="views/contactView.js"></script>
+
+  <!-- MASTER ROUTER ENGINE -->
+  <script>
+    /**
+     * Master SPA Router Mechanism
+     * Clears #public-viewport, fetches the component attached to window[viewName],
+     * mounts the render() template string, and executes init() lifecycle handlers.
+     */
+    function switchPublicView(viewName) {
+      const viewport = document.getElementById('public-viewport');
+      const drawer = document.getElementById('mobile-nav-drawer');
+      const hamburger = document.getElementById('hamburger-toggle');
+      const navBtns = document.querySelectorAll('.nav-btn');
+
+      if (!viewport) return;
+
+      const normalizedKey = (viewName || 'home').toString().toLowerCase().trim();
+
+      const viewRegistry = {
+        'home': window.homeView,
+        'about': window.aboutView,
+        'services': window.servicesView,
+        'gallery': window.galleryView,
+        'contact': window.contactView
+      };
+
+      const targetComponent = viewRegistry[normalizedKey] || window.homeView;
+
+      // Close mobile dropdown menu if open
+      if (drawer && !drawer.classList.contains('hidden')) {
+        drawer.classList.add('hidden');
+        drawer.classList.remove('flex');
+        if (hamburger) {
+          const bars = hamburger.querySelectorAll('.hamburger-bar');
+          if (bars.length === 3) {
+            bars[0].style.transform = 'none';
+            bars[1].style.opacity = '1';
+            bars[2].style.transform = 'none';
+          }
+        }
+      }
+
+      // Clear running interval timers
+      if (window.chevyHomeCarouselTimer) clearInterval(window.chevyHomeCarouselTimer);
+      if (window.chevyCarouselInterval) clearInterval(window.chevyCarouselInterval);
+
+      // Highlight active navbar items
+      navBtns.forEach(btn => {
+        const route = btn.getAttribute('data-route');
+        if (route === normalizedKey) {
+          btn.classList.add('text-[#C5A059]', 'font-bold');
+        } else {
+          btn.classList.remove('text-[#C5A059]', 'font-bold');
+        }
+      });
+
+      // Wipe previous DOM contents and render target view
+      if (targetComponent && typeof targetComponent.render === 'function') {
+        viewport.innerHTML = targetComponent.render();
+      } else {
+        viewport.innerHTML = '<div class="text-center py-20"><h2 class="font-serif text-xl">Loading View Component...</h2></div>';
+      }
+
+      // Execute inner lifecycle init handlers
+      if (targetComponent && typeof targetComponent.init === 'function') {
+        targetComponent.init(viewport);
+      }
+
+      // Reset scroll position and sync hash
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (window.location.hash !== '#' + normalizedKey) {
+        history.pushState(null, null, '#' + normalizedKey);
+      }
+
+      // Background analytics view ping
+      fetch('/api/analytics/ping', { method: 'POST' }).catch(() => {});
+    }
+
+    // Expose router to global scope
+    window.switchPublicView = switchPublicView;
+
+    // Mobile Hamburger Toggle Setup
+    document.addEventListener('DOMContentLoaded', function() {
+      const hamburger = document.getElementById('hamburger-toggle');
+      const drawer = document.getElementById('mobile-nav-drawer');
+
+      if (hamburger && drawer) {
+        hamburger.addEventListener('click', function() {
+          const isHidden = drawer.classList.contains('hidden');
+          const bars = hamburger.querySelectorAll('.hamburger-bar');
+
+          if (isHidden) {
+            drawer.classList.remove('hidden');
+            drawer.classList.add('flex');
+            if (bars.length === 3) {
+              bars[0].style.transform = 'translateY(6px) rotate(45deg)';
+              bars[1].style.opacity = '0';
+              bars[2].style.transform = 'translateY(-6px) rotate(-45deg)';
+            }
+          } else {
+            drawer.classList.add('hidden');
+            drawer.classList.remove('flex');
+            if (bars.length === 3) {
+              bars[0].style.transform = 'none';
+              bars[1].style.opacity = '1';
+              bars[2].style.transform = 'none';
+            }
+          }
+        });
+      }
+
+      // Boot route based on hash or default to home
+      const initialRoute = (window.location.hash || '#home').replace('#', '');
+      switchPublicView(initialRoute);
+
+      window.addEventListener('popstate', function() {
+        const route = (window.location.hash || '#home').replace('#', '');
+        switchPublicView(route);
+      });
+    });
+  </script>
+</body>
+</html>

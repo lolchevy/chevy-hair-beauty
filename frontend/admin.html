@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Executive Control Center | CHEVY Hair & Beauty</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#FDF8F5] text-[#110E0C] font-sans h-screen flex flex-col md:flex-row overflow-hidden selection:bg-[#C5A059] selection:text-[#110E0C]">
+
+  <!-- AUDIBLE INQUIRY ALERT CHIME -->
+  <audio id="inquiry-chime" src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3" preload="auto"></audio>
+
+  <!-- LIVE NOTIFICATION MODAL -->
+  <div id="notification-modal" class="hidden fixed inset-0 z-50 bg-[#110E0C]/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white border-2 border-[#C5A059] p-6 rounded-2xl shadow-2xl max-w-sm w-full text-center space-y-4">
+      <div class="w-12 h-12 bg-[#C5A059]/20 text-[#C5A059] rounded-full flex items-center justify-center mx-auto text-xl font-bold">🔔</div>
+      <h3 class="font-serif text-xl font-bold text-[#110E0C]">New Salon Inquiry Received!</h3>
+      <p id="modal-inquiry-name" class="text-xs text-[#554D47]">A client has just submitted a direct message.</p>
+      <button onclick="closeNotificationModal()" class="w-full bg-[#C5A059] text-[#110E0C] py-3 text-xs font-bold uppercase tracking-widest rounded-lg hover:bg-[#B08D47]">View Inbox</button>
+    </div>
+  </div>
+
+  <!-- MOBILE-ONLY HEADER STRIP (HIDDEN ON DESKTOP md:hidden) -->
+  <header class="md:hidden bg-white/95 backdrop-blur-md border-b border-[#C29B8A]/30 px-4 py-3 flex items-center justify-between shrink-0 z-30">
+    <div class="flex items-center gap-2">
+      <div class="w-7 h-7 rounded-full bg-[#C5A059] flex items-center justify-center font-bold text-[#110E0C] text-xs">C</div>
+      <span class="font-serif text-[#110E0C] font-bold text-sm tracking-wide">CHEVY EXECUTIVE</span>
+    </div>
+    <button onclick="logoutAdmin()" class="bg-[#110E0C] text-[#C5A059] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-md border border-[#C5A059]">
+      Sign Out
+    </button>
+  </header>
+
+  <!-- ZONE 1: DESKTOP DARK SIDEBAR (HIDDEN ON MOBILE, VISIBLE md:flex) -->
+  <aside class="hidden md:flex w-64 bg-[#110E0C] text-[#FDF8F5] flex-col justify-between p-4 border-r border-[#C5A059]/30 shrink-0 z-20">
+    <div class="space-y-6">
+      <div class="flex items-center gap-3 px-2">
+        <div class="w-9 h-9 rounded-full bg-[#C5A059] flex items-center justify-center font-bold text-[#110E0C] text-sm shadow-md">C</div>
+        <div>
+          <h2 class="font-serif font-bold text-sm tracking-wide text-[#FDF8F5]">CHEVY EXECUTIVE</h2>
+          <span class="text-[9px] uppercase tracking-widest text-[#C5A059] block">Boutique Suite SaaS</span>
+        </div>
+      </div>
+
+      <nav class="space-y-1.5">
+        <button onclick="switchAdminView('metrics')" id="dk-nav-metrics" class="dk-nav-btn w-full flex items-center gap-3 px-3.5 py-3 text-xs font-bold uppercase tracking-wider rounded-lg transition-all text-stone-400 hover:text-white hover:bg-stone-900">
+          <span>📊</span> Dashboard Metrics
+        </button>
+        <button onclick="switchAdminView('menu')" id="dk-nav-menu" class="dk-nav-btn w-full flex items-center gap-3 px-3.5 py-3 text-xs font-bold uppercase tracking-wider rounded-lg transition-all bg-[#C5A059] text-[#110E0C] shadow-sm">
+          <span>👑</span> Menu & Categories
+        </button>
+        <button onclick="switchAdminView('media')" id="dk-nav-media" class="dk-nav-btn w-full flex items-center gap-3 px-3.5 py-3 text-xs font-bold uppercase tracking-wider rounded-lg transition-all text-stone-400 hover:text-white hover:bg-stone-900">
+          <span>🖼️</span> Media Canvas
+        </button>
+        <button onclick="switchAdminView('inbox')" id="dk-nav-inbox" class="dk-nav-btn w-full flex items-center gap-3 px-3.5 py-3 text-xs font-bold uppercase tracking-wider rounded-lg transition-all text-stone-400 hover:text-white hover:bg-stone-900 relative">
+          <span>📩</span> Concierge Inbox
+          <span id="dk-unread-badge" class="hidden absolute right-3 bg-red-600 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
+        </button>
+        <button onclick="switchAdminView('customizer')" id="dk-nav-customizer" class="dk-nav-btn w-full flex items-center gap-3 px-3.5 py-3 text-xs font-bold uppercase tracking-wider rounded-lg transition-all text-stone-400 hover:text-white hover:bg-stone-900">
+          <span>✨</span> Page Customizer
+        </button>
+      </nav>
+    </div>
+
+    <div class="pt-4 border-t border-stone-800">
+      <button onclick="logoutAdmin()" class="w-full py-2.5 bg-stone-900 text-red-400 border border-red-900/40 text-[10px] font-bold uppercase tracking-wider rounded-lg hover:bg-red-900/20">Sign Out</button>
+    </div>
+  </aside>
+
+  <!-- ZONE 2: MIDDLE PANEL LEDGER (RESPONSIVE WRAPPER) -->
+  <section id="admin-ledger" class="hidden md:flex w-72 bg-white border-r border-[#C29B8A]/30 flex-col p-4 space-y-4 shrink-0 overflow-y-auto z-10">
+    <!-- Populated dynamically by active module -->
+  </section>
+
+  <!-- ZONE 3: MAIN VIEWPORT CANVAS (FULL WIDTH ON MOBILE, PADDED FOR BOTTOM BAR) -->
+  <main id="admin-workspace" class="flex-1 w-full bg-[#FDF8F5] overflow-y-auto p-4 sm:p-6 md:p-8 relative pb-24 md:pb-8">
+    <!-- View Module Canvas Rendered Here -->
+  </main>
+
+  <!-- SMARTPHONE FIXED BOTTOM NAVIGATION BAR (VISIBLE ONLY ON MOBILE md:hidden) -->
+  <nav class="md:hidden fixed bottom-0 left-0 w-full bg-white/95 backdrop-blur-md border-t border-[#C29B8A]/30 flex justify-around items-center h-16 z-50 shadow-lg px-2">
+    
+    <button onclick="switchAdminView('metrics')" id="mb-nav-metrics" class="mb-nav-btn flex flex-col items-center justify-center min-w-[50px] min-h-[44px] text-stone-400">
+      <span class="text-lg leading-none">📊</span>
+      <span class="text-[9px] font-bold uppercase tracking-wider mt-1">Metrics</span>
+    </button>
+
+    <button onclick="switchAdminView('menu')" id="mb-nav-menu" class="mb-nav-btn flex flex-col items-center justify-center min-w-[50px] min-h-[44px] text-[#C5A059]">
+      <span class="text-lg leading-none">👑</span>
+      <span class="text-[9px] font-bold uppercase tracking-wider mt-1">Menu</span>
+    </button>
+
+    <button onclick="switchAdminView('media')" id="mb-nav-media" class="mb-nav-btn flex flex-col items-center justify-center min-w-[50px] min-h-[44px] text-stone-400">
+      <span class="text-lg leading-none">🖼️</span>
+      <span class="text-[9px] font-bold uppercase tracking-wider mt-1">Media</span>
+    </button>
+
+    <button onclick="switchAdminView('inbox')" id="mb-nav-inbox" class="mb-nav-btn flex flex-col items-center justify-center min-w-[50px] min-h-[44px] text-stone-400 relative">
+      <span class="text-lg leading-none">📩</span>
+      <span class="text-[9px] font-bold uppercase tracking-wider mt-1">Inbox</span>
+      <span id="mb-unread-badge" class="hidden absolute top-0 right-1 bg-red-600 text-white text-[8px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold">0</span>
+    </button>
+
+    <button onclick="switchAdminView('customizer')" id="mb-nav-customizer" class="mb-nav-btn flex flex-col items-center justify-center min-w-[50px] min-h-[44px] text-stone-400">
+      <span class="text-lg leading-none">✨</span>
+      <span class="text-[9px] font-bold uppercase tracking-wider mt-1">Design</span>
+    </button>
+
+  </nav>
+
+  <!-- ROUTER, STORE, & HYBRID EXECUTION ENGINE -->
+  <script>
+    window.adminStore = {
+      data: null,
+      activeTab: 'metrics',
+      selectedFolder: 'all',
+      isLocalFileProtocol: window.location.protocol === 'file:'
+    };
+
+    // Aligned Failsafe Mock Storage Data Array
+    const localMockFallbackData = {
+      total_views: 142,
+      conversion_clicks: 48,
+      unread_messages: 3,
+      subscribers_count: 29,
+      categories: [
+        { id: 1, name: 'Loc Cultivation', slug: 'locs' },
+        { id: 2, name: 'Braid Architecture', slug: 'braids' },
+        { id: 3, name: 'Natural Care & Silk Press', slug: 'natural' },
+        { id: 4, name: 'Gentle Kids Royalty', slug: 'kids' }
+      ],
+      service_clicks: [
+        { title: 'Loc Care & Cultivation Services', clicks: 38, percent: 35, growth: '+12%' },
+        { title: 'Protective Braids & Parting Designs', clicks: 54, percent: 45, growth: '+18%' },
+        { title: 'Natural Treatment Core Options', clicks: 28, percent: 25, growth: '+5%' },
+        { title: 'Kids Creative Corner Styling Packages', clicks: 22, percent: 20, growth: '+8%' }
+      ],
+      services: [
+        { id: 101, category_slug: 'locs', title: 'Loc Retwist & Scalp Detox Therapy', description: 'Comprehensive palm-roll retwist with herbal scalp detox wash.', duration_text: '2 hrs', base_price: 130.0, click_count: 38 },
+        { id: 102, category_slug: 'braids', title: 'Mid-Back Knotless Braids', description: 'Lightweight, tension-free protective braids crafted for edge preservation.', duration_text: '4 hrs', base_price: 240.0, click_count: 54 },
+        { id: 103, category_slug: 'natural', title: 'Hydration Steam & Silk Press', description: 'Deep moisture steam therapy, massage, trim, and silky finish.', duration_text: '1 hr 30 mins', base_price: 125.0, click_count: 28 }
+      ],
+      addons: [
+        { id: 1, title: 'Deep Herbal Scalp Detox', extra_price: 30.0, extra_duration_mins: 20, assignment_type: 'global' },
+        { id: 2, title: 'Waist-Length Extension', extra_price: 50.0, extra_duration_mins: 45, assignment_type: 'category' }
+      ],
+      media: [
+        { id: 1, url: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80', title: 'Loc Retwist', mediaType: 'image' },
+        { id: 2, url: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80', title: 'Knotless Braids', mediaType: 'image' }
+      ],
+      messages: [
+        { id: 1, name: 'Sophia Miller', phone: '(754) 555-0192', email: 'sophia@example.com', message: 'Hi! Do you have availability for starter locs next Saturday?', date: '2026-08-27 14:30' },
+        { id: 2, name: 'Elena Rostova', phone: '(754) 555-0144', email: 'elena@example.com', message: 'Inquiring about tension-free braids for sensitive scalps.', date: '2026-08-27 11:15' }
+      ],
+      subscribers: [
+        { id: 1, name: 'Amara Johnson', email: 'amara@example.com', date: '2026-08-26' },
+        { id: 2, name: 'Camila Rodriguez', email: 'camila@example.com', date: '2026-08-27' }
+      ]
+    };
+
+    async function fetchAdminState() {
+      if (window.adminStore.isLocalFileProtocol) {
+        window.adminStore.data = localMockFallbackData;
+        updateUnreadBadges();
+        renderActiveTab();
+        return;
+      }
+
+      try {
+        const res = await fetch('/api/admin/metrics');
+        if (res.status === 401) {
+          window.location.href = '/gatekeeper-login';
+          return;
+        }
+        window.adminStore.data = await res.json();
+        updateUnreadBadges();
+        renderActiveTab();
+      } catch (err) {
+        window.adminStore.data = localMockFallbackData;
+        updateUnreadBadges();
+        renderActiveTab();
+      }
+    }
+
+    function updateUnreadBadges() {
+      const count = (window.adminStore.data && window.adminStore.data.unread_messages) || 0;
+      
+      const dkBadge = document.getElementById('dk-unread-badge');
+      const mbBadge = document.getElementById('mb-unread-badge');
+
+      if (count > 0) {
+        if (dkBadge) { dkBadge.textContent = count; dkBadge.classList.remove('hidden'); }
+        if (mbBadge) { mbBadge.textContent = count; mbBadge.classList.remove('hidden'); }
+      } else {
+        if (dkBadge) dkBadge.classList.add('hidden');
+        if (mbBadge) mbBadge.classList.add('hidden');
+      }
+    }
+
+    function switchAdminView(tabName) {
+      window.adminStore.activeTab = tabName;
+      
+      // Update Desktop Nav UI
+      document.querySelectorAll('.dk-nav-btn').forEach(btn => {
+        btn.classList.remove('bg-[#C5A059]', 'text-[#110E0C]', 'shadow-sm');
+        btn.classList.add('text-stone-400');
+      });
+      const dkActiveBtn = document.getElementById(`dk-nav-${tabName}`);
+      if (dkActiveBtn) {
+        dkActiveBtn.classList.add('bg-[#C5A059]', 'text-[#110E0C]', 'shadow-sm');
+        dkActiveBtn.classList.remove('text-stone-400');
+      }
+
+      // Update Mobile Nav UI
+      document.querySelectorAll('.mb-nav-btn').forEach(btn => {
+        btn.classList.remove('text-[#C5A059]');
+        btn.classList.add('text-stone-400');
+      });
+      const mbActiveBtn = document.getElementById(`mb-nav-${tabName}`);
+      if (mbActiveBtn) {
+        mbActiveBtn.classList.add('text-[#C5A059]');
+        mbActiveBtn.classList.remove('text-stone-400');
+      }
+
+      // Handle ledger visibility on mobile
+      const ledger = document.getElementById('admin-ledger');
+      if (ledger) {
+        if (window.innerWidth < 768 && (tabName === 'metrics' || tabName === 'inbox' || tabName === 'customizer')) {
+          ledger.classList.add('hidden');
+        } else if (window.innerWidth < 768 && (tabName === 'menu' || tabName === 'media')) {
+          ledger.classList.remove('hidden');
+        }
+      }
+
+      if (!window.adminStore.data) {
+        fetchAdminState();
+      } else {
+        renderActiveTab();
+      }
+    }
+
+    function renderActiveTab() {
+      const tab = window.adminStore.activeTab;
+      const ledger = document.getElementById('admin-ledger');
+      const workspace = document.getElementById('admin-workspace');
+
+      if (tab === 'metrics' && window.adminMetrics) {
+        window.adminMetrics.init ? window.adminMetrics.init(ledger, workspace) : window.adminMetrics.render(ledger, workspace);
+      } else if (tab === 'menu' && window.adminMenu) {
+        window.adminMenu.init ? window.adminMenu.init(ledger, workspace) : window.adminMenu.render(ledger, workspace);
+      } else if (tab === 'media' && window.adminMedia) {
+        window.adminMedia.init ? window.adminMedia.init(ledger, workspace) : window.adminMedia.render(ledger, workspace);
+      } else if (tab === 'inbox' && window.adminInbox) {
+        window.adminInbox.init ? window.adminInbox.init(ledger, workspace) : window.adminInbox.render(ledger, workspace);
+      } else if (tab === 'customizer' && window.adminCustomizer) {
+        window.adminCustomizer.init ? window.adminCustomizer.init(ledger, workspace) : window.adminCustomizer.render(ledger, workspace);
+      }
+    }
+
+    // Background Inquiry Polling
+    if (!window.adminStore.isLocalFileProtocol) {
+      setInterval(async () => {
+        try {
+          const res = await fetch('/api/admin/poll-messages');
+          const data = await res.json();
+          if (data.new_inquiry) {
+            const chime = document.getElementById('inquiry-chime');
+            if (chime) chime.play().catch(() => {});
+            document.getElementById('modal-inquiry-name').textContent = `New inquiry received from ${data.latest_name}!`;
+            document.getElementById('notification-modal').classList.remove('hidden');
+            fetchAdminState();
+          }
+        } catch(e) {}
+      }, 6000);
+    }
+
+    function closeNotificationModal() {
+      document.getElementById('notification-modal').classList.add('hidden');
+      switchAdminView('inbox');
+    }
+
+    async function logoutAdmin() {
+      if (!window.adminStore.isLocalFileProtocol) {
+        await fetch('/api/admin/logout', { method: 'POST' });
+      }
+      window.location.href = '/gatekeeper-login';
+    }
+
+    document.addEventListener('DOMContentLoaded', fetchAdminState);
+  </script>
+
+  <!-- MODULAR VIEW MODULE SCRIPTS -->
+  <script src="adminViews/adminMetrics.js"></script>
+  <script src="adminViews/adminMenu.js"></script>
+  <script src="adminViews/adminMedia.js"></script>
+  <script src="adminViews/adminInbox.js"></script>
+  <script src="adminViews/adminCustomizer.js"></script>
+</body>
+</html>
