@@ -96,6 +96,10 @@
       const hamburger = document.getElementById('hamburger-toggle');
       const navBtns = document.querySelectorAll('.nav-btn');
 
+      if (viewNme === 'gatekeeper-login' || viewName === 'admin' || window.location.pathname.includes('login')) {
+        return;
+      }
+
       if (!viewport) return;
 
       const normalizedKey = (viewName || 'home').toString().toLowerCase().trim();
