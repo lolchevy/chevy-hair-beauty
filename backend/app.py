@@ -24,6 +24,23 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 64 * 1024 * 1024  # 64 MB Max Upload Limit
 
+@app.route('/')
+def serve_index():
+    # Detect what link is being typed into the browser bar
+    host = request.host.lower()
+
+    # 🔒 IF YOU ARE ACCESSING YOUR SECRET ADMIN DOMAIN (WHEN YOU BUY IT)
+    if 'chevyhairbeauty.com' in host:
+        return send_from_directory(app.static_folder, 'admin.html')
+
+    # 💇 FOR ALL OTHER TRAFFIC (CHEVYHAIRANDBEAUTY.COM): SERVE THE PUBLIC WEBSITE
+    return send_from_directory(app.static_folder, 'index.html')
+
+@app.route('/admin-fallback')
+def serve_admin_fallback():
+    # Temporary backdoor so you can look at your dashboard right now while waiting for GoDaddy
+    return send_from_directory(app.static_folder, 'admin.html')
+
 # Enable CORS and Initialize SQLAlchemy
 CORS(app, supports_credentials=True)
 db = SQLAlchemy(app)
