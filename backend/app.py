@@ -220,10 +220,6 @@ def seed_initial_data():
 # STATIC FILE & VIEW ROUTING
 # -----------------------------------------------------------------------------
 
-@app.route('/')
-def serve_index():
-    return send_from_directory(FRONTEND_DIR, 'index.html')
-
 @app.route('/admin')
 def serve_admin():
     if not session.get('admin_logged_in'):
