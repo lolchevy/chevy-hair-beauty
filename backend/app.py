@@ -219,19 +219,25 @@ def seed_initial_data():
 # -----------------------------------------------------------------------------
 # STATIC FILE & VIEW ROUTING
 # -----------------------------------------------------------------------------
+# ==============================================================================
+# 🔀 THE MASTER DUAL-DOMAIN ROUTING ENGINE (UNIFIED & CONFLICT-FREE)
+# ==============================================================================
+@app.route('/')
+def master_routing_hub():
+    # Capture the exact web URL address typed into the browser bar
+    host = request.host.lower()
 
-@app.route('/admin')
-def serve_admin():
-    if not session.get('admin_logged_in'):
+    # 🔒 IF YOU ACCESS YOUR NEW PERSONAL BACKDOOR DOMAIN:
+    if 'chevyhairbeauty.com' in host:
         return send_from_directory(FRONTEND_DIR, 'admin.html')
-    return send_from_directory(FRONTEND_DIR, 'admin.html')
 
-@app.route('/<path:path>')
-def serve_static(path):
-    if os.path.exists(os.path.join(FRONTEND_DIR, path)):
-        return send_from_directory(FRONTEND_DIR, path)
+    # 💇 DEFAULT ROOT (CHEVYHAIRANDBEAUTY.COM) SERVES THE PUBLIC WEBSITE STOREFRONT
     return send_from_directory(FRONTEND_DIR, 'index.html')
 
+@app.route('/admin-gate')
+def emergency_backdoor_route():
+    # 🚀 AN ABSOLUTE DIRECT BACKDOOR. NO EXTRA DOMAIN LOGIC NEEDED.
+    return send_from_directory(FRONTEND_DIR, 'admin.html')
 # -----------------------------------------------------------------------------
 # AUTHENTICATION ENDPOINTS
 # -----------------------------------------------------------------------------
