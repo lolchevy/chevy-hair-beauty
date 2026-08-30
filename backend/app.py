@@ -26,12 +26,21 @@ app.config['MAX_CONTENT_LENGTH'] = 64 * 1024 * 1024  # 64 MB Max Upload Limit
 
 @app.route('/')
 def serve_index():
-    # Force Flask to send the index.html shell straight out of the frontend directory
+    host = request.host.lower()
+
+    # 🔒 IF ACCESSING YOUR NEW PRIVATE DOMAIN: BYPASS STOREFRONT AND SERVE THE DASHBOARD
+    if 'chevyhairbeauty.com' in host:
+        # CHANGE THIS WORD BELOW FROM 'serve_index' TO 'serve_admin_index'
+        return serve_admin_index()
+
     return send_from_directory(FRONTEND_DIR, 'index.html')
+
+# 🛠️ UPDATE THIS FUNCTION NAME RIGHT HERE:
+def serve_admin_index():
+    return send_from_directory(FRONTEND_DIR, 'admin.html')
 
 @app.route('/admin-fallback')
 def serve_admin_fallback():
-    # Force Flask to send the admin.html panel straight out of the frontend directory
     return send_from_directory(FRONTEND_DIR, 'admin.html')
 
 # Enable CORS and Initialize SQLAlchemy
