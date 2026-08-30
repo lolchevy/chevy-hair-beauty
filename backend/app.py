@@ -7,16 +7,16 @@ from werkzeug.utils import secure_filename
 
 # Initialize Flask App
 # Configuring static and template paths to point directly to the frontend directory structure
-BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+# Re-adjusting paths to step out of 'backend' and find 'frontend' perfectly
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 FRONTEND_DIR = os.path.abspath(os.path.join(BASE_DIR, '..', 'frontend'))
 UPLOAD_FOLDER = os.path.join(FRONTEND_DIR, 'uploads')
 
 app = Flask(
     __name__,
     static_folder=FRONTEND_DIR,
-    template_folder=FRONTEND_DIR
+    static_url_path=''
 )
-
 # App Configuration
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'chevy_luxury_hair_beauty_secret_key_2026')
 app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{os.path.join(BASE_DIR, 'salon.db')}"
@@ -26,13 +26,13 @@ app.config['MAX_CONTENT_LENGTH'] = 64 * 1024 * 1024  # 64 MB Max Upload Limit
 
 @app.route('/')
 def serve_index():
-    # Force Python to find your main website index shell directly from your exact frontend folder
-    return send_from_directory('../frontend', 'index.html')
+    # Force Flask to send the index.html shell straight out of the frontend directory
+    return send_from_directory(FRONTEND_DIR, 'index.html')
 
 @app.route('/admin-fallback')
 def serve_admin_fallback():
-    # Force Python to find your private mobile dashboard shell from your exact frontend folder
-    return send_from_directory('../frontend', 'admin.html')
+    # Force Flask to send the admin.html panel straight out of the frontend directory
+    return send_from_directory(FRONTEND_DIR, 'admin.html')
 
 # Enable CORS and Initialize SQLAlchemy
 CORS(app, supports_credentials=True)
