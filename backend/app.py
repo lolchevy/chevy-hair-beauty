@@ -9,7 +9,7 @@ from werkzeug.utils import secure_filename
 # Configuring static and template paths to point directly to the frontend directory structure
 # Re-adjusting paths to step out of 'backend' and find 'frontend' perfectly
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-FRONTEND_DIR = os.path.abspath(os.path.join(BASE_DIR, '..', 'frontend'))
+FRONTEND_DIR = os.path.abspath(os.path.join(BASE_DIR, 'frontend'))
 UPLOAD_FOLDER = os.path.join(FRONTEND_DIR, 'uploads')
 
 app = Flask(
