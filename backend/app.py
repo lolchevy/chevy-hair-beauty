@@ -31,24 +31,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 64 * 1024 * 1024  # 64 MB Max Upload Limit
 
-# ==============================================================================
-# 🔀 BULLETPROOF DUAL-DOMAIN PRODUCTION ROUTING
-# ==============================================================================
-@app.route('/')
-def master_routing_hub():
-    host = request.host.lower()
-
-    # 🔒 IF ACCESSING YOUR DASHBOARD DOMAIN: SERVE THE PRIVATE DASHBOARD SHEET
-    if 'chevyhairbeauty.com' in host:
-        return send_from_directory(FRONTEND_DIR, 'admin.html')
-
-    # 💇 DEFAULT ROOT: SERVE THE REGULAR WEBSITE STOREFRONT TO YOUR CUSTOMERS
-    return send_from_directory(FRONTEND_DIR, 'index.html')
-
-@app.route('/admin-gate')
-def emergency_backdoor_route():
-    # 🚀 AN ABSOLUTE DIRECT BACKDOOR PATH THAT BYPASSES ALL DOMAIN FILTERS
-    return send_from_directory(FRONTEND_DIR, 'admin.html')
 
 # Enable CORS and Initialize SQLAlchemy
 # Enable CORS and Initialize SQLAlchemy
