@@ -7,10 +7,11 @@ from werkzeug.utils import secure_filename
 
 # Initialize Flask App
 # Configuring static and template paths to point directly to the frontend directory structure
-# Re-adjusting paths to step out of 'backend' and find 'frontend' perfectly
+# Re-adjusting paths to step inside the local nested directory structure perfectly
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 FRONTEND_DIR = os.path.abspath(os.path.join(BASE_DIR, 'frontend'))
 UPLOAD_FOLDER = os.path.join(FRONTEND_DIR, 'uploads')
+
 
 app = Flask(
     __name__,
@@ -34,11 +35,11 @@ app.config['MAX_CONTENT_LENGTH'] = 64 * 1024 * 1024  # 64 MB Max Upload Limit
 def serve_index():
     host = request.host.lower()
 
-    # 🔒 IF ACCESSING YOUR NEW PRIVATE DOMAIN: BYPASS STOREFRONT AND SERVE THE DASHBOARD
+    # 🔒 IF YOU ACCESS YOUR NEW PERSONAL DOMAIN: BYPASS STOREFRONT AND SERVE THE DASHBOARD
     if 'chevyhairbeauty.com' in host:
-        # CHANGE THIS WORD BELOW FROM 'serve_index' TO 'serve_admin_index'
-        return serve_admin_index()
+        return send_from_directory(FRONTEND_DIR, 'admin.html')
 
+    # 💇 DEFAULT ROOT (CHEVYHAIRANDBEAUTY.COM) SERVES THE PUBLIC WEBSITE STOREFRONT
     return send_from_directory(FRONTEND_DIR, 'index.html')
 
 # 🛠️ UPDATE THIS FUNCTION NAME RIGHT HERE:
