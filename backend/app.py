@@ -17,9 +17,15 @@ app = Flask(
     static_folder=FRONTEND_DIR,
     static_url_path=''
 )
-# App Configuration
+
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'chevy_luxury_hair_beauty_secret_key_2026')
-app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{os.path.join(BASE_DIR, 'salon.db')}"
+
+# 🔒 FORCE RENDER TO WRITE DATA TO THE UNRESTRICTED CLOUD STORAGE DIRECTORY
+if os.environ.get('RENDER'):
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/salon.db'
+else:
+    app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{os.path.join(BASE_DIR, 'salon.db')}"
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 64 * 1024 * 1024  # 64 MB Max Upload Limit
@@ -44,8 +50,18 @@ def serve_admin_fallback():
     return send_from_directory(FRONTEND_DIR, 'admin.html')
 
 # Enable CORS and Initialize SQLAlchemy
-CORS(app, supports_credentials=True)
+# Enable CORS and Initialize SQLAlchemy
+CORS(app, resources={r"/api/*": {
+    "origins": [
+        "https://chevyhairandbeauty.com",
+        "https://chevyhairandbeauty.com",
+        "https://chevyhairbeauty.com",
+        "https://onrender.com"
+    ]
+}}, supports_credentials=True)
 db = SQLAlchemy(app)
+
+
 
 # Ensure Upload Directory Exists
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
