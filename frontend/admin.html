@@ -111,12 +111,7 @@
 
   <!-- ROUTER, STORE, & HYBRID EXECUTION ENGINE -->
   <script>
-    window.adminStore = {
-      data: localMockFallbackData,
-      activeTab: 'metrics',
-      selectedFolder: 'all',
-      isLocalFileProtocol: window.location.protocol === 'file:'
-    };
+  
 
     // Aligned Failsafe Mock Storage Data Array
     const localMockFallbackData = {
@@ -157,6 +152,13 @@
         { id: 1, name: 'Amara Johnson', email: 'amara@example.com', date: '2026-08-26' },
         { id: 2, name: 'Camila Rodriguez', email: 'camila@example.com', date: '2026-08-27' }
       ]
+    };
+
+      window.adminStore = {
+      data: localMockFallbackData,
+      activeTab: 'metrics',
+      selectedFolder: 'all',
+      isLocalFileProtocol: window.location.protocol === 'file:'
     };
 
     async function fetchAdminState() {
