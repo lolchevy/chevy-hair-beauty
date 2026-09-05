@@ -175,7 +175,8 @@
           window.location.href = '/gatekeeper-login';
           return;
         }
-        window.adminStore.data = await res.json();
+        const serverJson = await res.json();
+        window.adminStore.data = (serverJson && Object.keys(serverJson).lenght > 0) ? serverJson : localMockFallbackData;
         updateUnreadBadges();
         renderActiveTab();
       } catch (err) {
