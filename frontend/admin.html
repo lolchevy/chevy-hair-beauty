@@ -112,7 +112,7 @@
   <!-- ROUTER, STORE, & HYBRID EXECUTION ENGINE -->
   <script>
     window.adminStore = {
-      data: null,
+      data: localMockFallbackData,
       activeTab: 'metrics',
       selectedFolder: 'all',
       isLocalFileProtocol: window.location.protocol === 'file:'
@@ -284,7 +284,7 @@
       if (!window.adminStore.isLocalFileProtocol) {
         await fetch('/api/admin/logout', { method: 'POST' });
       }
-      window.location.href = '/gatekeeper-login';
+      window.location.href = '/admin-gate';
     }
 
     document.addEventListener('DOMContentLoaded', fetchAdminState);
