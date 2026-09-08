@@ -328,47 +328,47 @@ window.adminMedia = {
     if (input) input.click();
   },
 
-  handleFileSelected: async function (input) {
-    if (!input.files || input.files.length === 0) return;
-    const file = input.files[0];
+      handleFileSelected: async function (input) {
+        if (!input.files || input.files.length === 0) return;
+        const file = input.files[0];
 
-    const categorySelect = document.getElementById('media-target-category');
-    const category = categorySelect ? categorySelect.value : 'Crown Transformation';
-    
-    const boundarySelect = document.getElementById('video-loop-boundary');
-    const videoDuration = boundarySelect ? boundarySelect.value : '30s';
+        const categorySelect = document.getElementById('media-target-category');
+        const category = categorySelect ? categorySelect.value : 'Crown Transformation';
 
-    const isVideo = file.type.startsWith('video');
-    const title = file.name.split('.')[0].replace(/[-_]/g, ' ') || 'New Transformation Asset';
+        const boundarySelect = document.getElementById('video-loop-boundary');
+        const videoDuration = boundarySelect ? boundarySelect.value : '30s';
 
-    // Local Protocol Failsafe Mode
-    if (window.adminStore && window.adminStore.isLocalFileProtocol) {
-      const mockObj = {
-        id: Date.now(),
-        url: URL.createObjectURL(file),
-        title,
-        category,
-        mediaType: isVideo ? 'video' : 'image',
-        videoDuration: isVideo ? videoDuration : null
-      };
+        const isVideo = file.type.startsWith('video/');
+        const title = file.name.split('.')[0].replace(/[-_]/g, ' ') || "New Transformation Asset";
 
-      if (!window.adminStore.data) window.adminStore.data = {};
-      if (!window.adminStore.data.media) window.adminStore.data.media = [...this.defaultMedia];
-      
-      window.adminStore.data.media.unshift(mockObj);
-      this.render(document.getElementById('admin-ledger'), document.getElementById('admin-workspace'));
-      return;
-    }
+        const mockObj = {
+            id: Date.now(),
+            url: URL.createObjectURL(file),
+            file: file,
+            title: title,
+            category: category,
+            mediaType: isVideo ? 'Video' : 'Image',
+            videoDuration: isVideo ? videoDuration : null
+        };
 
-    // Backend Live API Multi-part Form Pipeline
-    try {
-      const formData = new FormData();
-      formData.append('file', file);
-      formData.append('title', title);
-      formData.append('category', category);
-      formData.append('media_type', isVideo ? 'video' : 'image');
-      formData.append('video_duration', videoDuration);
+        if (window.adminStore && window.adminStore.data) {
+            if (!window.adminStore.data.media) {
+                window.adminStore.data.media = [];
+            }
+            window.adminStore.data.media.unshift(mockObj);
+        }
 
+        this.render(document.getElementById('admin-ledger'), document.getElementById('admin-workspace'));
+
+        // Backend Live API Multi-part Form Pipeline
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('title', title);
+            formData.append('category', category);
+            formData.append('media_type', isVideo ? 'Video' : 'Image');
+            formData.append('video_duration', videoDuration);
+            
       const res = await fetch('/api/admin/upload-media', {
         method: 'POST',
         body: formData
