@@ -286,7 +286,8 @@ def get_admin_metrics():
 @app.route('/api/admin/services', methods=['GET'])
 def get_admin_services_list():
     try:
-        return jsonify({"services": []}), 200
+        categories = ServiceCategories.query.all()
+        return jsonify({"services": [cat.to_dict() for cat in categories]}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
@@ -306,16 +307,15 @@ def get_admin_concierge_inbox():
 
 @app.route('/api/get-services', methods=['GET'])
 def get_services():
-    categories = ServiceCategories.query.all()
-    add_ons = AddOns.query.all()
+    try:
+        categories = ServiceCategories.query.all()
+        return jsonify({
+            'categories': [c.to_dict() for c in categories],
+            'add_ons': []
+        }), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
     
-    return jsonify({
-        'categories': [c.to_dict() for c in categories],
-        'add_ons': [a.to_dict() for a in add_ons]
-    }), 200
-
-@app.route('/api/admin/add-service', methods=['POST'])
-def add_service():
     data = request.get_json() or {}
     
     name = data.get('name')
