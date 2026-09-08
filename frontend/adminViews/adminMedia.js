@@ -330,6 +330,7 @@ window.adminMedia = {
 
       handleFileSelected: async function (input) {
         if (!input.files || input.files.length === 0) return;
+        // Grab the single, specific file object from the input matrix row array list
         const file = input.files[0];
 
         const categorySelect = document.getElementById('media-target-category');
@@ -338,8 +339,8 @@ window.adminMedia = {
         const boundarySelect = document.getElementById('video-loop-boundary');
         const videoDuration = boundarySelect ? boundarySelect.value : '30s';
 
-        const isVideo = file.type.startsWith('video/');
-        const title = file.name.split('.')[0].replace(/[-_]/g, ' ') || "New Transformation Asset";
+        const isVideo = file.type ? file.type.startsWith('video/') : false;
+        const title = file.name ? file.name.split('.')[0].replace(/[-_]/g, ' ') : "New Transformation Asset";
 
         const mockObj = {
             id: Date.now(),
@@ -368,7 +369,7 @@ window.adminMedia = {
             formData.append('category', category);
             formData.append('media_type', isVideo ? 'Video' : 'Image');
             formData.append('video_duration', videoDuration);
-            
+
       const res = await fetch('/api/admin/upload-media', {
         method: 'POST',
         body: formData
