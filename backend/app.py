@@ -532,14 +532,20 @@ def get_page_content():
     content_map = {r.key_name: r.value_text for r in records}
     return jsonify({'content': content_map}), 200
 
-# -----------------------------------------------------------------------------
+# ==============================================================================
 # APPLICATION INITIALIZATION & SERVER LAUNCH
-# -----------------------------------------------------------------------------
+# ==============================================================================
 
 with app.app_context():
     db.create_all()
     seed_initial_data()
 
+@app.route('/api/admin/poll-messages', methods=['GET'])
+def poll_messages():
+    try:
+        return jsonify({"messages": []}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 if __name__ == '__main__':
-    # Running on 0.0.0.0:5000 for local network and server accessibility
     app.run(host='0.0.0.0', port=5000, debug=True)
