@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Executive Control Center | CHEVY Hair & Beauty</title>
   <script src="https://cdn.tailwindcss.com"></script>
- <script>
+<script>
+  // This version checks the first argument inside the package perfectly!
   const originalFetch = window.fetch;
   window.fetch = async function(...args) {
-    // This looks directly at the first argument, which is your URL string!
-    if (args[0] && typeof args[0] === 'string' && args[0].startsWith('/api/')) {
-      args[0] = 'https://chevy-hair-beauty.onrender.com' + args[0];
+    if (args && args[0] && typeof args[0] === 'string' && args[0].startsWith('/api/')) {
+      args[0] = 'https://onrender.com' + args[0];
     }
     return originalFetch(...args);
   };

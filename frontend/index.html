@@ -33,6 +33,16 @@
       }
     }
   </script>
+  <script>
+  const originalFetch = window.fetch;
+  window.fetch = async function(...args) {
+    if (args && args[0] && typeof args[0] === 'string' && args[0].startsWith('/api/')) {
+      args[0] = 'https://onrender.com' + args[0];
+    }
+    return originalFetch(...args);
+  };
+</script>
+
 </head>
 <body class="bg-[#FDF8F5] text-[#110E0C] font-sans antialiased min-h-screen flex flex-col">
 
