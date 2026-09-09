@@ -41,7 +41,7 @@ CORS(app, resources={r"/api/*": {
         "https://chevyhairbeauty.com",
         "https://onrender.com"
     ]
-}}, supports_credentials=True)
+}})
 db = SQLAlchemy(app)
 
 

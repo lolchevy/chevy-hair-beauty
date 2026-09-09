@@ -6,7 +6,6 @@
   <title>Executive Control Center | CHEVY Hair & Beauty</title>
   <script src="https://cdn.tailwindcss.com"></script>
  <script>
-  // This version handles the fetch arguments perfectly!
   const originalFetch = window.fetch;
   window.fetch = async function(...args) {
     if (args[0] && typeof args[0] === 'string' && args[0].startsWith('/api/')) {
