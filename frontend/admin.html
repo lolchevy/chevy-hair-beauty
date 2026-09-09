@@ -8,8 +8,9 @@
  <script>
   const originalFetch = window.fetch;
   window.fetch = async function(...args) {
+    // This looks directly at the first argument, which is your URL string!
     if (args[0] && typeof args[0] === 'string' && args[0].startsWith('/api/')) {
-      args[0] = 'https://onrender.com' + args[0];
+      args[0] = 'https://chevy-hair-beauty.onrender.com' + args[0];
     }
     return originalFetch(...args);
   };
