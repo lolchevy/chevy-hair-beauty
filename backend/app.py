@@ -40,11 +40,8 @@ CORS(app, resources={r"/api/*": {
         "https://chevy-hair-beauty.onrender.com"
     ]
 }})
+db = SQLAlchemy(app)
 
-@app.before_request
-def handle_cors_preflight_and_redirect():
-    if 'onrender.com' in request.host and not request.host.startswith('chevy-hair-beauty'):
-        return redirect(f"https://chevy-hair-beauty.onrender.com{request.path}", code=301)
 
 
 
