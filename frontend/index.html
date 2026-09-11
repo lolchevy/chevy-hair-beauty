@@ -33,19 +33,7 @@
       }
     }
   </script>
-<script>
-  (function() {
-    const originalFetch = window.fetch;
-    window.fetch = async function(input, init) {
-      if (typeof input === 'string' && input.startsWith('/api/')) {
-        input = 'https://onrender.com' + input;
-      } else if (input && typeof input === 'object' && input.url && input.url.startsWith('/api/')) {
-        input = new Request('https://onrender.com' + input.url, input);
-      }
-      return originalFetch(input, init);
-    };
-  })();
-</script>
+
 
 </head>
 <body class="bg-[#FDF8F5] text-[#110E0C] font-sans antialiased min-h-screen flex flex-col">

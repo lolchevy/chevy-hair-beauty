@@ -5,19 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Executive Control Center | CHEVY Hair & Beauty</title>
   <script src="https://cdn.tailwindcss.com"></script>
-<script>
-  (function() {
-    const originalFetch = window.fetch;
-    window.fetch = async function(input, init) {
-      if (typeof input === 'string' && input.startsWith('/api/')) {
-        input = 'https://onrender.com' + input;
-      } else if (input && typeof input === 'object' && input.url && input.url.startsWith('/api/')) {
-        input = new Request('https://onrender.com' + input.url, input);
-      }
-      return originalFetch(input, init);
-    };
-  })();
-</script>
+
 </head>
 <body class="bg-[#FDF8F5] text-[#110E0C] font-sans h-screen flex flex-col md:flex-row overflow-hidden selection:bg-[#C5A059] selection:text-[#110E0C]">
 
@@ -278,7 +266,7 @@
     if (!window.adminStore.isLocalFileProtocol) {
       setInterval(async () => {
         try {
-          const res = await fetch('/api/admin/poll-messages');
+          const res = await fetch('https://onrender.com');
           const data = await res.json();
           if (data.new_inquiry) {
             const chime = document.getElementById('inquiry-chime');
@@ -298,7 +286,7 @@
 
     async function logoutAdmin() {
       if (!window.adminStore.isLocalFileProtocol) {
-        await fetch('/api/admin/logout', { method: 'POST' });
+        await fetch('https://onrender.com', { method: 'POST' });
       }
       window.location.href = '/admin-gate';
     }
