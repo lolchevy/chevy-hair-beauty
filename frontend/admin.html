@@ -6,14 +6,17 @@
   <title>Executive Control Center | CHEVY Hair & Beauty</title>
   <script src="https://cdn.tailwindcss.com"></script>
 <script>
-  // This version checks the first argument inside the package perfectly!
-  const originalFetch = window.fetch;
-  window.fetch = async function(...args) {
-    if (args && args[0] && typeof args[0] === 'string' && args[0].startsWith('/api/')) {
-      args[0] = 'https://onrender.com' + args[0];
-    }
-    return originalFetch(...args);
-  };
+  (function() {
+    const originalFetch = window.fetch;
+    window.fetch = async function(input, init) {
+      if (typeof input === 'string' && input.startsWith('/api/')) {
+        input = 'https://onrender.com' + input;
+      } else if (input && typeof input === 'object' && input.url && input.url.startsWith('/api/')) {
+        input = new Request('https://onrender.com' + input.url, input);
+      }
+      return originalFetch(input, init);
+    };
+  })();
 </script>
 </head>
 <body class="bg-[#FDF8F5] text-[#110E0C] font-sans h-screen flex flex-col md:flex-row overflow-hidden selection:bg-[#C5A059] selection:text-[#110E0C]">
