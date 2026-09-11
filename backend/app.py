@@ -33,16 +33,18 @@ app.config['MAX_CONTENT_LENGTH'] = 64 * 1024 * 1024  # 64 MB Max Upload Limit
 
 
 # Enable CORS and Initialize SQLAlchemy
-# Enable CORS and Initialize SQLAlchemy
 CORS(app, resources={r"/api/*": {
     "origins": [
         "https://chevyhairandbeauty.com",
-        "https://chevyhairandbeauty.com",
         "https://chevyhairbeauty.com",
-        "https://onrender.com"
+        "https://chevy-hair-beauty.onrender.com"
     ]
 }})
-db = SQLAlchemy(app)
+
+@app.before_request
+def handle_cors_preflight_and_redirect():
+    if 'onrender.com' in request.host and not request.host.startswith('chevy-hair-beauty'):
+        return redirect(f"https://chevy-hair-beauty.onrender.com{request.path}", code=301)
 
 
 
