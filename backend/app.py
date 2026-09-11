@@ -42,7 +42,9 @@ CORS(app, resources={r"/api/*": {
 }})
 db = SQLAlchemy(app)
 
-
+# This tells your server it's safe to use HTTPS links without redirecting!
+from werkzeug.middleware.proxy_fix import ProxyFix
+app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
 
 
 # Ensure Upload Directory Exists
