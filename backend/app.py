@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, jsonify, render_template, send_from_directory, session
+from flask import Flask, request, jsonify, render_template, send_from_directory, session, redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -41,6 +41,13 @@ CORS(app, resources={r"/api/*": {
     ]
 }})
 db = SQLAlchemy(app)
+
+@app.before_request
+def handle_cors_preflight_and_redirect():
+    if request.method == 'OPTIONS':
+        return '', 204
+    if 'onrender.com' in request.host and not request.host.startswith('chevy-hair-beauty'):
+        return redirect(f"https://onrender.com{request.path}", code=301)
 
 # This tells your server it's safe to use HTTPS links without redirecting!
 from werkzeug.middleware.proxy_fix import ProxyFix
