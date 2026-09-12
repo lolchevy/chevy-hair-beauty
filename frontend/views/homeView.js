@@ -8,21 +8,21 @@ window.homeView = {
   defaultData: {
     heroSlides: [
       {
-        image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1600&q=80',
+        image: 'IMG_1946.jpg',
         title: 'Gentle Kids Natural Care',
         desc: 'Patience, love, and light hands for your little royalty (Ages 3–12). Premium tension-free protective styling engineered for growth.',
         buttonText: 'Explore Services',
         buttonRoute: 'services'
       },
       {
-        image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1600&q=80',
+        image: 'IMG_1476.jpg',
         title: 'Crown Loc Cultivation',
         desc: 'Precision retwists, starter locs, palm rolling, and therapeutic herbal detox rinses in a quiet, serene suite sanctuary.',
         buttonText: 'Explore Services',
         buttonRoute: 'services'
       },
       {
-        image: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1600&q=80',
+        image: 'IMG_5333.jpg',
         title: 'Artisanal Braid Architecture',
         desc: 'Crisp parting, lightweight knotless braids, fulani accents, and protective styles crafted tension-free for edge retention.',
         buttonText: 'Explore Services',
@@ -38,18 +38,18 @@ window.homeView = {
     },
     transformations: [
       {
-        image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80',
+        image: 'IMG_3643.jpg',
         title: 'Loc Detox & Maintenance',
         subtitle: 'Palmed retwist with herbal rinse finish'
       },
       {
-        image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80',
+        image: 'IMG_5133.jpg',
         title: 'Tension-Free Knotless Braids',
         subtitle: 'Lightweight protective braid architecture'
       },
       {
-        image: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=800&q=80',
-        title: 'Silk Press & Hydration',
+        image: 'IMG_0075.jpg',
+        title: 'Silk Press & Style',
         subtitle: 'Steam therapy and precision end trim'
       }
     ]
@@ -134,7 +134,7 @@ window.homeView = {
             <div class="bg-white/95 backdrop-blur-sm border border-[#C5A059]/20 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between">
               <div>
                 <div class="h-56 overflow-hidden relative">
-                  <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80" alt="Loc Cultivation" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500" />
+                  <img src="IMG_2256.jpg" alt="Loc Cultivation" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500" />
                   <div class="absolute inset-0 bg-gradient-to-t from-[#110E0C]/60 via-transparent to-transparent"></div>
                   <span class="absolute bottom-3 left-4 text-[#C5A059] font-serif font-bold text-lg">Locs</span>
                 </div>
@@ -153,7 +153,7 @@ window.homeView = {
             <div class="bg-white/95 backdrop-blur-sm border border-[#C5A059]/20 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between">
               <div>
                 <div class="h-56 overflow-hidden relative">
-                  <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80" alt="Braid Architecture" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500" />
+                  <img src="IMG_5812.jpg" alt="Braid Architecture" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500" />
                   <div class="absolute inset-0 bg-gradient-to-t from-[#110E0C]/60 via-transparent to-transparent"></div>
                   <span class="absolute bottom-3 left-4 text-[#C5A059] font-serif font-bold text-lg">Braids</span>
                 </div>
@@ -172,7 +172,7 @@ window.homeView = {
             <div class="bg-white/95 backdrop-blur-sm border border-[#C5A059]/20 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between">
               <div>
                 <div class="h-56 overflow-hidden relative">
-                  <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=800&q=80" alt="Natural Care and Kids" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500" />
+                  <img src="IMG_4784.jpg" alt="Natural Care and Kids" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500" />
                   <div class="absolute inset-0 bg-gradient-to-t from-[#110E0C]/60 via-transparent to-transparent"></div>
                   <span class="absolute bottom-3 left-4 text-[#C5A059] font-serif font-bold text-lg">Natural & Kids</span>
                 </div>
