@@ -7,79 +7,79 @@ window.galleryView = {
   // Administrative Failsafe: 15 Default Hair Transformation Assets & Labels
   defaultImages: [
     {
-      url: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80',
-      title: 'Micro Loc Maintenance',
-      category: 'Loc Cultivation'
+      url: 'IMG_0990.jpg',
+      title: 'Loc Maintenance',
+      category: 'Loc Care & Growth'
     },
     {
-      url: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80',
-      title: 'Tension-Free Knotless Braids',
-      category: 'Braid Architecture'
+      url: 'IMG_5333.jpg',
+      title: 'Tension-Free Braids',
+      category: 'Beautiful, Healthy Braids'
     },
     {
-      url: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=800&q=80',
-      title: 'Silk Press & Hydration Steam',
+      url: 'IMG_6033.jpg',
+      title: 'Silk Press & Style',
       category: 'Natural Care'
     },
     {
-      url: 'https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=800&q=80',
-      title: 'Starter Loc Cultivation',
-      category: 'Loc Cultivation'
+      url: 'IMG_6127.jpg',
+      title: 'Starter Locs',
+      category: 'Loc Care & Growth'
     },
     {
-      url: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=800&q=80',
-      title: 'Fulani Tribal Cornrows',
-      category: 'Braid Architecture'
+      url: 'IMG_5812.jpg',
+      title: 'Cornrow Style',
+      category: 'Beautiful, Healthy Braids'
     },
     {
-      url: 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=800&q=80',
-      title: 'Gentle Royalty Kids Braids',
+      url: 'IMG_6232.jpg',
+      title: 'Kids Braids',
       category: 'Kids Care'
     },
     {
-      url: 'https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=800&q=80',
-      title: 'Herbal Detox & Loc Retwist',
-      category: 'Loc Cultivation'
+      url: 'IMG_5157.jpg',
+      title: 'Loc Retwist',
+      category: 'Loc Care & Growth'
     },
     {
-      url: 'https://images.unsplash.com/photo-1584297091622-af8e5ad23062?auto=format&fit=crop&w=800&q=80',
-      title: 'Boho Goddess Knotless',
-      category: 'Braid Architecture'
+      url: 'IMG_6278.jpg',
+      title: 'Boho Goddess Twist',
+      category: 'Beautiful, Healthy Braids'
     },
     {
-      url: 'https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=800&q=80',
-      title: 'Botanical Scalp Treatment & Trim',
+      url: 'IMG_0888.jpg',
+      title: 'Scalp Treatment & Style',
       category: 'Natural Care'
     },
     {
-      url: 'https://images.unsplash.com/photo-1516914943479-89db7d9ae7f2?auto=format&fit=crop&w=800&q=80',
-      title: 'Tender-Headed Kids Twists',
+      url: 'IMG_1761.jpg',
+      title: 'Kids Braids',
       category: 'Kids Care'
     },
     {
-      url: 'https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=800&q=80',
-      title: 'Loc Petal Updo Styling',
-      category: 'Loc Cultivation'
+      url: 'IMG_1476.jpg',
+      title: 'Locs Updo Styling',
+      category: 'Loc Care & Growth'
     },
     {
-      url: 'https://images.unsplash.com/photo-1560869713-7d0a29430803?auto=format&fit=crop&w=800&q=80',
-      title: 'Lemonade Feed-In Braids',
-      category: 'Braid Architecture'
+      url: 'IMG_4784.jpg',
+      title: 'Feed-In Braids',
+      category: 'Beautiful, Healthy Braids'
     },
     {
-      url: 'https://images.unsplash.com/photo-1523263685547-506f2f723134?auto=format&fit=crop&w=800&q=80',
-      title: 'Thermal Silk Press & Curvature',
+      url: 'IMG_5644.jpg',
+      title: 'Sew-in and Style',
       category: 'Natural Care'
     },
     {
-      url: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80',
-      title: 'Kids Beaded Protective Style',
+      url: 'IMG_4448.jpg',
+      title: 'Kids Protective Style',
       category: 'Kids Care'
     },
     {
-      url: 'https://images.unsplash.com/photo-1582095133179-bfd08e2fc6b3?auto=format&fit=crop&w=800&q=80',
+      url: 'IMG_0578.jpg',
       title: 'Interlocking & Root Repair',
-      category: 'Loc Cultivation'
+      category: 'Loc Care & Growth'
     }
   ],
 
@@ -110,7 +110,7 @@ window.galleryView = {
           <span class="text-[#C29B8A] text-xs font-semibold uppercase tracking-[0.25em] block mb-2">Visual Excellence</span>
           <h1 class="font-serif text-3xl sm:text-5xl font-bold text-[#110E0C] tracking-wide mb-4">Crown Portfolio</h1>
           <p class="text-xs sm:text-sm text-[#554D47] leading-relaxed max-w-xl mx-auto">
-            A visual gallery of healthy crown transformations, artisanal braid architectures, and loc cultivations crafted in our private sanctuary.
+            Look through our gallery to see beautiful hair transformations, gentle braid styles, and healthy loc care created in our private salon suite.
           </p>
           <div class="w-24 h-0.5 bg-[#C5A059]/40 mx-auto mt-6"></div>
         </section>

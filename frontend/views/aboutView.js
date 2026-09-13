@@ -6,14 +6,14 @@
 window.aboutView = {
   // Default Layout Data Ledger (Fallback when server/DB is offline)
   defaultData: {
-    heroImage: 'https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=1200&q=80',
+    heroImage: 'IMG_5772.JPG',
     badgeTag: 'Private Suite Experience',
     badgeSub: '1-on-1 Dedicated Crown Preservation',
     sectionBadge: 'Heritage & Craft',
     headlineTitle: 'Our Story & Philosophy',
-    paragraph1: 'CHEVY Hair & Beauty was born out of a desire to break away from chaotic, double-booked, high-volume salon dynamics. We envisioned an intentional, peaceful sanctuary—a private 1-on-1 suite where time slows down, privacy is respected, and your natural crown is honored with absolute reverence.',
-    paragraph2: 'Our artistry centers on the architecture of healthy natural hair care. From crisp, tension-free parting for protective braids to meticulous loc cultivation, silk presses, and deep hydration steam therapy, every service is tailored to preserve delicate edges, nourish the scalp, and promote maximum hair retention.',
-    paragraph3: 'When you reserve a session at CHEVY, you are guaranteed total, undivided focus. No waiting room delays, no overlapping appointments, and no rushed routines—just a quiet, luxurious self-care experience dedicated entirely to your personal wellness goals.',
+    paragraph1: 'CHEVY Hair & Beauty started because we wanted to leave behind crowed, double-booked, and loud salons. We created a peaceful, private space just for you. Here, time slows down, your privacy is respected, and your hair is truly loved.',
+    paragraph2: 'Everything we do is focused on keeping your natural hair healthy. From gentle, pain-free braiding to neat loc care, smooth silk presses, and deep stream treatments. Every service is planned to protect your edges, feed your scalp, and help your hair grow long.',
+    paragraph3: 'When you book a visit with us, you get our full attention. <br> - No waiting rooms <br> - No running late <br> - No double-booking <br> No rushed appointments <br> Just a quiet, relaxing, and luxurious self-care day built around your hair goals.',
     buttonText: 'Explore Our Signature Services',
     buttonRoute: 'services'
   },

@@ -14,24 +14,24 @@ window.contactView = {
       instagram: 'https://instagram.com',
       facebook: 'https://facebook.com'
     },
-    policyNoticeTitle: 'Exclusive Studio Reservation Notice',
-    policyNoticeBody: 'CHEVY operates as a private 1-on-1 boutique suite sanctuary. To preserve total guest safety and confidentiality, physical address details and access codes are issued automatically via text/email only upon deposit hold clearance.',
+    policyNoticeTitle: 'Booking Notice',
+    policyNoticeBody: 'CHEVY is a private, 1-on-1 salon suite. To keep our space quite and relaxing for everyone, we only share our exact address after booking deposit is paid. You will get a text or email with these details right away!',
     policies: [
       {
-        title: 'Private Studio Address Protocol',
-        desc: 'Our physical suite location and building entry details are kept private to protect client confidentiality and maintain a quiet 1-on-1 sanctuary environment. Full address and parking instructions are dispatched automatically via text/email after your booking deposit is verified.'
+        title: 'STUDIO RULES',
+        desc: 'Please come alone or with the child that getting their hair done. Because of limited space, we cannot have too many guess, pets or anything that will take up too much space.'
       },
       {
         title: 'Safety & Hygiene Guidelines',
-        desc: 'Please arrive unaccompanied to your appointment, as extra guests or children not receiving services are strictly prohibited due to limited suite space. Masks are optional but available upon request. All tools and seating undergo medical-grade sanitation between guests.'
+        desc: 'Please come wash and dry, if not, there will be an additional charge for wash and dry. Masks are optional. All tools and chairs are fully cleaned and disinfected between every client.'
       },
       {
         title: 'Arrival & 15-Minute Late Grace Period',
-        desc: 'We offer a strict 15-minute grace period. Arriving more than 15 minutes past your scheduled reservation time may result in cancellation or a $25 late fee to avoid impacting subsequent private appointments.'
+        desc: 'We offer a 15-minute grace period. If you are more than 15 minutes late, your appointment may be canceled or rescheduled. A late fee may apply depending on how late you are and if there is availability.'
       },
       {
         title: 'Deposits & Cancellation Terms',
-        desc: 'A non-refundable deposit hold is required for all reservations. Cancellations or rescheduling must be submitted at least 48 hours prior to your appointment time to transfer your deposit balance.'
+        desc: 'All appointments require a non-refundable deposit to lock in your time spot. If you need to cancel or change your appointment, please let us know at least 48 hours in advance to move your deposit to a new day.'
       }
     ]
   },
@@ -107,13 +107,13 @@ window.contactView = {
                 </div>
 
                 <div class="flex items-center gap-3 pt-2">
-                  <a id="social-tiktok" href="${data.socials.tiktok}" target="_blank" rel="noopener" aria-label="TikTok" class="w-8 h-8 rounded-full border border-[#C5A059] text-[#C5A059] flex items-center justify-center hover:bg-[#C5A059] hover:text-[#110E0C] transition-all">
+                  <a id="social-tiktok" href="https://www.tiktok.com/@chevyhairandbeauty?_r=1&_t=ZT-99GBQ0F6E0L" target="_blank" rel="noopener" aria-label="TikTok" class="w-8 h-8 rounded-full border border-[#C5A059] text-[#C5A059] flex items-center justify-center hover:bg-[#C5A059] hover:text-[#110E0C] transition-all">
                     <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 1 1-5.2-1.74 2.89 2.89 0 0 1 2.31-1.42V8.9a6.34 6.34 0 1 0 6.34 6.34V9.4A8.16 8.16 0 0 0 20 10.7V7.27a4.84 4.84 0 0 1-.41-.58z"/></svg>
                   </a>
-                  <a id="social-instagram" href="${data.socials.instagram}" target="_blank" rel="noopener" aria-label="Instagram" class="w-8 h-8 rounded-full border border-[#C5A059] text-[#C5A059] flex items-center justify-center hover:bg-[#C5A059] hover:text-[#110E0C] transition-all">
+                  <a id="social-instagram" href="https://www.instagram.com/chevyhairandbeauty?igsi=MTZxd2s0ZGV2Yzh2OQ%3D%3D&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram" class="w-8 h-8 rounded-full border border-[#C5A059] text-[#C5A059] flex items-center justify-center hover:bg-[#C5A059] hover:text-[#110E0C] transition-all">
                     <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                   </a>
-                  <a id="social-facebook" href="${data.socials.facebook}" target="_blank" rel="noopener" aria-label="Facebook" class="w-8 h-8 rounded-full border border-[#C5A059] text-[#C5A059] flex items-center justify-center hover:bg-[#C5A059] hover:text-[#110E0C] transition-all">
+                  <a id="social-facebook" href="https://www.facebook.com/share/19d4Cqo2Lm/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook" class="w-8 h-8 rounded-full border border-[#C5A059] text-[#C5A059] flex items-center justify-center hover:bg-[#C5A059] hover:text-[#110E0C] transition-all">
                     <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                   </a>
                 </div>
@@ -125,7 +125,7 @@ window.contactView = {
               <div class="border-b border-[#C29B8A]/20 pb-4">
                 <span class="text-[#C5A059] text-[10px] font-bold uppercase tracking-[0.2em] block mb-1">Direct Inquiries</span>
                 <h3 class="font-serif text-2xl font-bold text-[#110E0C]">Transmit A Message</h3>
-                <p class="text-xs text-[#554D47] mt-1">Have custom style questions or require booking guidance? Send us a note below.</p>
+                <p class="text-xs text-[#554D47] mt-1">Have a questions or require booking guidance? Send us a note below.</p>
               </div>
 
               <form id="contact-message-form" class="space-y-4">

@@ -9,48 +9,48 @@ window.homeView = {
     heroSlides: [
       {
         image: 'IMG_1946.jpg',
-        title: 'Gentle Kids Natural Care',
-        desc: 'Patience, love, and light hands for your little royalty (Ages 3–12). Premium tension-free protective styling engineered for growth.',
+        title: 'Gentle Care for Kids',
+        desc: 'Patient, loving, and gentle styling for your little ones (Ages 3–12). We focus on healthy hair growth with tension-free protective styles. Get 15% off any kids style that includes added braiding hair!',
         buttonText: 'Explore Services',
         buttonRoute: 'services'
       },
       {
         image: 'IMG_1476.jpg',
-        title: 'Crown Loc Cultivation',
-        desc: 'Precision retwists, starter locs, palm rolling, and therapeutic herbal detox rinses in a quiet, serene suite sanctuary.',
+        title: 'Loc Care & Growth',
+        desc: 'Neat retwists, starter locs, and palm rolling. Relax in our quiet, peaceful suite with a soothing herbal detox rinse for your scalp.',
         buttonText: 'Explore Services',
         buttonRoute: 'services'
       },
       {
         image: 'IMG_5333.jpg',
-        title: 'Artisanal Braid Architecture',
-        desc: 'Crisp parting, lightweight knotless braids, fulani accents, and protective styles crafted tension-free for edge retention.',
+        title: 'Beautiful, Healthy Braids',
+        desc: 'Clean parts, lightweight knotless braids, and beautiful braiding styles. We take great care of your hair by braiding gently without painful pulling.',
         buttonText: 'Explore Services',
         buttonRoute: 'services'
       }
     ],
     welcome: {
-      badge: 'Boutique Sanctuary',
+      badge: 'PRIVATE SALON SUITE',
       title: 'The CHEVY Experience',
-      paragraph: 'Welcome to CHEVY Hair & Beauty, an exclusive private boutique suite dedicated to honoring your natural crown. We champion health-first techniques, tension-free styling, and peaceful, uninterrupted 1-on-1 private self-care in a tranquil environment engineered for rest, renewal, and retention.',
+      paragraph: 'Welcome to CHEVY Hair & Beauty! Our private salon suite is all about loving your hair. We focus on healthy, gentle hair care without painful pulling. Enjoy a peaceful, one-on-one salon visit designed to help you relax, recharge, and grow long, healthy hair.',
       buttonText: 'Read Our Full Story',
       buttonRoute: 'about'
     },
     transformations: [
       {
         image: 'IMG_3643.jpg',
-        title: 'Loc Detox & Maintenance',
-        subtitle: 'Palmed retwist with herbal rinse finish'
+        title: 'Loc Maintenance',
+        subtitle: 'Palmed retwist with style'
       },
       {
         image: 'IMG_5133.jpg',
         title: 'Tension-Free Knotless Braids',
-        subtitle: 'Lightweight protective braid architecture'
+        subtitle: 'Lightweight protective braids'
       },
       {
         image: 'IMG_0075.jpg',
         title: 'Silk Press & Style',
-        subtitle: 'Steam therapy and precision end trim'
+        subtitle: 'Silk press, treatment and style'
       }
     ]
   },
@@ -76,7 +76,7 @@ window.homeView = {
           <path d="M12 4.5C10.5 2 6 2 4 4.5S2 10 4 12c2 2 6.5 1 8-1.5 1.5 2.5 6 3.5 8 1.5s2-5 0-7.5-6.5-2.5-8-.5zm0 15c-1.5 2.5-6 3.5-8 1.5s-2-5 0-7.5c2-2.5 6.5-1 8 1.5 1.5-2.5 6-3.5 8-1.5s2 5 0 7.5-6.5 1-8-1.5z"/>
         </svg>
 
-        <section class="relative z-10 w-full h-[78vh] min-h-[520px] max-h-[850px] overflow-hidden shadow-2xl border-b border-[#C29B8A]/30">
+        <section class="relative z-10 w-full h-[70vh] min-h-[520px] max-h-[500px] overflow-hidden shadow-2xl border-b border-[#C29B8A]">
           
           <div id="hero-slide-0" class="home-hero-slide absolute inset-0 opacity-100 transition-opacity duration-1000 ease-in-out bg-cover bg-center" style="background-image: url('${data.heroSlides[0].image}');"></div>
           
@@ -134,13 +134,13 @@ window.homeView = {
             <div class="bg-white/95 backdrop-blur-sm border border-[#C5A059]/20 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between">
               <div>
                 <div class="h-56 overflow-hidden relative">
-                  <img src="IMG_2256.jpg" alt="Loc Cultivation" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500" />
+                  <img src="IMG_2256.jpg" alt="Loc Care & Growth" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500" />
                   <div class="absolute inset-0 bg-gradient-to-t from-[#110E0C]/60 via-transparent to-transparent"></div>
                   <span class="absolute bottom-3 left-4 text-[#C5A059] font-serif font-bold text-lg">Locs</span>
                 </div>
                 <div class="p-6">
-                  <h3 class="font-serif text-xl font-bold text-[#110E0C] mb-2">Loc Cultivation</h3>
-                  <p class="text-xs sm:text-sm text-[#554D47] leading-relaxed mb-6">Starter loc installs, precision retwists, palm rolling, and therapeutic herbal detox rinses designed for long-term root strength.</p>
+                  <h3 class="font-serif text-xl font-bold text-[#110E0C] mb-2">Loc Care & Growth</h3>
+                  <p class="text-xs sm:text-sm text-[#554D47] leading-relaxed mb-6">Starter locs, neat retwists, and palm rolling. We also offer relaxing herbal detox rinses to keep your roots strong and healthy.</p>
                 </div>
               </div>
               <div class="px-6 pb-6">
@@ -153,13 +153,13 @@ window.homeView = {
             <div class="bg-white/95 backdrop-blur-sm border border-[#C5A059]/20 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between">
               <div>
                 <div class="h-56 overflow-hidden relative">
-                  <img src="IMG_5812.jpg" alt="Braid Architecture" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500" />
+                  <img src="IMG_5812.jpg" alt="Beautiful, Healthy Braids" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500" />
                   <div class="absolute inset-0 bg-gradient-to-t from-[#110E0C]/60 via-transparent to-transparent"></div>
                   <span class="absolute bottom-3 left-4 text-[#C5A059] font-serif font-bold text-lg">Braids</span>
                 </div>
                 <div class="p-6">
-                  <h3 class="font-serif text-xl font-bold text-[#110E0C] mb-2">Braid Architecture</h3>
-                  <p class="text-xs sm:text-sm text-[#554D47] leading-relaxed mb-6">Crisp parting, lightweight knotless styles, fulani accents, and protective braids crafted tension-free to preserve fragile edges.</p>
+                  <h3 class="font-serif text-xl font-bold text-[#110E0C] mb-2">Beautiful, Healthy Braids</h3>
+                  <p class="text-xs sm:text-sm text-[#554D47] leading-relaxed mb-6">Clean part, lightweight knotless braids, cornrows, and protective braids crafted tension-free to preserve fragile edges.</p>
                 </div>
               </div>
               <div class="px-6 pb-6">
@@ -178,7 +178,7 @@ window.homeView = {
                 </div>
                 <div class="p-6">
                   <h3 class="font-serif text-xl font-bold text-[#110E0C] mb-2">Natural Care & Kids</h3>
-                  <p class="text-xs sm:text-sm text-[#554D47] leading-relaxed mb-6">Hydration steam treatments, silk presses, precision trims, and tender-headed gentle handling for young royalty (Ages 3–12).</p>
+                  <p class="text-xs sm:text-sm text-[#554D47] leading-relaxed mb-6">Hydrating steam treatments, trims and braids. (Ages 3-12). Don't forget: Kids get 15% off styles with added braiding hair!</p>
                 </div>
               </div>
               <div class="px-6 pb-6">
