@@ -44,7 +44,7 @@ window.aboutView = {
               <div class="relative w-full max-w-md md:max-w-none aspect-[4/5] overflow-hidden rounded-xl border border-[#C5A059]/30 shadow-2xl transform -rotate-2 hover:scale-[1.01] transition-transform duration-300 group">
                 <img 
                   id="about-hero-img"
-                  src="${data.heroImage}" 
+                  src="IMG_5772.JPG" 
                   alt="CHEVY Private Boutique Salon Suite Interior" 
                   class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
                 />

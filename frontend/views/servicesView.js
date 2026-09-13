@@ -17,67 +17,67 @@ window.servicesView = {
       { id: 'natural', name: 'Natural Care & Silk Press' },
       { id: 'kids', name: 'Gentle Kids Royalty' }
     ],
-    globalDiscount: { active: true, type: 'percent', value: 10 }, // 10% OFF Global Promo
+    globalDiscount: { active: true, type: 'percent', value: 15 }, // 15% OFF Global Promo
     services: [
       {
         id: 101,
         category: 'locs',
-        name: 'Loc Retwist & Scalp Therapy',
-        description: 'Comprehensive palm-roll retwist accompanied by a deep herbal scalp detox wash and organic essential oil seal.',
-        duration: 120, // in minutes
-        price: 130,
+        name: 'Loc Retwist & Style',
+        description: 'palm-roll retwist and style.',
+        duration: 60, // in minutes
+        price: 85,
         discountActive: true
       },
       {
         id: 102,
         category: 'locs',
-        name: 'Starter Loc Cultivation',
-        description: 'Precision comb-coil or two-strand twist starter loc installation with customized parting architecture.',
-        duration: 180,
-        price: 210,
+        name: 'Starter Loc',
+        description: 'Comb-coil or two-strand twist starter loc installation.',
+        duration: 60,
+        price: 75,
         discountActive: false
       },
       {
         id: 201,
         category: 'braids',
-        name: 'Mid-Back Knotless Braids',
-        description: 'Lightweight, tension-free knotless protective braids crafted for optimal edge preservation and longevity.',
+        name: 'Knotless Braids',
+        description: 'Lightweight, tension-free knotless protective braids.',
         duration: 240,
-        price: 240,
+        price: 200,
         discountActive: true
       },
       {
         id: 202,
         category: 'braids',
-        name: 'Fulani Tribal Braids',
-        description: 'Artisanal front tribal cornrows with back knotless braids, finished with dipped ends and scalp oil.',
+        name: 'Box Braids',
+        description: 'Lightweight, tension-free box braids.',
         duration: 210,
-        price: 260,
+        price: 185,
         discountActive: false
       },
       {
         id: 301,
         category: 'natural',
-        name: 'Hydration Steam & Silk Press',
-        description: 'Deep penetrating moisture steam treatment, invigorating scalp massage, precision end trim, and silky finish.',
+        name: 'Silk Ponytail',
+        description: 'Silk press with ponytail included.',
         duration: 90,
-        price: 125,
+        price: 95,
         discountActive: false
       },
       {
         id: 401,
         category: 'kids',
         name: 'Gentle Royalty Kids Style (Ages 3–12)',
-        description: 'Patient, tender-headed care featuring lightweight, tension-free protective cornrows or twists for children.',
+        description: 'Patient, tension-free protective cornrows or twists for children.',
         duration: 105,
-        price: 95,
+        price: 85,
         discountActive: false
       }
     ],
     addons: [
       // General Add-ons (applicable to all)
       { id: 1, name: 'Deep Herbal Scalp Detox', price: 30, duration: 20, category: 'all' },
-      { id: 2, name: 'Hot Oil Hydration Treatment', price: 25, duration: 15, category: 'all' },
+      { id: 2, name: 'Oil Hydration Treatment', price: 25, duration: 15, category: 'all' },
       // Category-Specific Add-ons
       { id: 3, name: 'Waist-Length Extension', price: 50, duration: 45, category: 'braids' },
       { id: 4, name: 'Butt-Length Extension', price: 80, duration: 60, category: 'braids' },
@@ -107,7 +107,7 @@ window.servicesView = {
           <span class="text-[#C29B8A] text-xs font-semibold uppercase tracking-[0.25em] block mb-2">Artisanal Menu</span>
           <h1 class="font-serif text-3xl sm:text-5xl font-bold text-[#110E0C] tracking-wide mb-4">Signature Services</h1>
           <p class="text-xs sm:text-sm text-[#554D47] leading-relaxed max-w-xl mx-auto">
-            Explore our curated menu of natural hair, loc, and protective braid services. Customize your experience with tailored treatments and reserve your private 1-on-1 session.
+            Explore our service menu of natural hair, loc, and protective braid services. Customize your experience with tailored treatments and reserve your private 1-on-1 session.
           </p>
           <div class="w-24 h-0.5 bg-[#C5A059]/40 mx-auto mt-6"></div>
         </section>
@@ -120,10 +120,10 @@ window.servicesView = {
             class="w-full bg-white border border-[#C5A059]/40 text-[#110E0C] text-xs font-bold uppercase tracking-wider py-2.5 px-3 rounded-sm shadow-sm outline-none focus:border-[#C5A059]"
           >
             <option value="all">✨ All Signature Specialties</option>
-            <option value="locs">👑 Loc Cultivation</option>
-            <option value="braids">✨ Braid Architecture</option>
-            <option value="natural">🌸 Natural Care & Silk Press</option>
-            <option value="kids">👑 Gentle Kids Royalty</option>
+            <option value="locs">👑 Loc Care & Growth</option>
+            <option value="braids">✨ Beautiful, Healthy Braids</option>
+            <option value="natural">🌸 Natural Care</option>
+            <option value="kids">👑 Kids Braids</option>
           </select>
         </div>
 
@@ -149,28 +149,28 @@ window.servicesView = {
                   data-cat="locs"
                   class="cat-nav-btn text-left px-4 py-3 rounded-md text-xs font-bold uppercase tracking-wider transition-all duration-300 text-[#110E0C] hover:bg-[#C5A059]/20 hover:text-[#110E0C]"
                 >
-                  Loc Cultivation
+                  Loc Care & Growth
                 </button>
                 <button 
                   onclick="window.servicesView.handleCategoryChange('braids')" 
                   data-cat="braids"
                   class="cat-nav-btn text-left px-4 py-3 rounded-md text-xs font-bold uppercase tracking-wider transition-all duration-300 text-[#110E0C] hover:bg-[#C5A059]/20 hover:text-[#110E0C]"
                 >
-                  Braid Architecture
+                  Beautiful, Healthy Braids
                 </button>
                 <button 
                   onclick="window.servicesView.handleCategoryChange('natural')" 
                   data-cat="natural"
                   class="cat-nav-btn text-left px-4 py-3 rounded-md text-xs font-bold uppercase tracking-wider transition-all duration-300 text-[#110E0C] hover:bg-[#C5A059]/20 hover:text-[#110E0C]"
                 >
-                  Natural & Silk Press
+                  Natural Hair Care
                 </button>
                 <button 
                   onclick="window.servicesView.handleCategoryChange('kids')" 
                   data-cat="kids"
                   class="cat-nav-btn text-left px-4 py-3 rounded-md text-xs font-bold uppercase tracking-wider transition-all duration-300 text-[#110E0C] hover:bg-[#C5A059]/20 hover:text-[#110E0C]"
                 >
-                  Gentle Kids Royalty
+                  Kids Braids
                 </button>
               </nav>
 
@@ -425,7 +425,7 @@ window.servicesView = {
 
           <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2 border-t border-[#C29B8A]/20">
             <span class="text-[10px] text-[#C29B8A] italic leading-tight text-center sm:text-left">
-              * Your custom discount balance will be manually verified at your appointment.
+              * "FIRST-TIME CLIENTS: Click Book Now to reserve your time slot on Setmore. Make sure to manually type your chosen Add-Ons or your First-Time Discount into the "Notes" box before comfirming!"
             </span>
 
             <a 
@@ -440,7 +440,7 @@ window.servicesView = {
 
           <div class="mt-3 pt-2 border-t border-dashed border-[#C29B8A]/30">
             <span class="text-xs text-[#110E0C]/70 italic block leading-relaxed">
-              Note: A non-refundable deposit is required via Setmore to lock your 1-on-1 block. By booking, you verify compliance with our strict 15-minute arrival threshold and private guest boundaries. 
+              Note: A non-refundable deposit is required via Setmore to lock in your appointment, please zelle or cash-app deposit to the number on Setmore. 
               <button 
                 onclick="switchPublicView('contact')" 
                 class="text-[#C5A059] font-bold not-italic hover:underline ml-1 inline-block"
