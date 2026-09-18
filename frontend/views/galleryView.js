@@ -125,7 +125,7 @@ window.galleryView = {
                     alt="${item.title || 'Crown Transformation'}" 
                     class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                     loading="lazy"
-                    onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80'"
+                    onerror="this.src='IMG_0990.jpg'"
                   />
                   <div class="absolute inset-0 bg-gradient-to-t from-[#110E0C]/60 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
                   
@@ -204,7 +204,7 @@ window.galleryView = {
             alt="${item.title || 'Crown Transformation'}" 
             class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
             loading="lazy"
-            onerror="this.src='https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80'"
+            onerror="this.src='IMG_0990.jpg'"
           />
           <div class="absolute inset-0 bg-gradient-to-t from-[#110E0C]/60 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
           
