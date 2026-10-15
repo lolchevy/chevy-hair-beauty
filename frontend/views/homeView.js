@@ -78,11 +78,11 @@ window.homeView = {
 
         <section class="relative z-10 w-full h-[70vh] min-h-[520px] max-h-[500px] overflow-hidden shadow-2xl border-b border-[#C29B8A]">
           
-          <div id="hero-slide-0" class="home-hero-slide absolute inset-0 opacity-100 transition-opacity duration-1000 ease-in-out bg-cover bg-center" style="background-image: url('${data.heroSlides[0].image}');"></div>
+          <div id="hero-slide-0" class="home-hero-slide absolute inset-0 opacity-100 transition-opacity duration-1000 ease-in-out bg-cover bg-top" style="background-image: url('${data.heroSlides[0].image}');"></div>
           
-          <div id="hero-slide-1" class="home-hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out bg-cover bg-center" style="background-image: url('${data.heroSlides[1].image}');"></div>
+          <div id="hero-slide-1" class="home-hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out bg-cover bg-top" style="background-image: url('${data.heroSlides[1].image}');"></div>
           
-          <div id="hero-slide-2" class="home-hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out bg-cover bg-center" style="background-image: url('${data.heroSlides[2].image}');"></div>
+          <div id="hero-slide-2" class="home-hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out bg-cover bg-top" style="background-image: url('${data.heroSlides[2].image}');"></div>
 
           <div class="absolute inset-0 bg-gradient-to-t from-[#110E0C]/65 via-transparent to-black/20 z-10"></div>
 
@@ -343,111 +343,69 @@ window.homeView = {
     `;
   },
 
-  init: function (viewport) {
-    const self = this;
-    let activeSlidesData = self.defaultData.heroSlides;
+      init: function (viewport) {
+        const self = this;
+        const data = self.defaultData;
+        let activeSlidesData = data.heroSlides || [];
 
-    // 1. DYNAMIC API DATA FETCHING (ADMIN BACKEND INTEGRATION)
-    fetch('/api/get-home-content')
-      .then(res => {
-        if (!res.ok) throw new Error('Network response error');
-        return res.json();
-      })
-      .then(data => {
-        if (data) {
-          // Update Slideshow Data Ledger
-          if (data.heroSlides && data.heroSlides.length === 3) {
-            activeSlidesData = data.heroSlides;
-            data.heroSlides.forEach((slide, idx) => {
-              const slideElem = viewport.querySelector(`#hero-slide-${idx}`);
-              if (slideElem && slide.image) {
-                slideElem.style.backgroundImage = `url('${slide.image}')`;
-              }
+        // 1. SELECT LAYOUT ELEMENTS
+        const slides = viewport.querySelectorAll('.home-hero-slide');
+        const dots = viewport.querySelectorAll('.hero-dot-indicator');
+        const promoTitle = viewport.querySelector('#hero-promo-title');
+        const promoDesc = viewport.querySelector('#hero-promo-desc');
+        const promoBtn = viewport.querySelector('#hero-promo-btn');
+        let currentSlideIdx = 0;
+
+        // 2. HERO SLIDESHOW CROSSFADE ENGINE
+        function activateSlide(index) {
+            slides.forEach((slide, i) => {
+                if (i === index) {
+                    slide.classList.remove('opacity-0');
+                    slide.classList.add('opacity-100');
+                } else {
+                    slide.classList.remove('opacity-100');
+                    slide.classList.add('opacity-0');
+                }
             });
+
+            dots.forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.add('bg-[#CSA059]');
+                    dot.classList.remove('bg-white/40');
+                } else {
+                    dot.classList.remove('bg-[#CSA059]');
+                }
+            });
+
+            // Update text matching the active slide
+            const currentSlideData = activeSlidesData[index] || self.defaultData.heroSlides[index];
+            if (currentSlideData) {
+                if (promoTitle && currentSlideData.title) promoTitle.textContent = currentSlideData.title;
+                if (promoDesc && currentSlideData.desc) promoDesc.textContent = currentSlideData.desc;
+                if (promoBtn) {
+                    if (currentSlideData.buttonText) promoBtn.textContent = currentSlideData.buttonText;
+                    promoBtn.setAttribute('onclick', `switchPublicView('${currentSlideData.targetView || 'services'}')`);
+                }
+            }
+        }
+
+              // Run the initial slide activation
+        if (slides.length > 0) {
             activateSlide(currentSlideIdx);
-          }
-
-          // Update Welcome Panel
-          if (data.welcome) {
-            const wBadge = viewport.querySelector('#welcome-badge');
-            const wTitle = viewport.querySelector('#welcome-title');
-            const wPara = viewport.querySelector('#welcome-paragraph');
-            const wBtn = viewport.querySelector('#welcome-btn');
-
-            if (wBadge && data.welcome.badge) wBadge.textContent = data.welcome.badge;
-            if (wTitle && data.welcome.title) wTitle.textContent = data.welcome.title;
-            if (wPara && data.welcome.paragraph) wPara.textContent = data.welcome.paragraph;
-            if (wBtn && data.welcome.buttonText) wBtn.textContent = data.welcome.buttonText;
-          }
-
-          // Update Transformation Portfolio Preview
-          if (data.transformations && data.transformations.length === 3) {
-            data.transformations.forEach((item, idx) => {
-              const imgElem = viewport.querySelector(`#trans-img-${idx}`);
-              const titleElem = viewport.querySelector(`#trans-title-${idx}`);
-              const subElem = viewport.querySelector(`#trans-sub-${idx}`);
-
-              if (imgElem && item.image) imgElem.src = item.image;
-              if (titleElem && item.title) titleElem.textContent = item.title;
-              if (subElem && item.subtitle) subElem.textContent = item.subtitle;
-            });
-          }
         }
-      })
-      .catch(err => {
-        // Silent catch: page uses client fallback defaults if server/endpoint is offline
-      });
 
-    // 2. HERO SLIDESHOW CROSSFADE ENGINE
-    const slides = viewport.querySelectorAll('.home-hero-slide');
-    const dots = viewport.querySelectorAll('.hero-dot-indicator');
-    const promoTitle = viewport.querySelector('#hero-promo-title');
-    const promoDesc = viewport.querySelector('#hero-promo-desc');
-    const promoBtn = viewport.querySelector('#hero-promo-btn');
-    let currentSlideIdx = 0;
-
-    function activateSlide(index) {
-      slides.forEach((slide, i) => {
-        if (i === index) {
-          slide.classList.remove('opacity-0');
-          slide.classList.add('opacity-100');
-        } else {
-          slide.classList.remove('opacity-100');
-          slide.classList.add('opacity-0');
+        // 3. AUTOMATIC CAROUSEL TIMER ENGINE
+        if (window.chevyHomeCarouselTimer) {
+            clearInterval(window.chevyHomeCarouselTimer);
         }
-      });
 
-      dots.forEach((dot, i) => {
-        if (i === index) {
-          dot.classList.add('bg-[#C5A059]');
-          dot.classList.remove('bg-white/40');
-        } else {
-          dot.classList.remove('bg-[#C5A059]');
-          dot.classList.add('bg-white/40');
+        if (slides.length > 1) {
+            window.chevyHomeCarouselTimer = setInterval(() => {
+                currentSlideIdx = (currentSlideIdx + 1) % slides.length;
+                activateSlide(currentSlideIdx);
+            }, 4000);
         }
-      });
-
-      const currentSlideData = activeSlidesData[index] || self.defaultData.heroSlides[index];
-      if (currentSlideData) {
-        if (promoTitle && currentSlideData.title) promoTitle.textContent = currentSlideData.title;
-        if (promoDesc && currentSlideData.desc) promoDesc.textContent = currentSlideData.desc;
-        if (promoBtn) {
-          if (currentSlideData.buttonText) promoBtn.textContent = currentSlideData.buttonText;
-          promoBtn.setAttribute('onclick', `switchPublicView('${currentSlideData.buttonRoute || 'services'}')`);
-        }
-      }
-    }
-
-    if (window.chevyHomeCarouselTimer) {
-      clearInterval(window.chevyHomeCarouselTimer);
-    }
-
-    if (slides.length > 1) {
-      window.chevyHomeCarouselTimer = setInterval(() => {
-        currentSlideIdx = (currentSlideIdx + 1) % slides.length;
-        activateSlide(currentSlideIdx);
-      }, 4000);
-    }
+    
 
     dots.forEach((dot, idx) => {
       dot.addEventListener('click', () => {

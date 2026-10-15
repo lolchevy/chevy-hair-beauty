@@ -53,6 +53,14 @@ def handle_cors_preflight_and_redirect():
 from werkzeug.middleware.proxy_fix import ProxyFix
 app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
 
+def to_dict(self):
+    return {
+        'id': self.id,
+        'image_url': self.image_url,
+        'title': self.title,
+        'subtitle': self.subtitle,
+        'is_active': self.is_active
+    }
 
 # Ensure Upload Directory Exists
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
