@@ -2,23 +2,16 @@
  * CHEVY Hair & Beauty - Services View Component Module
  * Attached directly to global window.servicesView.
  */
-
-/**
- * CHEVY Hair & Beauty - Services View Component Module
- * Attached directly to global window.servicesView.
- */
-
-// Paste your live connection lines here:
-// const supabaseUrl = 'https://supabase.co';
-// const supabaseKey = 'YOUR_ACTUAL_PUBLIC_ANON_KEY_HERE';
-// const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+// Change lines 12 through 14 at the top to your real project info:
+//const supabaseUrl = 'https://gcbvqvoxthzatsqjkn.supabase.co';
+//const supabaseKey = 'YOUR_ACTUAL_PUBLIC_ANON_KEY_HERE'; // Put your real long public anon key inside these quotes
+//const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 
 window.servicesView = {
-    // Application State
-    activeCategory: 'all',
-    servicesData: null,
-    selectedAddons: {}, // Maps service.id -> Set of selected addon IDs
-
+  // Application State
+  activeCategory: 'all',
+  servicesData: null,
+  selectedAddons: {}, // Maps service.id -> Set of selected addon IDs
 
   // Fallback Mock Data for Standalone Testing
   fallbackData: {
@@ -28,10 +21,10 @@ window.servicesView = {
       { id: 'natural', name: 'Natural Care & Silk Press' },
       { id: 'kids', name: 'Gentle Kids Royalty' }
     ],
-    globalDiscount: { active: true, type: 'percent', value: 15 }, // 15% OFF Global Promo
+    globalDiscount: { active: true, type: 'percent', value: 10 }, // 10% OFF Global Promo
     services: [
       {
-        id: 101,
+      id: 101,
         category: 'locs',
         name: 'Loc Retwist & Style (mid-back)',
         description: 'palm-roll retwist and style.',
@@ -767,14 +760,14 @@ window.servicesView = {
     addons: [
       // General Add-ons (applicable to all)
       { id: 1, name: 'Deep Herbal Scalp Detox', price: 30, duration: 20, category: 'all' },
-      { id: 2, name: 'Oil Hydration Treatment', price: 25, duration: 15, category: 'all' },
+      { id: 2, name: 'Hot Oil Hydration Treatment', price: 25, duration: 15, category: 'all' },
       // Category-Specific Add-ons
       { id: 3, name: 'Waist-Length Extension', price: 50, duration: 45, category: 'braids' },
       { id: 4, name: 'Butt-Length Extension', price: 80, duration: 60, category: 'braids' },
       { id: 5, name: 'Loc Repair (Up to 5 Locs)', price: 40, duration: 30, category: 'locs' },
       { id: 6, name: 'Beads & Shell Accents', price: 15, duration: 10, category: 'kids' }
     ],
-    stripeUrl: 'https://buy.stripe.com/9B6eVe8E10Etbop6pi1B605'
+    stripeUrl: 'https://buy.stripe.com/cNi28scUhevj1NP6pi1B606'
   },
 
   render: function () {
@@ -797,7 +790,7 @@ window.servicesView = {
           <span class="text-[#C29B8A] text-xs font-semibold uppercase tracking-[0.25em] block mb-2">Artisanal Menu</span>
           <h1 class="font-serif text-3xl sm:text-5xl font-bold text-[#110E0C] tracking-wide mb-4">Signature Services</h1>
           <p class="text-xs sm:text-sm text-[#554D47] leading-relaxed max-w-xl mx-auto">
-            Explore our service menu of natural hair, loc, and protective braid services. Customize your experience with tailored treatments and reserve your private 1-on-1 session.
+            Explore our curated menu of natural hair, loc, and protective braid services. Customize your experience with tailored treatments and reserve your private 1-on-1 session.
           </p>
           <div class="w-24 h-0.5 bg-[#C5A059]/40 mx-auto mt-6"></div>
         </section>
@@ -810,10 +803,10 @@ window.servicesView = {
             class="w-full bg-white border border-[#C5A059]/40 text-[#110E0C] text-xs font-bold uppercase tracking-wider py-2.5 px-3 rounded-sm shadow-sm outline-none focus:border-[#C5A059]"
           >
             <option value="all">✨ All Signature Specialties</option>
-            <option value="locs">👑 Loc Care & Growth</option>
-            <option value="braids">✨ Beautiful, Healthy Braids</option>
-            <option value="natural">🌸 Natural Care</option>
-            <option value="kids">👑 Kids Braids</option>
+            <option value="locs">👑 Loc Cultivation</option>
+            <option value="braids">✨ Braid Architecture</option>
+            <option value="natural">🌸 Natural Care & Silk Press</option>
+            <option value="kids">👑 Gentle Kids Royalty</option>
           </select>
         </div>
 
@@ -839,28 +832,28 @@ window.servicesView = {
                   data-cat="locs"
                   class="cat-nav-btn text-left px-4 py-3 rounded-md text-xs font-bold uppercase tracking-wider transition-all duration-300 text-[#110E0C] hover:bg-[#C5A059]/20 hover:text-[#110E0C]"
                 >
-                  Loc Care & Growth
+                  Loc Cultivation
                 </button>
                 <button 
                   onclick="window.servicesView.handleCategoryChange('braids')" 
                   data-cat="braids"
                   class="cat-nav-btn text-left px-4 py-3 rounded-md text-xs font-bold uppercase tracking-wider transition-all duration-300 text-[#110E0C] hover:bg-[#C5A059]/20 hover:text-[#110E0C]"
                 >
-                  Beautiful, Healthy Braids
+                  Braid Architecture
                 </button>
                 <button 
                   onclick="window.servicesView.handleCategoryChange('natural')" 
                   data-cat="natural"
                   class="cat-nav-btn text-left px-4 py-3 rounded-md text-xs font-bold uppercase tracking-wider transition-all duration-300 text-[#110E0C] hover:bg-[#C5A059]/20 hover:text-[#110E0C]"
                 >
-                  Natural Hair Care
+                  Natural & Silk Press
                 </button>
                 <button 
                   onclick="window.servicesView.handleCategoryChange('kids')" 
                   data-cat="kids"
                   class="cat-nav-btn text-left px-4 py-3 rounded-md text-xs font-bold uppercase tracking-wider transition-all duration-300 text-[#110E0C] hover:bg-[#C5A059]/20 hover:text-[#110E0C]"
                 >
-                  Kids Braids
+                  Gentle Kids Royalty
                 </button>
               </nav>
 
@@ -1044,10 +1037,9 @@ window.servicesView = {
 
       // Build Setmore Redirect URL with Remark Parameters
       const bookingRemarks = encodeURIComponent(
-        `Service: ${service.name} | Total: $${finalDiscountedTotal.toFixed(2)} | Duration: ${formattedDuration}` +
-        (selectedAddonDetails.length > 0 ? ` | Addons: ${selectedAddonDetails.join(', ')}` : '')
+        `Service: ${service.name} | Total: $${finalDiscountedTotal.toFixed(2)} | Duration: ${formattedDuration}`
       );
-      const bookingTargetUrl = service.checkoutUrl;
+      const bookingTargetUrl = `https://buy.stripe.com/9B6eVe8E10Etbop6pi1B605{bookingRemarks}`;
 
       // Build Service Row Template
       html += `
@@ -1067,10 +1059,8 @@ window.servicesView = {
               <div class="flex items-center sm:justify-end gap-2">
                 ${hasDiscountApplied ? `
                   <span class="text-xs sm:text-sm text-red-500/80 line-through font-semibold">
-                    $${originalBaseTotal.toFixed(2)}
-                  </span>
-                  <span class="font-serif text-2xl font-bold text-[#C5A059]">
-                    $${finalDiscountedTotal.toFixed(2)}
+                    $${originalBaseTotal.toFixed(2)} </span> <span class="font-serif text-2xl font-bold text-[#C5A059]"> $$
+
                   </span>
                 ` : `
                   <span class="font-serif text-2xl font-bold text-[#110E0C]">
@@ -1113,218 +1103,146 @@ window.servicesView = {
             </div>
           ` : ''}
 
-        
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2 border-t border-[#C29B8A]/20">
+            <span class="text-[10px] text-[#C29B8A] italic leading-tight text-center sm:text-left">
+              * Your custom discount balance will be manually verified at your appointment.
+            </span>
 
-    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2 border-t border-dashed border-[#C5A059]/30">
-          <span class="text-[11px] text-[#110E0C]/70 italic leading-tight text-center sm:text-left">
-        * *FIRST-TIME CLIENTS:* Lock your preferred time slot instantly by securing your mandatory deposit below.
-        </span>
+            <a 
+              href="${bookingTargetUrl}" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="w-full sm:w-auto bg-[#C5A059] text-[#110E0C] px-8 py-3.5 text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#B08D47] hover:text-white transition-all transform hover:-translate-y-0.5 shadow-md text-center rounded-sm"
+            >
+              Book Now
+            </a>
+          </div>
 
-    <button
-        onclick="window.openBookingModal(${service.id})"
-        class="w-full sm:w-auto bg-[#C5A059] text-[#110E0C] px-8 py-3.5 font-bold text-center rounded cursor-pointer transition hover:opacity-90">
-        Book Now
-    </button>
-</div>
-
-<div class="mt-3 pt-2 border-t border-dashed border-[#C5A059]/30">
-    <span class="text-xs text-[#110E0C]/70 italic block leading-relaxed">
-        Note: A non-refundable $25 security deposit is processed via Stripe to lock your appointment seat.
-        <button
-            onclick="switchPublicView('contact')"
-            class="text-[#C5A059] font-bold not-italic hover:underline ml-1">
-            View Full Studio Policies
-        </button>
-    </span>
-</div>
+          <div class="mt-3 pt-2 border-t border-dashed border-[#C29B8A]/30">
+            <span class="text-xs text-[#110E0C]/70 italic block leading-relaxed">
+              Note: A non-refundable deposit is required via Setmore to lock your 1-on-1 block. By booking, you verify compliance with our strict 15-minute arrival threshold and private guest boundaries. 
+              <button 
+                onclick="switchPublicView('contact')" 
+                class="text-[#C5A059] font-bold not-italic hover:underline ml-1 inline-block"
+              >
+                View Full Studio Policies
+              </button>
+            </span>
+          </div>
 
         </div>
       `;
     });
 
-    container.innerHTML = html;
-  }
-};
 
-// Global execution trigger for your Tailwind booking window with Client Form Details
-// Find the exact service clicked by matching its unique ID number from your fallback data array
-    const allServices = window.servicesView.fallbackData.services;
-    const selectedService = allServices.find(s => s.id === parseInt(serviceId));
-
-    if (!selectedService) {
-        console.error("Could not find service details for ID:", serviceId);
-        return;
-    }
-
-    let serviceName = selectedService.name;
-    let servicePrice = selectedService.price;
-
-    window.activeBooking = {
-        serviceId: serviceId,
-        selectedDate: null,
-        selectedTime: null
-    };
-
-    let modalContainer = document.getElementById('custom-booking-portal');
-    if (!modalContainer) {
-        modalContainer = document.createElement('div');
-        modalContainer.id = 'custom-booking-portal';
-        modalContainer.className = 'fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4 overflow-y-auto';
-        document.body.appendChild(modalContainer);
-    }
-
-    const mandatoryDeposit = '25.00';
-    const todayStr = new Date().toISOString().split('T')[0];
-
-    modalContainer.innerHTML = `
-        <div class="bg-[#110E0C] border border-[#C5A059]/30 rounded-xl p-6 w-full max-w-md shadow-2xl relative text-white font-sans my-8">
-            <!-- Header Section -->
-            <div class="flex justify-between items-center mb-5 pb-2 border-b border-[#C5A059]/20">
-                <h2 class="text-lg font-bold tracking-wide text-[#C5A059]">Schedule: ` + serviceName + `</h2>
-                <button class="text-gray-400 hover:text-white transition text-xl cursor-pointer" onclick="document.getElementById('custom-booking-portal').remove()">✕</button>
-            </div>
-
-            <div class="space-y-4">
-                <!-- Client Contact Information Fields -->
-                <div class="space-y-3">
-                    <label class="text-xs font-semibold tracking-wider text-gray-300 block">CLIENT CONTACT INFORMATION</label>
-                    <input type="text" id="client-name" placeholder="Full Name" class="w-full bg-[#1A1512] border border-[#C5A059]/30 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-[#C5A059] transition" required>
-                    <div class="grid grid-cols-2 gap-2">
-                        <input type="email" id="client-email" placeholder="Email Address" class="w-full bg-[#1A1512] border border-[#C5A059]/30 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-[#C5A059] transition" required>
-                        <input type="tel" id="client-phone" placeholder="Phone Number" class="w-full bg-[#1A1512] border border-[#C5A059]/30 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-[#C5A059] transition" required>
-                    </div>
-                    <textarea id="client-notes" placeholder="Any special notes or requests? (Optional)" rows="2" class="w-full bg-[#1A1512] border border-[#C5A059]/30 rounded-lg p-2.5 text-xs text-white focus:outline-none focus:border-[#C5A059] transition"></textarea>
-                </div>
-
-                <!-- Date Picker Block (With Bright Calendar Picker CSS Override) -->
-                <div class="flex flex-col gap-1.5">
-                    <label class="text-xs font-semibold tracking-wider text-gray-300">SELECT AN AVAILABLE DATE</label>
-                    <input type="date" id="booking-date-input" min="` + todayStr + `" class="w-full bg-[#1A1512] border border-[#C5A059]/40 rounded-lg p-3 text-white focus:outline-none focus:border-[#C5A059] transition [color-scheme:dark]" onchange="window.handleDateSelection(this.value)">
-                </div>
-
-                <!-- Time Slot Wrapper Stream -->
-                <div id="booking-time-slots" class="space-y-1">
-                    <p class="text-xs italic text-gray-400">Please pick a date first to view open hours...</p>
-                </div>
-
-                <!-- Financial Statement Overview Row -->
-                <div class="bg-[#1A1512] border-l-4 border-[#C5A059] p-4 rounded-r-lg space-y-1.5 text-xs mt-2">
-                    <div class="flex justify-between">
-                        <span class="text-gray-400">Service Total:</span>
-                        <span class="font-bold text-white">$` + servicePrice.toFixed(2) + `</span>
-                    </div>
-                    <div class="flex justify-between border-t border-gray-800 pt-2">
-                        <span class="text-gray-400">Mandatory Security Deposit:</span>
-                        <span class="font-bold text-[#E53E3E]">$` + mandatoryDeposit + `</span>
-                    </div>
-                    <span class="block text-[10px] text-gray-500 leading-tight pt-1">*Deposits are completely non-refundable and lock your seat instantly.</span>
-                </div>
-
-                <!-- Checkout Processing Trigger -->
-                <button class="w-full py-3.5 bg-[#C5A059] hover:bg-[#B38F48] text-[#110E0C] font-bold rounded-lg tracking-wide transition cursor-pointer disabled:bg-gray-700 disabled:text-gray-500 disabled:cursor-not-allowed shadow-md text-sm" id="submit-booking-checkout" disabled onclick="window.processValidationAndRedirect(` + servicePrice + `, ` + mandatoryDeposit + `)">
-                    Secure My Spot & Pay Deposit
-                </button>
-            </div>
-        </div>
-    `;
-
-
-// ==========================================
-// UNIFIED ENGINE HOOKS (ATTTACHED DIRECTLY TO WINDOW)
-// ==========================================
-
-// 1. Handles showing clean salon hour slots as soon as a calendar square is clicked
-window.handleDateSelection = function(dateValue) {
+    // 1. DYNAMIC CALENDAR ENGINE: Triggers instantly when a user picks a day box
+window.handleDateSelection = async function(dateValue) {
+    if (!dateValue) return;
     if (!window.activeBooking) window.activeBooking = {};
-
     window.activeBooking.selectedDate = dateValue;
 
     const slotsContainer = document.getElementById('booking-time-slots');
     if (!slotsContainer) return;
 
-
-
-      // Standard high-performance salon hour intervals
-    const availableHours = ['09:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '12:00 PM', '12:30 PM', '01:00 PM', '01:30 PM', '02:00 PM', '02:30 PM', '03:00 PM', '03:30 PM', '04:00 PM', '04:30 PM', '05:00 PM', '05:30 PM'];
-
-    let slotsHtml = `<label class="text-sm font-semibold tracking-wider text-gray-300 block mb-2">AVAILABLE HOURS FOR ${dateValue}</label>`;
-
-    for (let i = 0; i < availableHours.length; i++) {
-        const timeText = availableHours[i];
-
-        // Render standard clickable buttons for every hour slot
-        slotsHtml += `<button type="button" onclick="window.handleTimeSelection(this, '${timeText}')" class="slot-pill py-2.5 border border-[#CSA059]/40 bg-[#01A1512] text-gray-200 text-xs font-medium transition-all hover:bg-[#CSA059]/20">${timeText}</button>`;
+    // Filter permanent days off (0 = Sunday, 1 = Monday)
+    const selectedDateObj = new Date(dateValue + 'T00:00:00');
+    const dayOfWeek = selectedDateObj.getDay();
+    if (dayOfWeek === 0 || dayOfWeek === 1) {
+        slotsContainer.innerHTML = `<p class="text-xs font-medium text-red-400 text-center col-span-2 py-3 bg-red-950/20 border border-red-900/30 rounded-xl">The Studio is closed on Sundays and Mondays. Please select another date!</p>`;
+        return;
     }
+
+    slotsContainer.innerHTML = `<p class="text-xs text-gray-400 text-center col-span-2 py-2 animate-pulse">Checking studio availability ledger...</p>`;
+
+    // 2. LIVE DATA LOOKUP: Ask Supabase what times are taken for this specific day
+    let appointments = [];
+    try {
+        let { data, error } = await supabaseClient
+            .from('booked_appointments')
+            .select('time_slot, duration, status')
+            .eq('date', dateValue);
+        if (data) appointments = data;
+    } catch (err) {
+        console.error('Supabase query failed:', err);
+    }
+
+    // Instantly disregard cancelled rows to release slots automatically
+    const activeBookings = appointments.filter(app => app.status !== 'cancelled');
+
+    // Master High-Performance Salon Hour Intervals
+    const availableHours = ['09:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '12:00 PM', '12:30 PM', '01:00 PM', '01:30 PM', '02:00 PM'];
+    let slotsHtml = '';
+
+    // Convert time text strings into minutes from midnight for overlap calculations
+    function timeToMinutes(tStr) {
+        const [time, modifier] = tStr.split(' ');
+        let [hours, minutes] = time.split(':').map(Number);
+        if (hours === 12) hours = modifier === 'AM' ? 0 : 12;
+        else if (modifier === 'PM') hours += 12;
+        return hours * 60 + minutes;
+    }
+
+    availableHours.forEach(timeText => {
+        let isSlotBlocked = false;
+        const currentSlotMinutes = timeToMinutes(timeText);
+
+        // 3. SERVICE DURATION AUTO-BLOCKING LOGIC
+        activeBookings.forEach(booking => {
+            if (!booking.time_slot) return;
+            const bookedStart = timeToMinutes(booking.time_slot);
+            const bookedEnd = bookedStart + parseInt(booking.duration || 90); // Blocks out the full service length window
+
+            if (currentSlotMinutes >= bookedStart && currentSlotMinutes < bookedEnd) {
+                isSlotBlocked = true;
+            }
+        });
+
+        // 4. RENDER BUTTON SCHEMES BASED ON BLOCKED STATE
+        if (isSlotBlocked) {
+            slotsHtml += `<button type="button" disabled class="slot-pill py-2.5 border border-red-900 bg-gray-800 text-gray-600 line-through cursor-not-allowed text-xs font-medium opacity-30">${timeText}</button>`;
+        } else {
+            slotsHtml += `<button type="button" onclick="window.handleTimeSelection(this, '${timeText}')" class="slot-pill py-2.5 border border-[#CSA059]/40 bg-[#1A0E0C] text-gray-200 text-xs font-medium transition-all hover:bg-[#CSA059]/20 rounded-xl">${timeText}</button>`;
+        }
+    });
 
     slotsContainer.innerHTML = slotsHtml;
 };
 
-// 2. Toggles your gold visual selection styling and unlocks the main checkout button
-window.handleTimeSelection = function(buttonElement, timeValue) {
-    if (!window.activeBooking) {
-        window.activeBooking = {};
-    }
-    window.activeBooking.selectedTime = timeValue;
+// 2. TIME SELECTION HIGHLIGHT TRIGGER
+window.handleTimeSelection = function(buttonEl, timeText) {
+    if (!window.activeBooking) window.activeBooking = {};
+    window.activeBooking.selectedTime = timeText;
 
-    // Clear old gray backgrounds out
-    document.querySelectorAll('.slot-pill').forEach(function(btn) {
-        btn.classList.remove('bg-[#C5A059]', 'text-[#110E0C]', 'font-bold');
-        btn.classList.add('bg-[#1A1512]', 'text-gray-200');
+    // Remove active styles from all buttons inside the wrapper
+    document.querySelectorAll('.slot-pill').forEach(btn => {
+        if (!btn.disabled) {
+            btn.classList.remove('bg-[#CSA059]', 'text-black', 'border-[#CSA059]');
+            btn.classList.add('bg-[#1A0E0C]', 'text-gray-200', 'border-[#CSA059]/40');
+        }
     });
 
-    // Set premium gold background on the active selection
-    buttonElement.classList.remove('bg-[#1A1512]', 'text-gray-200');
-    buttonElement.classList.add('bg-[#C5A059]', 'text-[#110E0C]', 'font-bold');
-
-    const checkoutBtn = document.getElementById('submit-booking-checkout');
-    if (checkoutBtn) {
-        checkoutBtn.removeAttribute('disabled');
-    }
+    // Highlight the newly selected slot button with solid gold styling
+    buttonEl.classList.remove('bg-[#1A0E0C]', 'text-gray-200', 'border-[#CSA059]/40');
+    buttonEl.classList.add('bg-[#CSA059]', 'text-black', 'border-[#CSA059]');
+};
+    container.innerHTML = html;
   }
+};
+window.processValidationAndRedirect = function(totalPrice, depositAmount) {
+    // 1. Capture customer details from your screen inputs
+    const nameInput = document.getElementById('client-name')?.value || 'Client';
+    const phoneInput = document.getElementById('client-phone')?.value || 'No Phone';
+    const emailInput = document.getElementById('client-email')?.value || 'No Email';
 
+    const pickedDate = window.activeBooking?.selectedDate || 'No Date';
+    const pickedTime = window.activeBooking?.selectedTime || 'No Time';
+    const serviceTitle = window.activeBooking?.name || 'Hair Style';
 
+    // 2. Package everything into a clean note summary tracking receipt string
+    const bookingDetailsSummary = encodeURIComponent(
+        `Appt: ${serviceTitle} on ${pickedDate} at ${pickedTime} | Client: ${nameInput} (${phoneInput})`
+    );
 
-// 3. Gathers input details and paths directly into local storage before checkout
-window.processValidationAndRedirect = async function(totalPrice, depositAmount) {
-    const name = document.getElementById('client-name')?.value.trim();
-    const email = document.getElementById('client-email')?.value.trim();
-    const phone = document.getElementById('client-phone')?.value.trim();
-    const notes = document.getElementById('client-notes')?.value.trim() || "";
-
-    if (!name || !email || !phone) {
-        alert('Please complete your Name, Email, and Phone Number before securing your appointment slot.');
-        return;
-    }
-
-    const bookingPayload = {
-        clientName: name,
-        clientEmail: email,
-        clientPhone: phone,
-        clientNotes: notes,
-        serviceId: window.activeBooking ? window.activeBooking.serviceId : null,
-        date: window.activeBooking ? window.activeBooking.selectedDate : null,
-        time: window.activeBooking ? window.activeBooking.selectedTime : null,
-        amountPaid: depositAmount
-    };
-
-try {
-        // Send everything directly to your live Supabase table logs
-        await supabaseClient
-            .from('booked_appointments')
-            .insert([
-                {
-                    date: bookingPayload.date || 'No Date',
-                    time_slot: bookingPayload.time || 'No Time',
-                    service_details: `Service ID: ${bookingPayload.serviceId} - Client: ${bookingPayload.clientName} (${bookingPayload.clientPhone})`,
-                    duration: 90
-                }
-            ]);
-    } catch (dbError) {
-        console.log('Database logging skipped:', dbError);
-    }
-
-    localStorage.setItem('pending_booking_state', JSON.stringify(bookingPayload));
-
-    // REDIRECT STRIP LINK CHECKPOINT
-    window.location.href = "https://buy.stripe.com/9B6eVe8E10Etbop6pi1B605";
+    // 3. Route them directly to Stripe with their details baked right into the link!
+    window.location.href = `${window.studioScheduler.flatDepositUrl}?client_reference_id=${bookingDetailsSummary}&prefilled_email=${encodeURIComponent(emailInput)}`;
 };

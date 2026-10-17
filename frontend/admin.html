@@ -6,6 +6,109 @@
   <title>Executive Control Center | CHEVY Hair & Beauty</title>
   <script src="https://cdn.tailwindcss.com"></script>
 
+
+  <!-- Include Supabase library for the Admin Panel -->
+<script src="https://jsdelivr.net"></script>
+
+<script>
+    // 1. Initialize the shared database brain connection
+    const supabaseUrl = 'https://supabase.co';
+    const supabaseKey = 'YOUR_ACTUAL_PUBLIC_ANON_KEY_HERE'; // Replace with your live public anon key
+    const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+    // 2. Automatically download and display client reservations when dashboard opens
+    async function loadAdminReservations() {
+        const rowsContainer = document.getElementById('admin-appointments-rows');
+        if (!rowsContainer) return;
+
+        rowsContainer.innerHTML = `<tr><td colspan="4" class="p-4 text-center text-gray-400 animate-pulse">Streaming live reservations data...</td></tr>`;
+
+        let { data: appointments, error } = await supabaseClient
+            .from('booked_appointments')
+            .select('*')
+            .order('date', { ascending: true });
+
+        if (error || !appointments || appointments.length === 0) {
+            rowsContainer.innerHTML = `<tr><td colspan="4" class="p-4 text-center text-gray-500">No appointments found in the system ledger ledger.</td></tr>`;
+            return;
+        }
+
+        let rowsHtml = '';
+        appointments.forEach(app => {
+            // Check status for styling toggles
+            const isCancelled = app.status === 'cancelled';
+            const statusBadge = isCancelled
+                ? `<span class="bg-red-900/40 text-red-400 border border-red-900 text-xs px-2.5 py-0.5 rounded-full font-medium">Cancelled</span>`
+                : `<span class="bg-green-900/40 text-green-400 border border-green-900 text-xs px-2.5 py-0.5 rounded-full font-medium">Active</span>`;
+
+            rowsHtml += `
+                <tr class="hover:bg-white/5 transition-colors ${isCancelled ? 'opacity-50' : ''}">
+                    <td class="p-4 font-medium text-white">
+                        <div class="font-bold">${app.client_name || 'Guest'}</div>
+                        <div class="text-xs text-gray-400">${app.client_phone || 'No Phone'}</div>
+                        <div class="text-xs text-gray-400">${app.client_email || 'No Email'}</div>
+                    </td>
+                    <td class="p-4">
+                        <div class="text-[#CSA059] font-semibold">${app.date}</div>
+                        <div class="text-xs text-gray-300 font-medium">${app.time_slot}</div>
+                        <div class="text-[11px] text-gray-500 font-mono">${app.duration} min duration</div>
+                    </td>
+                    <td class="p-4">
+                        <div class="text-gray-200 font-medium">${app.service_details || 'Hair Appointment'}</div>
+                        <div class="mt-1">${statusBadge}</div>
+                    </td>
+                    <td class="p-4 text-right">
+                        ${isCancelled ? `
+                            <button disabled class="text-xs text-gray-600 font-semibold cursor-not-allowed border border-gray-800 bg-gray-900/40 px-3 py-1.5 rounded-lg">Slot Released</button>
+                        ` : `
+                            <button onclick="handleAdminCancellation('\${app.id}')" class="text-xs border border-red-500/30 bg-red-900/20 text-red-400 hover:bg-red-500 hover:text-white px-3 py-1.5 rounded-lg font-medium transition-all mr-2">Cancel Slot</button>
+                            <button onclick="handleAdminReschedule('\${app.id}')" class="text-xs border border-blue-500/30 bg-blue-900/20 text-blue-400 hover:bg-blue-500 hover:text-white px-3 py-1.5 rounded-lg font-medium transition-all">Reschedule</button>
+                        `}
+                    </td>
+                </tr>
+            `;
+        });
+
+        rowsContainer.innerHTML = rowsHtml;
+    }
+
+    // 3. Action Logic: Cancel appointment but protect deposit track log history
+    async function handleAdminCancellation(appointmentId) {
+        if (!confirm("Are you sure you want to cancel this booking? This will instantly release the time slot back onto your live website calendar layout while keeping the booking details recorded.")) return;
+
+        const { error } = await supabaseClient
+            .from('booked_appointments')
+            .update({ status: 'cancelled' })
+            .eq('id', appointmentId);
+
+        if (error) {
+            alert("Error updating database entry: " + error.message);
+        } else {
+            loadAdminReservations(); // Refresh dashboard table view records instantly
+        }
+    }
+
+    // 4. Action Logic: Reschedule date/time modifiers
+    async function handleAdminReschedule(appointmentId) {
+        const newDate = prompt("Enter new date (YYYY-MM-DD):");
+        const newTime = prompt("Enter new time slot (e.g., 11:30 AM):");
+        if (!newDate || !newTime) return;
+
+        const { error } = await supabaseClient
+            .from('booked_appointments')
+            .update({ date: newDate, time_slot: newTime, status: 'rescheduled' })
+            .eq('id', appointmentId);
+
+        if (error) {
+            alert("Error adjusting reservation timeline: " + error.message);
+        } else {
+            loadAdminReservations();
+        }
+    }
+
+    // Fire the stream load sequence right when the page finishes rendering
+    document.addEventListener('DOMContentLoaded', loadAdminReservations);
+</script>
 </head>
 <body class="bg-[#FDF8F5] text-[#110E0C] font-sans h-screen flex flex-col md:flex-row overflow-hidden selection:bg-[#C5A059] selection:text-[#110E0C]">
 
@@ -300,5 +403,32 @@
   <script src="adminViews/adminMedia.js"></script>
   <script src="adminViews/adminInbox.js"></script>
   <script src="adminViews/adminCustomizer.js"></script>
+
+  <!-- Live Appointments Tracking Control Center Grid -->
+<div class="p-6 bg-[#120605] min-h-screen text-white font-sans">
+    <div class="flex justify-between items-center mb-6 pb-4 border-b border-[#CSA059]/20">
+        <h1 class="text-2xl font-bold tracking-wide text-[#CSA059]">STUDIO RESERVATIONS DESK</h1>
+        <span class="bg-[#01A151] text-xs px-3 py-1.5 rounded-full font-medium tracking-wider uppercase">Live Database Connected</span>
+    </div>
+
+    <!-- Live Appointments Spreadsheet Log Container -->
+    <div class="bg-[#1E0E0C] border border-[#CSA059]/30 rounded-2xl overflow-hidden shadow-2xl">
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-black/40 text-[#CSA059] text-xs font-semibold tracking-wider uppercase border-b border-[#CSA059]/20">
+                        <th class="p-4">Client Details</th>
+                        <th class="p-4">Appointment Date & Time</th>
+                        <th class="p-4">Service Particulars</th>
+                        <th class="p-4 text-right">Actions / Ledger Management</th>
+                    </tr>
+                </thead>
+                <tbody id="admin-appointments-rows" class="text-sm divide-y divide-[#CSA059]/10">
+                    <!-- Live Database Rows will automatically stream here dynamically -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 </body>
 </html>
