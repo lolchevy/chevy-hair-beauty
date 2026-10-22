@@ -565,3 +565,83 @@ def poll_messages():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
+
+
+    import smtplib
+from email.mime.text import MIMEText
+
+@app.route('/api/bookings', methods=['POST'])
+def create_smart_booking():
+    try:
+        data = request.get_json()
+        client = data.get('client', {})
+        booking = data.get('booking', {})
+
+        target_date = booking.get('selectedDate')
+        target_time = booking.get('selectedTime')
+
+        # 1. THE TRUE BOOKING ENGINE ANTI-OVERBOOKING CHECK
+        from sqlalchemy import text
+        existing = db.session.execute(
+            text("SELECT id FROM bookings WHERE booking_date = :date AND booking_time = :time AND status != 'Cancelled'"),
+            {'date': target_date, 'time': target_time}
+        ).fetchone()
+
+        if existing:
+            return jsonify({'status': 'error', 'message': 'This slot was just locked by another client!'}), 400
+
+        # 2. SAVE SECURELY TO YOUR LOCAL DATABASE
+        db.session.execute(
+            text("""INSERT INTO bookings (client_name, client_email, client_phone, client_notes, service_id, booking_date, booking_time, status)
+                    VALUES (:name, :email, :phone, :notes, :service_id, :date, :time, 'Pending Payment')"""),
+            {
+                'name': client.get('name'),
+                'email': client.get('email'),
+                'phone': client.get('phone'),
+                'notes': client.get('notes'),
+                'service_id': booking.get('serviceId'),
+                'date': target_date,
+                'time': target_time
+            }
+        )
+        db.session.commit()
+
+        # 3. DIRECT CLOUD EMAIL DELIVERY (BYPASSES RENDER NETWORK BLOCK)
+             # # 3. DIRECT CLOUD EMAIL DELIVERY (BYPASSES RENDER NETWORK BLOCK)
+        try:
+            import resend
+            import os
+
+            # Read the secure token dynamically from your Render Environment page
+            resend.api_key = os.environ.get("RESEND_API_KEY")
+
+            email_body = f"""
+            Hey Chevy!
+
+            A client has initialized a suite booking!
+
+            Client Name: {client.get('name')}
+            Phone Number: {client.get('phone')}
+            Email: {client.get('email')}
+            Requested Date: {target_date}
+            Time Slot: {target_time}
+            Notes: {client.get('notes')}
+
+            Verify deposit payment on your Stripe App dashboard before client arrival.
+            """
+
+            resend.Emails.send({
+                "from": "SalonEngine <onboarding@resend.dev>",
+                "to": "kelseamoore74@gmail.com",
+                "subject": f"🚨 NEW SALON BOOKING INITIATED - {client.get('name')}",
+                "text": email_body
+            })
+        except Exception as mail_err:
+            print("API email alert failure log:", str(mail_err))
+
+        return jsonify({'status': 'success', 'message': 'Seat held successfully.'}), 200
+
+    except Exception as e:
+        db.session.rollback()
+        print("Engine Exception:", str(e))
+        return jsonify({'status': 'error', 'message': 'System error occurred.'}), 500
