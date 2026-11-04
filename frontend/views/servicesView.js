@@ -968,8 +968,9 @@ window.servicesView = {
         if (!modalContainer) {
             modalContainer = document.createElement('div');
             modalContainer.id = 'custom-booking-portal';
-            modalContainer.className = 'fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 backdrop-blur-sm';
+            modalContainer.className = 'hidden fixed insert-0 bg-black/70 flex items-center justify-center p-4 backdrop-blur-sm z-50';
             document.body.appendChild(modalContainer);
+            modalContainer.classList.remove('hidden');
         }
 
         const todayStr = new Date().toISOString().split('T')[0];
