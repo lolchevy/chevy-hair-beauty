@@ -76,7 +76,7 @@ window.homeView = {
           <path d="M12 4.5C10.5 2 6 2 4 4.5S2 10 4 12c2 2 6.5 1 8-1.5 1.5 2.5 6 3.5 8 1.5s2-5 0-7.5-6.5-2.5-8-.5zm0 15c-1.5 2.5-6 3.5-8 1.5s-2-5 0-7.5c2-2.5 6.5-1 8 1.5 1.5-2.5 6-3.5 8-1.5s2 5 0 7.5-6.5 1-8-1.5z"/>
         </svg>
 
-        <section class="relative z-10 w-full h-[70vh] min-h-[520px] max-h-[500px] overflow-hidden shadow-2xl border-b border-[#C29B8A]">
+        <section class="relative z-10 w-full h-[60vh] md:h-[80vh] lg:h-screen overflow-hidden shadow-2xl border-b border-[#C29B8A]">
           
           <div id="hero-slide-0" class="home-hero-slide absolute inset-0 opacity-100 transition-opacity duration-1000 ease-in-out bg-cover bg-top" style="background-image: url('${data.heroSlides[0].image}');"></div>
           
@@ -246,7 +246,7 @@ window.homeView = {
           </div>
         </section>
 
-        <section class="relative z-10 max-w-[1000px] mx-auto px-6 py-8">
+        <section class="relative z-10 max-w-[1080px] mx-4 sm:mx-auto px-4 sm:px-6 py-8">
           <div class="bg-white/95 border-l-4 border-[#C5A059] border-t border-r border-b border-[#C29B8A]/40 p-8 sm:p-10 rounded-lg shadow-lg flex flex-col sm:flex-row items-center justify-between gap-6">
             <div class="space-y-1">
               <span class="text-[#C5A059] text-[10px] font-semibold uppercase tracking-[0.2em]">Sanctuary Privacy</span>
@@ -259,20 +259,48 @@ window.homeView = {
           </div>
         </section>
 
-        <section class="relative z-10 max-w-[850px] mx-auto px-6 py-12">
-          <div class="bg-[#FDF4F0]/90 backdrop-blur-sm border border-[#C29B8A]/50 p-8 sm:p-12 text-center shadow-md rounded-lg">
-            <span class="text-[#C29B8A] text-xs font-semibold uppercase tracking-[0.25em] block mb-2">Private Insiders</span>
-            <h2 class="font-serif text-2xl font-bold text-[#110E0C] mb-2">Join The VIP Crown Club</h2>
-            <p class="text-xs sm:text-sm text-[#554D47] max-w-[600px] mx-auto mb-6 leading-relaxed">Subscribe to receive exclusive private suite promotion codes, seasonal discount deals, and priority access to weekend reservation slots.</p>
+     <form action="https://formspree.io" method="POST" class="w-full max-w-[500px] mx-auto bg-[#FAF6F0] p-6 sm:p-10 rounded-2xl shadow-lg border border-[#C5A880]/20 flex flex-col space-y-4">
 
-            <form id="home-newsletter-form" class="flex flex-col sm:flex-row gap-3 max-w-[600px] mx-auto">
-              <input type="text" id="subscriber-name" placeholder="Your First Name" class="flex-1 p-3 text-xs sm:text-sm border border-[#C29B8A]/60 outline-none focus:border-[#C5A059] bg-white text-[#110E0C] rounded-sm" required />
-              <input type="email" id="subscriber-email" placeholder="Your Email Address" class="flex-1 p-3 text-xs sm:text-sm border border-[#C29B8A]/60 outline-none focus:border-[#C5A059] bg-white text-[#110E0C] rounded-sm" required />
-              <button type="submit" class="bg-[#C5A059] text-[#110E0C] px-6 py-3 text-xs font-bold uppercase tracking-wider hover:bg-[#B08D47] hover:text-white transition-colors rounded-sm">Join VIP List</button>
-            </form>
-            <div id="newsletter-status-msg" class="mt-4 text-xs font-bold"></div>
-          </div>
-        </section>
+  <!-- Form identifier for your email alerts -->
+  <input type="hidden" name="_subject" value="New VIP Crown Club Subscriber!">
+
+  <span class="text-center text-[#C5A880] text-[10px] font-semibold uppercase tracking-[0.2em]">Private Insiders</span>
+  <h3 class="text-center font-serif text-xl sm:text-2xl font-bold text-[#1E1E1E] uppercase">Join The VIP Crown Club</h3>
+
+  <p class="text-center text-xs sm:text-sm text-[#555555] leading-relaxed pb-2">
+    Subscribe to receive exclusive private suite promotion codes, seasonal discount deals, and priority access to weekend reservation slots.
+  </p>
+
+  <!-- Name Input -->
+  <div class="flex flex-col">
+    <input
+      type="text"
+      name="First Name"
+      placeholder="Your First Name"
+      required
+      class="w-full p-4 border border-[#CCCCCC] bg-white rounded-md text-sm outline-none focus:border-[#C5A880] transition"
+    />
+  </div>
+
+  <!-- Email Input -->
+  <div class="flex flex-col">
+    <input
+      type="email"
+      name="Email Address"
+      placeholder="Your Email Address"
+      required
+      class="w-full p-4 border border-[#CCCCCC] bg-white rounded-md text-sm outline-none focus:border-[#C5A880] transition"
+    />
+  </div>
+
+  <!-- Submit Button -->
+  <button
+    type="submit"
+    class="w-full bg-[#C5A880] text-white py-4 font-bold uppercase tracking-[0.1em] text-sm rounded-md shadow-md hover:bg-[#b0946d] transition duration-200 mt-2"
+  >
+    Join VIP List
+  </button>
+</form>
 
         <footer class="relative z-10 bg-[#110E0C] text-[#FDF8F5] p-12 mt-16 border-t-2 border-[#C5A059]">
           <div class="max-w-[1240px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 pb-12">

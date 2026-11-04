@@ -15,8 +15,8 @@ window.servicesView = {
             { id: 'all', name: 'ALL SPECIALTIES' },
             { id: 'loc-care', name: 'LOC CARE & GROWTH' },
             { id: 'braids', name: 'BEAUTIFUL, HEALTHY BRAIDS' },
-            { id: 'natural', name: 'NATURAL CARE & GROWTh' },
-            { id: 'kids', name: 'Gentle Kids style' }
+            { id: 'natural', name: 'NATURAL CARE & GROWTH' },
+            { id: 'kids', name: 'GENTLE KIDS STYLES' }
 
         ],
         services: [
@@ -39,7 +39,7 @@ window.servicesView = {
 
             {
               id: 103,
-              category: 'locs',
+              category: 'LOC CARE & GROWTH',
               name: 'Loc Retwist & Style (butt length)',
               description: 'palm-roll retwist and style.',
               duration: 60,
@@ -49,7 +49,7 @@ window.servicesView = {
 
               {
         id: 104,
-        category: 'locs',
+        category: 'LOC CARE & GROWTH',
         name: 'Interlocs & Style (shoulder length)',
         description: 'interlocs and style.',
         duration: 90,
@@ -59,7 +59,7 @@ window.servicesView = {
 
       {
         id: 105,
-        category: 'locs',
+        category: 'LOC CARE & GROWTH',
         name: 'Interlocs & Style (mid-back)',
         description: 'interlocs and style.',
         duration: 90,
@@ -69,7 +69,7 @@ window.servicesView = {
 
       {
         id: 106,
-        category: 'locs',
+        category: 'LOC CARE & GROWTH',
         name: 'Interlocs & Style (butt length)',
         description: 'interlocs and style.',
         duration: 60,
@@ -79,7 +79,7 @@ window.servicesView = {
 
 {
         id: 107,
-        category: 'locs',
+        category: 'LOC CARE & GROWTH',
         name: 'Sister Loc',
         description: 'Sister starter loc installation.',
         duration: 48,
@@ -89,7 +89,7 @@ window.servicesView = {
 
       {
         id: 108,
-        category: 'locs',
+        category: 'LOC CARE & GROWTH',
         name: 'Small Locs Installation',
         description: 'Crocret loc installation.',
         duration: 48,
@@ -99,7 +99,7 @@ window.servicesView = {
 
       {
         id: 109,
-        category: 'locs',
+        category: 'LOC CARE & GROWTH',
         name: 'Medium Locs Installation',
         description: 'Crochet starter loc installation.',
         duration: 60,
@@ -109,7 +109,7 @@ window.servicesView = {
 
       {
         id: 201,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Small Knotless Braids',
         description: 'Lightweight, tension-free knotless protective braids.',
         duration: 240,
@@ -119,7 +119,7 @@ window.servicesView = {
 
       {
         id: 202,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Smedium Knotless Braids',
         description: 'Lightweight, tension-free knotless protective braids.',
         duration: 240,
@@ -129,7 +129,7 @@ window.servicesView = {
 
       {
         id: 203,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Medium Knotless Braids',
         description: 'Lightweight, tension-free knotless protective braids.',
         duration: 240,
@@ -139,7 +139,7 @@ window.servicesView = {
 
       {
         id: 204,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Large Knotless Braids',
         description: 'Lightweight, tension-free knotless protective braids.',
         duration: 240,
@@ -149,7 +149,7 @@ window.servicesView = {
 
       {
         id: 205,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Small Box Braids',
         description: 'Lightweight, tension-free box braids.',
         duration: 210,
@@ -159,7 +159,7 @@ window.servicesView = {
 
       {
         id: 206,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Smedium Box Braids',
         description: 'Lightweight, tension-free box braids.',
         duration: 240,
@@ -169,7 +169,7 @@ window.servicesView = {
 
       {
         id: 207,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Medium Box Braids',
         description: 'Lightweight, tension-free box braids.',
         duration: 240,
@@ -179,7 +179,7 @@ window.servicesView = {
 
       {
         id: 208,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Large Box Braids',
         description: 'Lightweight, tension-free box braids.',
         duration: 240,
@@ -189,7 +189,7 @@ window.servicesView = {
 
       {
         id: 209,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Large Rope Twist',
         description: 'Lightweight, tension-free rope twist.',
         duration: 240,
@@ -199,7 +199,7 @@ window.servicesView = {
 
       {
         id: 210,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Medium Rope Twist',
         description: 'Lightweight, tension-free rope twist.',
         duration: 240,
@@ -209,7 +209,7 @@ window.servicesView = {
 
       {
         id: 211,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Smedium Rope Twist',
         description: 'Lightweight, tension-free rope twist.',
         duration: 240,
@@ -219,7 +219,7 @@ window.servicesView = {
 
       {
         id: 212,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Small Rope Twist',
         description: 'Lightweight, tension-free rope twist.',
         duration: 240,
@@ -229,7 +229,7 @@ window.servicesView = {
 
       {
         id: 213,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Large Stitch Braid',
         description: 'Lightweight, tension-free stitch braid.',
         duration: 240,
@@ -239,7 +239,7 @@ window.servicesView = {
 
       {
         id: 214,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Medium Stitch Braid',
         description: 'Lightweight, tension-free stitch braid.',
         duration: 240,
@@ -249,7 +249,7 @@ window.servicesView = {
 
       {
         id: 215,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Small Stitch Braid',
         description: 'Lightweight, tension-free stitch braid.',
         duration: 240,
@@ -259,7 +259,7 @@ window.servicesView = {
 
       {
         id: 216,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Crochet',
         description: 'Lightweight, tension-free crochet installation.',
         duration: 240,
@@ -269,7 +269,7 @@ window.servicesView = {
 
       {
         id: 217,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Large Boho Braids',
         description: 'Lightweight, tension-free boho braids.',
         duration: 240,
@@ -279,7 +279,7 @@ window.servicesView = {
 
       {
         id: 218,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Medium Boho Braids',
         description: 'Lightweight, tension-free boho braids.',
         duration: 240,
@@ -289,7 +289,7 @@ window.servicesView = {
 
       {
         id: 219,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Smedium Boho Braids',
         description: 'Lightweight, tension-free boho braids.',
         duration: 240,
@@ -299,7 +299,7 @@ window.servicesView = {
 
       {
         id: 220,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Small Boho Braids',
         description: 'Lightweight, tension-free boho braids.',
         duration: 240,
@@ -309,7 +309,7 @@ window.servicesView = {
 
       {
         id: 221,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Half Braids with Sew-in',
         description: 'Braids in front with sew-in in the back.',
         duration: 240,
@@ -319,7 +319,7 @@ window.servicesView = {
 
       {
         id: 222,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: '2 Stitch Braid',
         description: 'Braids in front with sew-in in the back.',
         duration: 240,
@@ -329,7 +329,7 @@ window.servicesView = {
 
       {
         id: 223,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Large Feed-In',
         description: 'Large feed-in style.',
         duration: 240,
@@ -339,7 +339,7 @@ window.servicesView = {
 
       {
         id: 224,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Medium Feed-In',
         description: 'Medium feed-in style.',
         duration: 240,
@@ -349,7 +349,7 @@ window.servicesView = {
 
       {
         id: 225,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Small Feed-In',
         description: 'Small feed-in style.',
         duration: 240,
@@ -359,7 +359,7 @@ window.servicesView = {
 
       {
         id: 226,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Large Lemonade Braids',
         description: 'Large lemonade braids.',
         duration: 240,
@@ -369,7 +369,7 @@ window.servicesView = {
 
       {
         id: 227,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Medium Lemonade Braids',
         description: 'Medium lemonade braids.',
         duration: 240,
@@ -379,7 +379,7 @@ window.servicesView = {
 
       {
         id: 228,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Small Lemonade Braids',
         description: 'Small lemonade braids.',
         duration: 240,
@@ -389,7 +389,7 @@ window.servicesView = {
 
       {
         id: 229,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Mimi Kinki Twist(Small)',
         description: 'Mimi Kinki twist style.',
         duration: 240,
@@ -399,7 +399,7 @@ window.servicesView = {
 
       {
         id: 230,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Mimi Kinki Twist(Medium)',
         description: 'Mimi Kinki twist style.',
         duration: 240,
@@ -409,7 +409,7 @@ window.servicesView = {
 
       {
         id: 231,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Mimi Kinki Twist(Large)',
         description: 'Mimi Kinki twist style.',
         duration: 240,
@@ -419,7 +419,7 @@ window.servicesView = {
 
       {
         id: 232,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Long Kinki Twist(Small)',
         description: 'Long Kinki twist style.',
         duration: 240,
@@ -429,7 +429,7 @@ window.servicesView = {
 
       {
         id: 233,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Long Kinki Twist(Medium)',
         description: 'Long Kinki twist style.',
         duration: 240,
@@ -439,7 +439,7 @@ window.servicesView = {
 
       {
         id: 234,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Long Kinki Twist(Large)',
         description: 'Long Kinki twist style.',
         duration: 240,
@@ -449,7 +449,7 @@ window.servicesView = {
 
       {
         id: 234,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Long Kinki Twist(Large)',
         description: 'Long Kinki twist style.',
         duration: 240,
@@ -459,7 +459,7 @@ window.servicesView = {
 
        {
         id: 235,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Fulani Braids(Small)',
         description: 'Fulani braids style.',
         duration: 240,
@@ -469,7 +469,7 @@ window.servicesView = {
 
        {
         id: 236,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Fulani Braids(Medium)',
         description: 'Fulani braids style.',
         duration: 240,
@@ -479,7 +479,7 @@ window.servicesView = {
 
        {
         id: 237,
-        category: 'braids',
+        category: 'BEAUTIFUL, HEALTHY BRAIDS',
         name: 'Fulani Braids(Large)',
         description: 'Fulani braids style.',
         duration: 240,
@@ -489,7 +489,7 @@ window.servicesView = {
       
 {
         id: 301,
-        category: 'natural',
+        category: 'NATURAL CARE & GROWTH',
         name: 'Silk Ponytail',
         description: 'Silk press with ponytail included.',
         duration: 90,
@@ -499,7 +499,7 @@ window.servicesView = {
 
       {
         id: 302,
-        category: 'natural',
+        category: 'NATURAL CARE & GROWTH',
         name: 'Wash-and-Go',
         description: 'wash-and-go style.',
         duration: 90,
@@ -509,7 +509,7 @@ window.servicesView = {
 
       {
         id: 303,
-        category: 'natural',
+        category: 'NATURAL CARE & GROWTH',
         name: 'Twist-Out',
         description: 'twist-out style.',
         duration: 90,
@@ -519,7 +519,7 @@ window.servicesView = {
 
 {
         id: 304,
-        category: 'natural',
+        category: 'NATURAL CARE & GROWTH',
         name: 'Flexi-Rod',
         description: 'flexi-rod style.',
         duration: 90,
@@ -529,7 +529,7 @@ window.servicesView = {
 
       {
         id: 305,
-        category: 'natural',
+        category: 'NATURAL CARE & GROWTH',
         name: 'Roller Sets',
         description: 'roller set style.',
         duration: 90,
@@ -539,7 +539,7 @@ window.servicesView = {
 
       {
         id: 306,
-        category: 'natural',
+        category: 'NATURAL CARE & GROWTH',
         name: 'Natural ponytail',
         description: 'Natural ponytail style.',
         duration: 90,
@@ -549,7 +549,7 @@ window.servicesView = {
 
       {
         id: 307,
-        category: 'natural',
+        category: 'NATURAL CARE & GROWTH',
         name: 'Large Flat Twists',
         description: 'Natural flat twists.',
         duration: 90,
@@ -559,7 +559,7 @@ window.servicesView = {
 
       {
         id: 308,
-        category: 'natural',
+        category: 'NATURAL CARE & GROWTH',
         name: 'Medium Flat Twists',
         description: 'Natural flat twists.',
         duration: 90,
@@ -569,7 +569,7 @@ window.servicesView = {
 
       {
         id: 309,
-        category: 'natural',
+        category: 'NATURAL CARE & GROWTH',
         name: 'Small Flat Twists',
         description: 'Natural flat twists.',
         duration: 90,
@@ -579,7 +579,7 @@ window.servicesView = {
 
       {
         id: 310,
-        category: 'natural',
+        category: 'NATURAL CARE & GROWTH',
         name: 'Large Cornrow',
         description: 'Natural Braids',
         duration: 90,
@@ -589,7 +589,7 @@ window.servicesView = {
 
        {
         id: 311,
-        category: 'natural',
+        category: 'NATURAL CARE & GROWTH',
         name: 'Medium Cornrow',
         description: 'Natural Braids',
         duration: 90,
@@ -599,7 +599,7 @@ window.servicesView = {
 
  {
         id: 312,
-        category: 'natural',
+        category: 'NATURAL CARE & GROWTH',
         name: 'Small Cornrow',
         description: 'Natural Braids',
         duration: 90,
@@ -609,7 +609,7 @@ window.servicesView = {
 
        {
         id: 313,
-        category: 'natural',
+        category: 'NATURAL CARE & GROWTH',
         name: 'Large Natural Twist',
         description: 'Natural Braids',
         duration: 90,
@@ -619,7 +619,7 @@ window.servicesView = {
 
        {
         id: 314,
-        category: 'natural',
+        category: 'NATURAL CARE & GROWTH',
         name: 'Medium Natural Twist',
         description: 'Natural Braids',
         duration: 90,
@@ -629,7 +629,7 @@ window.servicesView = {
 
        {
         id: 315,
-        category: 'natural',
+        category: 'NATURAL CARE & GROWTH',
         name: 'Smedium Natural Twist',
         description: 'Natural Braids',
         duration: 90,
@@ -639,7 +639,7 @@ window.servicesView = {
 
        {
         id: 316,
-        category: 'natural',
+        category: 'NATURAL CARE & GROWTH',
         name: 'Small Natural Twist',
         description: 'Natural Braids',
         duration: 90,
@@ -649,7 +649,7 @@ window.servicesView = {
 
  {
         id: 317,
-        category: 'natural',
+        category: 'NATURAL CARE & GROWTH',
         name: 'Color touch up',
         description: 'Roots touch up',
         duration: 90,
@@ -659,7 +659,7 @@ window.servicesView = {
 
        {
         id: 318,
-        category: 'natural',
+        category: 'NATURAL CARE & GROWTH',
         name: 'Single Process color',
         description: 'Single process color application.',
         duration: 90,
@@ -669,7 +669,7 @@ window.servicesView = {
 
        {
         id: 319,
-        category: 'natural',
+        category: 'NATURAL CARE & GROWTH',
         name: 'Sew in',
         description: 'Sew-in installation with style.',
         duration: 90,
@@ -679,7 +679,7 @@ window.servicesView = {
 
         {
         id: 320,
-        category: 'natural',
+        category: 'NATURAL CARE & GROWTH',
         name: 'Individual Plait(Small)',
         description: 'Individual plait style.',
         duration: 90,
@@ -689,7 +689,7 @@ window.servicesView = {
 
         {
         id: 321,
-        category: 'natural',
+        category: 'NATURAL CARE & GROWTH',
         name: 'Smedium Individual Plait',
         description: 'Smedium individual plait style.',
         duration: 90,
@@ -699,7 +699,7 @@ window.servicesView = {
 
         {
         id: 322,
-        category: 'natural',
+        category: 'NATURAL CARE & GROWTH',
         name: 'Individual Plait(Medium)',
         description: 'Individual plait style.',
         duration: 90,
@@ -709,7 +709,7 @@ window.servicesView = {
 
         {
         id: 323,
-        category: 'natural',
+        category: 'NATURAL CARE & GROWTH',
         name: 'Individual Plait(Large)',
         description: 'Individual plait style.',
         duration: 90,
@@ -719,7 +719,7 @@ window.servicesView = {
 
             {
         id: 401,
-        category: 'kids',
+        category: 'GENTLE KIDS STYLES',
         name: 'Gentle Kids Style (Ages 3–12...Small)',
         description: 'Patient, tension-free protective cornrows or twists for children.',
         duration: 105,
@@ -729,7 +729,7 @@ window.servicesView = {
 
        {
         id: 402,
-        category: 'kids',
+        category: 'GENTLE KIDS STYLES',
         name: 'Gentle Kids Style (Ages 3–12...Medium)',
         description: 'Patient, tension-free protective cornrows or twists for children.',
         duration: 105,
@@ -739,7 +739,7 @@ window.servicesView = {
 
        {
         id: 403,
-        category: 'kids',
+        category: 'GENTLE KIDS STYLES',
         name: 'Gentle Kids Style (Ages 3–12...Large)',
         description: 'Patient, tension-free protective cornrows or twists for children.',
         duration: 105,
@@ -890,7 +890,7 @@ window.servicesView = {
     /**
      * Intercepts and toggles optional addon ids cleanly without memory loss
      */
-    handleAddonToggle: function(serviceId, addonId) {
+         handleAddonToggle: function(serviceId, addonId) {
         if (!this.selectedAddons[serviceId]) {
             this.selectedAddons[serviceId] = [];
         }
@@ -899,51 +899,82 @@ window.servicesView = {
         if (index > -1) {
             this.selectedAddons[serviceId].splice(index, 1);
         } else {
-          this.selectedAddons[serviceId].push(addonId);
+            this.selectedAddons[serviceId].push(addonId);
         }
-        const activeContainer = document.getElementById('services-view-container') || document.getElementById('app') || document.body;
-    this.render(activeContainer);
-}
-};
-          // =========================================================================
-// ISOLATED GLOBAL WORKFLOW FUNCTIONS (BOUND TO WINDOW TO PREVENT ERRORS)
-// =========================================================================
 
-/**
- * Handles category state shifts safely across runtime loops
- */
-window.handleCategoryChange = function(categoryName) {
-    window.servicesView.activeCategory = categoryName;
-    const container = document.getElementById('services-view-container') || document.getElementById('app') || document.body;
-    window.servicesView.render(container);
-};
+        const activeService = this.servicesData?.find(s => s.id === serviceId);
+        let currentTotal = activeService ? parseFloat(activeService.price) : 85.00;
+        let addonNamesArray = [];
 
-/**
- * Maps out and injects the high-contrast Tailwind client registration form container
- */
-window.openBookingModal = function(serviceId, calculatedTotal) {
-    const service = window.servicesView.servicesData.find(function(s) { return s.id === serviceId; });
-    const fallbackTitle = service ? service.name : "Luxury Salon Package";
-    const finalPrice = calculatedTotal ? parseFloat(calculatedTotal) : (service ? service.price : 85.00);
+        this.selectedAddons[serviceId].forEach(id => {
+            const addonInfo = activeService?.addons?.find(a => a.id === id);
+            if (addonInfo) {
+                currentTotal += parseFloat(addonInfo.price);
+                addonNamesArray.push(addonInfo.name);
+            }
+        });
 
-    window.servicesView.bookingState = {
-        serviceId: serviceId,
-        calculatedTotalPrice: finalPrice,
-        selectedDate: null,
-        selectedTime: null
-    };
+        let discountedTotal = currentTotal * 0.85;
 
-    let modalContainer = document.getElementById('custom-booking-portal');
-    if (!modalContainer) {
-        modalContainer = document.createElement('div');
-        modalContainer.id = 'custom-booking-portal';
-        modalContainer.className = 'fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4 overflow-y-auto';
-        document.body.appendChild(modalContainer);
-    }
+        this.bookingState = {
+            serviceId: serviceId,
+            serviceName: activeService ? activeService.name : "Not Specified",
+            calculatedTotal: `$${discountedTotal.toFixed(2)}`,
+            selectedAddOns: addonNamesArray.length > 0 ? addonNamesArray.join(', ') : "None"
+        };
 
-    const todayStr = new Date().toISOString().split('T');
+        window.servicesView.bookingState = this.bookingState;
 
-    modalContainer.innerHTML = `
+        const modalTotalElement = document.getElementById('modal-total-display');
+        if (modalTotalElement) {
+            modalTotalElement.innerText = `$${discountedTotal.toFixed(2)}`;
+        }
+
+        const modalAddonElement = document.getElementById('modal-addons-summary');
+        if (modalAddonElement) {
+            modalAddonElement.innerText = this.bookingState.selectedAddOns;
+        }
+
+        const activeContainer = document.getElementById('services-view-container');
+        if (activeContainer) {
+            this.render(activeContainer);
+        }
+    },
+    // =========================================================================
+    // INTEGRATED VIEW WORKFLOW METHODS
+    // =========================================================================
+
+    handleCategoryChange: function(categoryName) {
+        window.servicesView.activeCategory = categoryName;
+        const container = document.getElementById('services-view-container');
+        if (container) {
+            window.servicesView.render(container);
+        }
+    },
+
+    openBookingModal: function(serviceId, calculatedTotal) {
+        const service = window.servicesView.servicesData?.find(s => s.id === serviceId);
+        const fallbackTitle = service ? service.name : "Luxury Salon Package";
+        const finalPrice = calculatedTotal ? parseFloat(calculatedTotal) : 85.00;
+
+        window.servicesView.bookingState = {
+            serviceId: serviceId,
+            calculatedTotalPrice: finalPrice,
+            selectedDate: null,
+            selectedTime: null
+        };
+
+        let modalContainer = document.getElementById('custom-booking-portal');
+        if (!modalContainer) {
+            modalContainer = document.createElement('div');
+            modalContainer.id = 'custom-booking-portal';
+            modalContainer.className = 'fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 backdrop-blur-sm';
+            document.body.appendChild(modalContainer);
+        }
+
+        const todayStr = new Date().toISOString().split('T')[0];
+
+        modalContainer.innerHTML = `
         <div class="bg-[#110E0C] border border-[#C5A059]/30 rounded-xl p-6 w-full max-w-md shadow-2xl relative text-white font-sans my-8">
             <div class="flex justify-between items-center mb-5 pb-2 border-b border-[#C5A059]/20">
                 <h2 class="text-sm font-bold tracking-widest text-[#C5A059] uppercase">Schedule: ` + fallbackTitle + `</h2>
@@ -988,100 +1019,93 @@ window.openBookingModal = function(serviceId, calculatedTotal) {
             </div>
         </div>
     `;
-};
+}, 
 
 /**
  * Renders the responsive hour pill collection dynamically on valid state selection
  */
-window.handleDateSelection = function(dateValue) {
-    if (!window.servicesView.bookingState) return;
-    window.servicesView.bookingState.selectedDate = dateValue;
+   handleDateSelection: function(dateValue) {
+        if (!window.servicesView.bookingState) return;
+        window.servicesView.bookingState.selectedDate = dateValue;
 
-    const slotsContainer = document.getElementById('booking-time-slots');
-    if (!slotsContainer) return;
+        const slotsContainer = document.getElementById('booking-time-slots');
+        if (!slotsContainer) return;
 
-    let slotsHtml = '<label class="text-[10px] font-bold tracking-widest text-gray-400 block mb-2 uppercase">AVAILABLE CALENDAR SLOTS FOR ' + dateValue + ':</label><div class="grid grid-cols-3 gap-2">';
+        let slotsHtml = '<label class="text-[10px] font-bold tracking-widest text-gray-400 block uppercase mb-3">Select An Available Time</label><div class="grid grid-cols-3 gap-2">';
 
-    for (let i = 0; i < window.servicesView.availableHours.length; i++) {
-        const time = window.servicesView.availableHours[i];
-        slotsHtml += '<button type="button" class="slot-pill py-2 border border-[#C5A059]/20 bg-[#1A1512] text-gray-200 text-[11px] font-bold tracking-wider rounded transition cursor-pointer text-center hover:bg-[#C5A059]/10" onclick="window.handleTimeSelection(this, \'' + time + '\')">' + time + '</button>';
-    }
-
-    slotsHtml += '</div>';
-    slotsContainer.innerHTML = slotsHtml;
-};
-
-/**
- * Enforces visual click active triggers and unlocks main payment checkout buttons
- */
-window.handleTimeSelection = function(buttonElement, timeValue) {
-    if (!window.servicesView.bookingState) return;
-    window.servicesView.bookingState.selectedTime = timeValue;
-
-    document.querySelectorAll('.slot-pill').forEach(function(btn) {
-        btn.classList.remove('bg-[#C5A059]', 'text-[#110E0C]', 'font-black');
-        btn.classList.add('bg-[#1A1512]', 'text-gray-200');
-    });
-
-    buttonElement.classList.remove('bg-[#1A1512]', 'text-gray-200');
-    buttonElement.classList.add('bg-[#C5A059]', 'text-[#110E0C]', 'font-black');
-
-    const checkoutBtn = document.getElementById('submit-booking-checkout');
-    if (checkoutBtn) {
-        checkoutBtn.removeAttribute('disabled');
-    }
-};
-
-/**
- * Gathers user fields safely, validates structures, records storage data, and executes direct Stripe linking
- */
-window.processValidationAndRedirect = function() {
-    const name = document.getElementById('client-name')?.value.trim();
-    const email = document.getElementById('client-email')?.value.trim();
-    const phone = document.getElementById('client-phone')?.value.trim();
-    const notes = document.getElementById('client-notes')?.value.trim() || "";
-
-    if (!name || !email || !phone) {
-        alert('Please fill out your complete contact parameters to lock your seat.');
-        return;
-    }
-
-    const pendingPayload = {
-        client: { name: name, email: email, phone: phone, notes: notes },
-        booking: window.servicesView.bookingState,
-        timestamp: new Date().toISOString()
-    };
-
-    localStorage.setItem('pending_booking_state', JSON.stringify(pendingPayload));
-
-    // Validate slot availability with your smart backend engine first
-    fetch('/api/bookings', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(pendingPayload)
-    })
-    .then(async function(response) {
-        const data = await response.json();
-        if (response.ok) {
-            // Success! The calendar slot is officially yours on your server, launch Stripe!
-            window.location.href = "https://buy.stripe.com/fZu14o6vT5YN8cdaFy1B607";
-        } else {
-            // Overbooking protection fired! Warn user instantly
-            alert(data.message || 'This specific time slot was just locked by another client. Please refresh and select another calendar hour!');
+        for (let i = 0; i < window.servicesView.availableHours.length; i++) {
+            const time = window.servicesView.availableHours[i];
+            slotsHtml += `<button type="button" class="slot-pill py-2 border border-[#C5A880]/30 rounded text-xs text-white hover:bg-[#C5A880] hover:text-black transition" onclick="window.servicesView.handleTimeSelection(this, '${time}')">${time}</button>`;
         }
-    })
-    .catch(function(err) {
-        console.error("Failsafe activated:", err);
-        window.location.href = "https://buy.stripe.com/fZu14o6vT5YN8cdaFy1B607";
-    });
-};
 
+        slotsHtml += '</div>';
+        slotsContainer.innerHTML = slotsHtml;
+    },
+
+    handleTimeSelection: function(buttonElement, timeValue) {
+        if (!window.servicesView.bookingState) return;
+        window.servicesView.bookingState.selectedTime = timeValue;
+
+        document.querySelectorAll('.slot-pill').forEach(function(btn) {
+            btn.classList.remove('bg-[#C5A880]', 'text-[#110E0C]', 'font-black');
+            btn.classList.add('bg-transparent', 'text-white');
+        });
+
+        buttonElement.classList.remove('bg-transparent', 'text-white');
+        buttonElement.classList.add('bg-[#C5A880]', 'text-[#110E0C]', 'font-black');
+    },
+
+    processValidationAndRedirect: function() {
+        const name = document.getElementById('client-name')?.value.trim();
+        const email = document.getElementById('client-email')?.value.trim();
+        const phone = document.getElementById('client-phone')?.value.trim();
+        const notes = document.getElementById('client-notes')?.value.trim() || "";
+
+        if (!name || !email || !phone) {
+            alert('Please fill out your complete contact parameters to lock your seat.');
+            return;
+        }
+
+        const pendingPayload = {
+            name: name,
+            email: email,
+            phone: phone,
+            notes: notes,
+            service: window.servicesView.bookingState?.serviceName || "Not Specified",
+            addOns: window.servicesView.bookingState?.selectedAddOns || "None",
+            totalPrice: window.servicesView.bookingState?.calculatedTotal || "$85.00",
+            timestamp: new Date().toISOString()
+        };
+
+        localStorage.setItem('pending_booking_state', JSON.stringify(pendingPayload));
+
+        fetch('https://formspree.io/f/myeewlby', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(pendingPayload)
+        })
+        .then(async function(response) {
+            if (response.ok) {
+                window.location.href = "https://buy.stripe.com/fZu14o6vT5YN8cdaFy1B607";
+            } else {
+                const data = await response.json();
+                alert(data.error || 'Submission error. Please check your data fields.');
+            }
+        })
+        .catch(function(error) {
+            alert('Network communication fault.');
+        });
+      }
+},
 
 // =========================================================================
-// DEFENSIVE DOM MOUNT TRIGGER (GUARANTEES RENDERING UNDER ALL ENVIRONMENT LAUNCHES)
+// DEFENSIVE DOM MOUNT TRIGGER (GUARANTEES RENDERING UNDER ALL ENVIRONMENTS)
 // =========================================================================
 document.addEventListener('DOMContentLoaded', function() {
-    const container = document.getElementById('services-view-container') || document.getElementById('app') || document.querySelector('main') || document.body;
+    const container = document.getElementById('services-view-container') || document.getElementById('app');
     if (container && window.servicesView) {
         window.servicesView.render(container);
     }
@@ -1090,28 +1114,19 @@ document.addEventListener('DOMContentLoaded', function() {
 // =========================================================================
 // ROUTER ENGINE COMPATIBILITY LINK (BRIDGES YOUR STOREFRONT INTEGRATION)
 // =========================================================================
-
-/**
- * The standard routing system initializer expected by your main app router.
- * This sets your default data array parameters and triggers page building.
- */
 window.servicesView.init = function() {
-    // Explicitly check fallback configuration layers to prevent blank states
     if (!this.servicesData || this.servicesData.length === 0) {
-        this.servicesData = this.fallbackData.services;
+        this.servicesData = this.fallbackData?.services || [];
     }
 
-    // Set validation execution tracking flags
     this.isInitialized = true;
 
-    // Locate the dynamic viewing viewport setup by your app router
     const targetViewport = document.getElementById('services-view-container')
-                        || document.getElementById('app')
-                        || document.getElementById('main-content')
-                        || document.querySelector('main');
+        || document.getElementById('app')
+        || document.getElementById('main-content')
+        || document.querySelector('main');
 
     if (targetViewport) {
-        // Execute clean DOM markup parsing without calling init again
         window.servicesView.render(targetViewport);
     }
 };
