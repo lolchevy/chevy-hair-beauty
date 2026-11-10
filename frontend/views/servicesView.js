@@ -1147,6 +1147,16 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // =========================================================================
+// DEFENSIVE DOM MOUNT TRIGGER (GUARANTEES RENDERING UNDER ALL ENVIRONMENTS)
+// =========================================================================
+document.addEventListener('DOMContentLoaded', function() {
+    const container = document.getElementById('services-view-container') || document.getElementById('app');
+    if (container && window.servicesView) {
+        window.servicesView.render(container);
+    }
+});
+
+// =========================================================================
 // ROUTER ENGINE COMPATIBILITY LINK (BRIDGES YOUR STOREFRONT INTEGRATION)
 // =========================================================================
 window.servicesView.init = function() {
