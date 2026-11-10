@@ -791,11 +791,7 @@ window.servicesView = {
      */
     render: function(container) {
         if (!container) return;
-
-        // Safety execution loop check to verify data layers exist
-        if (!this.isInitialized) {
-            this.init();
-        }
+        this.init();
 
         let html = '<div class="min-h-screen bg-[#FAF8F5] text-[#110E0C] font-sans antialiased py-12 px-4 sm:px-6 lg:px-8">';
         html += '<div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8">';
@@ -829,7 +825,7 @@ window.servicesView = {
             html += '<div class="bg-white rounded-xl p-12 text-center border border-gray-200/60 shadow-sm"><p class="text-sm font-medium text-gray-400">No specialties found under this display category.</p></div>';
         } else {
             filteredServices.forEach(function(service) {
-                // Interactive dynamic price updates (15% off base + enhancements sum)
+                // Dynamic Live Price Calculation Loop: base + checked add-on enhancements
                 const currentAddonIds = window.servicesView.selectedAddons[service.id] || [];
                 let addonTotal = 0;
                 currentAddonIds.forEach(function(addonId) {
@@ -863,7 +859,7 @@ window.servicesView = {
                 window.servicesView.fallbackData.addons.forEach(function(addon) {
                     const isChecked = currentAddonIds.includes(addon.id);
                     html += '<label class="flex items-center gap-2.5 bg-white p-3 rounded-md border border-gray-200/60 shadow-sm cursor-pointer transition select-none hover:border-gray-300">';
-                    html += '<input type="checkbox" ' + (isChecked ? 'checked' : '') + ' onclick="window.handleAddonToggle(' + service.id + ', \'' + addon.id + '\')" class="accent-[#C5A059] h-4 w-4 rounded cursor-pointer">';
+                    html += '<input type="checkbox" ' + (isChecked ? 'checked' : '') + ' onclick="window.servicesView.handleAddonToggle(' + service.id + ', \'' + addon.id + '\')" class="accent-[#C5A059] h-4 w-4 rounded cursor-pointer">';
                     html += '<div class="flex flex-col"><span class="text-[11px] font-bold text-[#110E0C]/80 leading-snug">' + addon.name + '</span>';
                     html += '<span class="text-[10px] text-[#C5A059] font-extrabold mt-0.5">+$' + addon.price.toFixed(0) + '</span></div>';
                     html += '</label>';
@@ -871,13 +867,11 @@ window.servicesView = {
 
                 html += '</div></div>';
 
-                // Promotional Alert Context Subtitle Container
+                // Action Button Trigger
                 html += '<div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2 border-t border-dashed border-gray-100">';
                 html += '<span class="text-[11px] text-gray-500 font-medium italic leading-relaxed text-center sm:text-left">';
-                html += '* *FIRST-TIME CLIENTS:* You save 15% on your services! Secure your flat $25 deposit below to lock your sanctuary suite seat.';
+                html += '* *FIRST-TIME CLIENTS:* You save 15%! Secure your flat $25 deposit to lock your preferred session window.';
                 html += '</span>';
-
-                // Execution Action Button Trigger
                 html += '<button onclick="window.openBookingModal(' + service.id + ', ' + dynamicDiscountedTotal + ')" class="w-full sm:w-auto bg-[#C5A059] text-[#110E0C] px-8 py-3.5 text-xs font-black tracking-widest text-center uppercase rounded shadow-sm hover:opacity-90 transition duration-200 cursor-pointer">Book Now</button>';
                 html += '</div></div>';
             });
@@ -1023,90 +1017,130 @@ window.servicesView = {
 }, 
 
 /**
- * Renders the responsive hour pill collection dynamically on valid state selection
+ * Renders open time slots dynamically and hides slots that exceed the closing time
  */
-   handleDateSelection: function(dateValue) {
-        if (!window.servicesView.bookingState) return;
-        window.servicesView.bookingState.selectedDate = dateValue;
+window.handleDateSelection = function(dateValue) {
+    if (!window.servicesView.bookingState) return;
+    window.servicesView.bookingState.selectedDate = dateValue;
 
-        const slotsContainer = document.getElementById('booking-time-slots');
-        if (!slotsContainer) return;
+    const slotsContainer = document.getElementById('booking-time-slots');
+    if (!slotsContainer) return;
 
-        let slotsHtml = '<label class="text-[10px] font-bold tracking-widest text-gray-400 block uppercase mb-3">Select An Available Time</label><div class="grid grid-cols-3 gap-2">';
+    const currentService = window.servicesView.servicesData.find(function(s) {
+        return s.id === window.servicesView.bookingState.serviceId;
+    });
 
-        for (let i = 0; i < window.servicesView.availableHours.length; i++) {
-            const time = window.servicesView.availableHours[i];
-            slotsHtml += `<button type="button" class="slot-pill py-2 border border-[#C5A880]/30 rounded text-xs text-white hover:bg-[#C5A880] hover:text-black transition" onclick="window.servicesView.handleTimeSelection(this, '${time}')">${time}</button>`;
+    // Parse the baseline length requirements (e.g. "4 hrs" -> 4.0, "1.5 hrs" -> 1.5)
+    let serviceDurationHours = 1.5;
+    if (currentService) {
+        serviceDurationHours = parseFloat(currentService.duration);
+    }
+
+    // Baseline Suite Operating Boundaries: 9:00 AM to 6:00 PM (18:00 max cutoff limit)
+    const absoluteClosingHour = 18.0;
+
+    let slotsHtml = '<label class="text-[10px] font-bold tracking-widest text-gray-400 block mb-2 uppercase">AVAILABLE CALENDAR SLOTS FOR ' + dateValue + ':</label><div class="grid grid-cols-3 gap-2">';
+
+    let slotsRenderedCount = 0;
+
+    for (let i = 0; i < window.servicesView.availableHours.length; i++) {
+        const timeStr = window.servicesView.availableHours[i];
+
+        // Convert interval markers to a 24-hour scale for math checks
+        let appointmentStartDecimal = 9.0;
+        if (timeStr === '10:30 AM') appointmentStartDecimal = 10.5;
+        else if (timeStr === '12:00 PM') appointmentStartDecimal = 12.0;
+        else if (timeStr === '01:30 PM') appointmentStartDecimal = 13.5;
+        else if (timeStr === '03:00 PM') appointmentStartDecimal = 15.0;
+        else if (timeStr === '04:30 PM') appointmentStartDecimal = 16.5;
+
+        // DURATION RULE LOOKAHEAD CHECK: Hide slot if service pushes your seat past closing time
+        if (appointmentStartDecimal + serviceDurationHours > absoluteClosingHour) {
+            continue;
         }
 
-        slotsHtml += '</div>';
-        slotsContainer.innerHTML = slotsHtml;
-    },
+        slotsHtml += '<button type="button" class="slot-pill py-2 border border-[#C5A059]/20 bg-[#1A1512] text-gray-200 text-[11px] font-bold tracking-wider rounded transition cursor-pointer text-center hover:bg-[#C5A059]/10" onclick="window.handleTimeSelection(this, \'' + timeStr + '\')">' + timeStr + '</button>';
+        slotsRenderedCount++;
+    }
 
-    handleTimeSelection: function(buttonElement, timeValue) {
-        if (!window.servicesView.bookingState) return;
-        window.servicesView.bookingState.selectedTime = timeValue;
+    if (slotsRenderedCount === 0) {
+        slotsHtml += '<p class="text-xs text-[#E53E3E] font-medium col-span-3">This service requires too much open time to complete safely on this day. Please select an earlier date!</p>';
+    }
 
-        document.querySelectorAll('.slot-pill').forEach(function(btn) {
-            btn.classList.remove('bg-[#C5A880]', 'text-[#110E0C]', 'font-black');
-            btn.classList.add('bg-transparent', 'text-white');
-        });
+    slotsHtml += '</div>';
+    slotsContainer.innerHTML = slotsHtml;
+};
 
-        buttonElement.classList.remove('bg-transparent', 'text-white');
-        buttonElement.classList.add('bg-[#C5A880]', 'text-[#110E0C]', 'font-black');
-    },
+/**
+ * Handles highlight states and activates checkout panels
+ */
+window.handleTimeSelection = function(buttonElement, timeValue) {
+    if (!window.servicesView.bookingState) return;
+    window.servicesView.bookingState.selectedTime = timeValue;
 
-    processValidationAndRedirect: function() {
-        const name = document.getElementById('client-name')?.value.trim();
-        const email = document.getElementById('client-email')?.value.trim();
-        const phone = document.getElementById('client-phone')?.value.trim();
-        const notes = document.getElementById('client-notes')?.value.trim() || "";
+    document.querySelectorAll('.slot-pill').forEach(function(btn) {
+        btn.classList.remove('bg-[#C5A059]', 'text-[#110E0C]', 'font-black');
+        btn.classList.add('bg-[#1A1512]', 'text-gray-200');
+    });
 
-        if (!name || !email || !phone) {
-            alert('Please fill out your complete contact parameters to lock your seat.');
-            return;
-        }
+    buttonElement.classList.remove('bg-[#1A1512]', 'text-gray-200');
+    buttonElement.classList.add('bg-[#C5A059]', 'text-[#110E0C]', 'font-black');
 
-        const pendingPayload = {
-            name: name,
-            email: email,
-            phone: phone,
-            notes: notes,
-            service: window.servicesView.bookingState?.serviceName || "Not Specified",
-            addOns: window.servicesView.bookingState?.selectedAddOns || "None",
-            totalPrice: window.servicesView.bookingState?.calculatedTotal || "$85.00",
-            timestamp: new Date().toISOString()
-        };
+    const checkoutBtn = document.getElementById('submit-booking-checkout');
+    if (checkoutBtn) {
+        checkoutBtn.removeAttribute('disabled');
+    }
+};
 
-        localStorage.setItem('pending_booking_state', JSON.stringify(pendingPayload));
+/**
+ * Bundles inputs and opens your custom Formspree cloud tunnel endpoint
+ */
+window.processValidationAndRedirect = function() {
+    const name = document.getElementById('client-name')?.value.trim();
+    const email = document.getElementById('client-email')?.value.trim();
+    const phone = document.getElementById('client-phone')?.value.trim();
+    const notes = document.getElementById('client-notes')?.value.trim() || "";
 
-        fetch('https://formspree.io/f/myeewlby', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(pendingPayload)
-        })
-        .then(async function(response) {
-            if (response.ok) {
-                window.location.href = "https://buy.stripe.com/fZu14o6vT5YN8cdaFy1B607";
-            } else {
-                const data = await response.json();
-                alert(data.error || 'Submission error. Please check your data fields.');
-            }
-        })
-        .catch(function(error) {
-            alert('Network communication fault.');
-        });
-      }
-},
+    if (!name || !email || !phone) {
+        alert('Please complete your Name, Email, and Phone number inputs to secure your suite reservation.');
+        return;
+    }
+
+    const pendingPayload = {
+        clientName: name,
+        clientEmail: email,
+        clientPhone: phone,
+        clientNotes: notes,
+        serviceId: window.servicesView.bookingState ? window.servicesView.bookingState.serviceId : null,
+        bookingDate: window.servicesView.bookingState ? window.servicesView.bookingState.selectedDate : null,
+        bookingTime: window.servicesView.bookingState ? window.servicesView.bookingState.selectedTime : null,
+        calculatedTotalPrice: window.servicesView.bookingState ? window.servicesView.bookingState.calculatedTotalPrice : 85.00
+    };
+
+    localStorage.setItem('pending_booking_state', JSON.stringify(pendingPayload));
+
+    // Fires everything directly into your active form inbox
+    fetch('https://formspree.io/f/myeewlby', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(pendingPayload)
+    })
+    .then(function() {
+        window.location.href = "https://buy.stripe.com/fZu14o6vT5YN8cdaFy1B607";
+    })
+    .catch(function() {
+        window.location.href = "https://buy.stripe.com/fZu14o6vT5YN8cdaFy1B607";
+    });
+};
 
 // =========================================================================
-// DEFENSIVE DOM MOUNT TRIGGER (GUARANTEES RENDERING UNDER ALL ENVIRONMENTS)
+// DEFENSIVE DOM MOUNT TRIGGER (GUARANTEES RENDERING UNDER ALL LAUNCHES)
 // =========================================================================
 document.addEventListener('DOMContentLoaded', function() {
-    const container = document.getElementById('services-view-container') || document.getElementById('app');
+    const container = document.getElementById('services-view-container') || document.getElementById('app') || document.querySelector('main') || document.body;
     if (container && window.servicesView) {
         window.servicesView.render(container);
     }
