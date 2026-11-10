@@ -1146,32 +1146,27 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// =========================================================================
-// DEFENSIVE DOM MOUNT TRIGGER (GUARANTEES RENDERING UNDER ALL ENVIRONMENTS)
-// =========================================================================
-document.addEventListener('DOMContentLoaded', function() {
-    const container = document.getElementById('services-view-container') || document.getElementById('app');
-    if (container && window.servicesView) {
-        window.servicesView.render(container);
-    }
-});
 
 // =========================================================================
-// ROUTER ENGINE COMPATIBILITY LINK (BRIDGES YOUR STOREFRONT INTEGRATION)
+// MAIN ROUTER CONNECTION INITIALIZER
 // =========================================================================
 window.servicesView.init = function() {
+    // Explicitly verify the fallback arrays exist to block blank states
     if (!this.servicesData || this.servicesData.length === 0) {
-        this.servicesData = this.fallbackData?.services || [];
+        this.servicesData = this.fallbackData.services;
     }
 
+    // Set your tracking validation flags to true
     this.isInitialized = true;
 
+    // Track down the primary content viewport container used by your router system
     const targetViewport = document.getElementById('services-view-container')
-        || document.getElementById('app')
-        || document.getElementById('main-content')
-        || document.querySelector('main');
+                        || document.getElementById('app')
+                        || document.getElementById('main-content')
+                        || document.querySelector('main');
 
     if (targetViewport) {
+        // Execute clean DOM markup parsing instantly
         window.servicesView.render(targetViewport);
     }
 };
