@@ -979,6 +979,7 @@ window.handleDateSelection = function(dateValue) {
         if (!isNaN(parsed)) serviceDurationHours = parsed;
     }
 
+    // 6:00 PM hard cutoff so you aren't stuck working late
     const absoluteClosingHour = 18.0;
     const bookedSlots = JSON.parse(localStorage.getItem('chevy_booked_slots') || '[]');
 
@@ -988,9 +989,11 @@ window.handleDateSelection = function(dateValue) {
     for (let i = 0; i < window.servicesView.availableHours.length; i++) {
         const timeStr = window.servicesView.availableHours[i];
 
+        // Hide slot if already booked on this date
         const isAlreadyBooked = bookedSlots.some(function(b) { return b.date === dateValue && b.time === timeStr; });
         if (isAlreadyBooked) continue;
 
+        // Parse 12-hour format (e.g., "09:30 AM") into 24-hour decimal
         const parts = timeStr.split(' ');
         const hm = parts[0].split(':');
         let hr = parseInt(hm[0], 10);
@@ -999,6 +1002,7 @@ window.handleDateSelection = function(dateValue) {
         if (parts[1] === 'AM' && hr === 12) hr = 0;
         const appointmentStartDecimal = hr + min;
 
+        // Hide slot if service duration pushes past 6:00 PM
         if (appointmentStartDecimal + serviceDurationHours > absoluteClosingHour) continue;
 
         slotsHtml += '<button type="button" class="slot-pill py-2 border border-[#C5A059]/20 bg-[#1A1512] text-gray-200 text-[11px] font-bold tracking-wider rounded transition cursor-pointer text-center hover:bg-[#C5A059]/10" onclick="window.handleTimeSelection(this, \'' + timeStr + '\')">' + timeStr + '</button>';
