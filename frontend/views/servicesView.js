@@ -789,43 +789,41 @@ window.servicesView = {
     /**
      * Mounts the main categories tabs and responsive grids cleanly onto the screen layout
      */
-    render: function(container) {
+     render: function(container) {
         if (!container) return;
-        this.init();
+        if (!this.isInitialized) this.init();
 
         let html = '<div class="min-h-screen bg-[#FAF8F5] text-[#110E0C] font-sans antialiased py-12 px-4 sm:px-6 lg:px-8">';
         html += '<div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8">';
-
+        
         // Sidebar Category Control Tabs
         html += '<div class="w-full lg:w-1/4 flex flex-col gap-3 bg-white p-6 rounded-xl border border-gray-200/80 shadow-sm h-fit">';
         html += '<h3 class="text-xs font-bold tracking-widest text-[#110E0C]/40 uppercase mb-2">CATEGORIES</h3>';
-
+        
         this.fallbackData.categories.forEach(function(cat) {
             const isActive = window.servicesView.activeCategory === cat.name;
-            html += '<button onclick="window.handleCategoryChange(\'' + cat.name + '\')" class="w-full text-left px-4 py-3 text-xs font-bold tracking-wider rounded-lg transition duration-200 ' +
+            html += '<button onclick="window.handleCategoryChange(\'' + cat.name + '\')" class="w-full text-left px-4 py-3 text-xs font-bold tracking-wider rounded-lg transition duration-200 ' + 
                     (isActive ? 'bg-[#C5A059] text-[#110E0C] shadow-sm' : 'bg-transparent text-[#110E0C]/70 hover:bg-gray-50') + '">' + cat.name + '</button>';
         });
 
-        // Fixed Brand Integrity Blueprint Label Box
         html += '<div class="mt-6 pt-6 border-t border-gray-100">';
         html += '<div class="bg-[#110E0C] text-white border border-[#C5A059]/30 p-4 rounded-lg space-y-2">';
         html += '<h4 class="text-[11px] font-bold tracking-widest text-[#C5A059] uppercase">SUITE GUARANTEE</h4>';
         html += '<p class="text-[11px] text-gray-400 leading-relaxed">Private 1-on-1 session. Undivided focus, zero waiting delays.</p>';
         html += '</div></div></div>';
 
-        // Main Services Grid Column Wrapper
+        // Main Services Grid
         html += '<div class="w-full lg:w-3/4 flex flex-col gap-6">';
-
+        
         const filteredServices = this.servicesData.filter(function(service) {
             if (window.servicesView.activeCategory === 'ALL SPECIALTIES') return true;
             return service.category === window.servicesView.activeCategory;
         });
 
         if (filteredServices.length === 0) {
-            html += '<div class="bg-white rounded-xl p-12 text-center border border-gray-200/60 shadow-sm"><p class="text-sm font-medium text-gray-400">No specialties found under this display category.</p></div>';
+            html += '<div class="bg-white rounded-xl p-12 text-center border border-gray-200/60 shadow-sm"><p class="text-sm font-medium text-gray-400">No specialties found under this category.</p></div>';
         } else {
             filteredServices.forEach(function(service) {
-                // Dynamic Live Price Calculation Loop: base + checked add-on enhancements
                 const currentAddonIds = window.servicesView.selectedAddons[service.id] || [];
                 let addonTotal = 0;
                 currentAddonIds.forEach(function(addonId) {
@@ -837,8 +835,6 @@ window.servicesView = {
                 const dynamicDiscountedTotal = (basePlusAddons * 0.85).toFixed(2);
 
                 html += '<div class="bg-white rounded-xl border border-gray-200/80 shadow-sm p-6 flex flex-col gap-5 hover:border-gray-300 transition duration-200">';
-
-                // Card Header Block
                 html += '<div class="flex justify-between items-start gap-4">';
                 html += '<div>';
                 html += '<span class="text-[10px] font-bold tracking-widest text-[#C5A059] uppercase block mb-1">' + service.category + '</span>';
@@ -848,14 +844,14 @@ window.servicesView = {
                 html += '<div class="text-right flex flex-col items-end">';
                 html += '<span class="text-sm text-gray-400 line-through font-medium">$' + basePlusAddons.toFixed(2) + '</span>';
                 html += '<span class="text-xl font-black text-[#110E0C] tracking-tight">$' + dynamicDiscountedTotal + '</span>';
-                html += '<span class="text-[10px] text-gray-400 font-bold tracking-wider mt-0.5"><i class="far fa-clock mr-1"></i>' + service.duration + '</span>';
+                html += '<span class="text-[10px] text-gray-400 font-bold tracking-wider mt-0.5">' + service.duration + '</span>';
                 html += '</div></div>';
 
-                // Enhancements Checkbox Layout Element
+                // Add-ons
                 html += '<div class="bg-[#FAF8F5] border border-gray-200/50 rounded-lg p-4">';
                 html += '<h4 class="text-[10px] font-bold tracking-wider text-[#110E0C]/50 uppercase mb-3">CUSTOM STYLE ADD-ON & ENHANCEMENTS</h4>';
                 html += '<div class="grid grid-cols-1 md:grid-cols-3 gap-3">';
-
+                
                 window.servicesView.fallbackData.addons.forEach(function(addon) {
                     const isChecked = currentAddonIds.includes(addon.id);
                     html += '<label class="flex items-center gap-2.5 bg-white p-3 rounded-md border border-gray-200/60 shadow-sm cursor-pointer transition select-none hover:border-gray-300">';
@@ -864,13 +860,12 @@ window.servicesView = {
                     html += '<span class="text-[10px] text-[#C5A059] font-extrabold mt-0.5">+$' + addon.price.toFixed(0) + '</span></div>';
                     html += '</label>';
                 });
-
+                
                 html += '</div></div>';
 
-                // Action Button Trigger
                 html += '<div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2 border-t border-dashed border-gray-100">';
                 html += '<span class="text-[11px] text-gray-500 font-medium italic leading-relaxed text-center sm:text-left">';
-                html += '* *FIRST-TIME CLIENTS:* You save 15%! Secure your flat $25 deposit to lock your preferred session window.';
+                html += '*FIRST-TIME CLIENTS:* Save 15%! Secure your flat $25 deposit to lock your session.';
                 html += '</span>';
                 html += '<button onclick="window.openBookingModal(' + service.id + ', ' + dynamicDiscountedTotal + ')" class="w-full sm:w-auto bg-[#C5A059] text-[#110E0C] px-8 py-3.5 text-xs font-black tracking-widest text-center uppercase rounded shadow-sm hover:opacity-90 transition duration-200 cursor-pointer">Book Now</button>';
                 html += '</div></div>';
@@ -881,59 +876,16 @@ window.servicesView = {
         container.innerHTML = html;
     },
 
-    /**
-     * Intercepts and toggles optional addon ids cleanly without memory loss
-     */
-         handleAddonToggle: function(serviceId, addonId) {
-        if (!this.selectedAddons[serviceId]) {
-            this.selectedAddons[serviceId] = [];
-        }
-
+    handleAddonToggle: function(serviceId, addonId) {
+        if (!this.selectedAddons[serviceId]) this.selectedAddons[serviceId] = [];
         const index = this.selectedAddons[serviceId].indexOf(addonId);
-        if (index > -1) {
-            this.selectedAddons[serviceId].splice(index, 1);
-        } else {
-            this.selectedAddons[serviceId].push(addonId);
-        }
-
-        const activeService = this.servicesData?.find(s => s.id === serviceId);
-        let currentTotal = activeService ? parseFloat(activeService.price) : 85.00;
-        let addonNamesArray = [];
-
-        this.selectedAddons[serviceId].forEach(id => {
-            const addonInfo = activeService?.addons?.find(a => a.id === id);
-            if (addonInfo) {
-                currentTotal += parseFloat(addonInfo.price);
-                addonNamesArray.push(addonInfo.name);
-            }
-        });
-
-        let discountedTotal = currentTotal * 0.85;
-
-        this.bookingState = {
-            serviceId: serviceId,
-            serviceName: activeService ? activeService.name : "Not Specified",
-            calculatedTotal: `$${discountedTotal.toFixed(2)}`,
-            selectedAddOns: addonNamesArray.length > 0 ? addonNamesArray.join(', ') : "None"
-        };
-
-        window.servicesView.bookingState = this.bookingState;
-
-        const modalTotalElement = document.getElementById('modal-total-display');
-        if (modalTotalElement) {
-            modalTotalElement.innerText = `$${discountedTotal.toFixed(2)}`;
-        }
-
-        const modalAddonElement = document.getElementById('modal-addons-summary');
-        if (modalAddonElement) {
-            modalAddonElement.innerText = this.bookingState.selectedAddOns;
-        }
-
-        const activeContainer = document.getElementById('services-view-container');
-        if (activeContainer) {
-            this.render(activeContainer);
-        }
-    },
+        if (index > -1) this.selectedAddons[serviceId].splice(index, 1);
+        else this.selectedAddons[serviceId].push(addonId);
+        
+        const activeContainer = document.getElementById('services-view-container') || document.getElementById('app') || document.querySelector('main') || document.body;
+        this.render(activeContainer);
+    }
+};
     // =========================================================================
     // INTEGRATED VIEW WORKFLOW METHODS
     // =========================================================================
@@ -1019,82 +971,152 @@ window.servicesView = {
 /**
  * Renders open time slots dynamically and hides slots that exceed the closing time
  */
+window.handleCategoryChange = function(categoryName) {
+    window.servicesView.activeCategory = categoryName;
+    const container = document.getElementById('services-view-container') || document.getElementById('app') || document.querySelector('main') || document.body;
+    window.servicesView.render(container);
+};
+
+window.openBookingModal = function(serviceId, calculatedTotal) {
+    const service = window.servicesView.servicesData.find(function(s) { return s.id === serviceId; });
+    const fallbackTitle = service ? service.name : "Luxury Salon Package";
+    const finalPrice = calculatedTotal ? parseFloat(calculatedTotal) : (service ? service.price : 85.00);
+
+    window.servicesView.bookingState = {
+        serviceId: serviceId,
+        serviceName: fallbackTitle,
+        calculatedTotalPrice: finalPrice,
+        selectedDate: null,
+        selectedTime: null
+    };
+
+    let modalContainer = document.getElementById('custom-booking-portal');
+    if (!modalContainer) {
+        modalContainer = document.createElement('div');
+        modalContainer.id = 'custom-booking-portal';
+        modalContainer.className = 'fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4 overflow-y-auto';
+        document.body.appendChild(modalContainer);
+    }
+
+    const todayStr = new Date().toISOString().split('T')[0];
+
+    modalContainer.innerHTML = `
+        <div class="bg-[#110E0C] border border-[#C5A059]/30 rounded-xl p-6 w-full max-w-md shadow-2xl relative text-white font-sans my-8">
+            <div class="flex justify-between items-center mb-5 pb-2 border-b border-[#C5A059]/20">
+                <h2 class="text-sm font-bold tracking-widest text-[#C5A059] uppercase">Schedule: ` + fallbackTitle + `</h2>
+                <button class="text-gray-400 hover:text-white transition text-xl cursor-pointer" onclick="document.getElementById('custom-booking-portal').remove()">✕</button>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="space-y-2.5">
+                    <label class="text-[10px] font-bold tracking-widest text-gray-400 block uppercase">CLIENT CONTACT INFORMATION</label>
+                    <input type="text" id="client-name" placeholder="Full Name" class="w-full bg-[#1A1512] border border-[#C5A059]/20 rounded-lg p-2.5 text-xs text-white focus:outline-none focus:border-[#C5A059] transition" required>
+                    <div class="grid grid-cols-2 gap-2">
+                        <input type="email" id="client-email" placeholder="Email Address" class="w-full bg-[#1A1512] border border-[#C5A059]/20 rounded-lg p-2.5 text-xs text-white focus:outline-none focus:border-[#C5A059] transition" required>
+                        <input type="tel" id="client-phone" placeholder="Phone Number" class="w-full bg-[#1A1512] border border-[#C5A059]/20 rounded-lg p-2.5 text-xs text-white focus:outline-none focus:border-[#C5A059] transition" required>
+                    </div>
+                    <textarea id="client-notes" placeholder="Any specific hair notes or requests? (Optional)" rows="2" class="w-full bg-[#1A1512] border border-[#C5A059]/20 rounded-lg p-2.5 text-[11px] text-white focus:outline-none focus:border-[#C5A059] transition"></textarea>
+                </div>
+
+                <div class="flex flex-col gap-1.5">
+                    <label class="text-[10px] font-bold tracking-widest text-gray-400 uppercase">SELECT AN AVAILABLE DATE</label>
+                    <input type="date" id="booking-date-input" min="` + todayStr + `" class="w-full bg-[#1A1512] border border-[#C5A059]/30 rounded-lg p-3 text-xs text-white focus:outline-none focus:border-[#C5A059] transition [color-scheme:dark]" onchange="window.handleDateSelection(this.value)">
+                </div>
+
+                <div id="booking-time-slots" class="space-y-1">
+                    <p class="text-[11px] italic text-gray-400">Please choose a service date above to see available hours...</p>
+                </div>
+
+                <div class="bg-[#1A1512] border-l-4 border-[#C5A059] p-4 rounded-r-lg space-y-1.5 text-xs mt-2">
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">Calculated Service Total:</span>
+                        <span class="font-bold text-white">$` + finalPrice.toFixed(2) + `</span>
+                    </div>
+                    <div class="flex justify-between border-t border-gray-800 pt-2">
+                        <span class="text-gray-400">Mandatory Reservation Deposit:</span>
+                        <span class="font-bold text-[#E53E3E]">$25.00</span>
+                    </div>
+                    <span class="block text-[9px] text-gray-500 leading-tight pt-1">*Deposits are processed securely via Stripe.</span>
+                </div>
+
+                <button class="w-full py-3.5 bg-[#C5A059] hover:bg-[#B38F48] text-[#110E0C] text-xs font-black tracking-widest uppercase rounded-lg transition cursor-pointer disabled:bg-gray-800 disabled:text-gray-600 disabled:cursor-not-allowed shadow-md" id="submit-booking-checkout" disabled onclick="window.processValidationAndRedirect()">
+                    Secure My Spot & Pay Deposit
+                </button>
+            </div>
+        </div>
+    `;
+};
+
 window.handleDateSelection = function(dateValue) {
     if (!window.servicesView.bookingState) return;
     window.servicesView.bookingState.selectedDate = dateValue;
-
+    
     const slotsContainer = document.getElementById('booking-time-slots');
     if (!slotsContainer) return;
 
-    const currentService = window.servicesView.servicesData.find(function(s) {
-        return s.id === window.servicesView.bookingState.serviceId;
+    const currentService = window.servicesView.servicesData.find(function(s) { 
+        return s.id === window.servicesView.bookingState.serviceId; 
     });
-
-    // Parse the baseline length requirements (e.g. "4 hrs" -> 4.0, "1.5 hrs" -> 1.5)
-    let serviceDurationHours = 1.5;
-    if (currentService) {
-        serviceDurationHours = parseFloat(currentService.duration);
+    
+    let serviceDurationHours = 1.5; 
+    if (currentService && currentService.duration) {
+        const parsed = parseFloat(currentService.duration);
+        if (!isNaN(parsed)) serviceDurationHours = parsed;
     }
+    
+    // 6:00 PM hard cutoff so you aren't stuck working late
+    const absoluteClosingHour = 18.0; 
+    const bookedSlots = JSON.parse(localStorage.getItem('chevy_booked_slots') || '[]');
 
-    // Baseline Suite Operating Boundaries: 9:00 AM to 6:00 PM (18:00 max cutoff limit)
-    const absoluteClosingHour = 18.0;
-
-    let slotsHtml = '<label class="text-[10px] font-bold tracking-widest text-gray-400 block mb-2 uppercase">AVAILABLE CALENDAR SLOTS FOR ' + dateValue + ':</label><div class="grid grid-cols-3 gap-2">';
-
+    let slotsHtml = '<label class="text-[10px] font-bold tracking-widest text-gray-400 block mb-2 uppercase">AVAILABLE SLOTS FOR ' + dateValue + ':</label><div class="grid grid-cols-3 gap-2">';
     let slotsRenderedCount = 0;
 
     for (let i = 0; i < window.servicesView.availableHours.length; i++) {
         const timeStr = window.servicesView.availableHours[i];
+        
+        // Check if already booked on this device/session
+        const isAlreadyBooked = bookedSlots.some(function(b) { return b.date === dateValue && b.time === timeStr; });
+        if (isAlreadyBooked) continue;
 
-        // Convert interval markers to a 24-hour scale for math checks
-        let appointmentStartDecimal = 9.0;
-        if (timeStr === '10:30 AM') appointmentStartDecimal = 10.5;
-        else if (timeStr === '12:00 PM') appointmentStartDecimal = 12.0;
-        else if (timeStr === '01:30 PM') appointmentStartDecimal = 13.5;
-        else if (timeStr === '03:00 PM') appointmentStartDecimal = 15.0;
-        else if (timeStr === '04:30 PM') appointmentStartDecimal = 16.5;
+        // Parse 12-hour format into 24-hour decimal
+        const parts = timeStr.split(' ');
+        const hm = parts[0].split(':');
+        let hr = parseInt(hm[0], 10);
+        const min = parseInt(hm[1], 10) / 60;
+        if (parts[1] === 'PM' && hr !== 12) hr += 12;
+        if (parts[1] === 'AM' && hr === 12) hr = 0;
+        const appointmentStartDecimal = hr + min;
 
-        // DURATION RULE LOOKAHEAD CHECK: Hide slot if service pushes your seat past closing time
-        if (appointmentStartDecimal + serviceDurationHours > absoluteClosingHour) {
-            continue;
-        }
+        if (appointmentStartDecimal + serviceDurationHours > absoluteClosingHour) continue; 
 
         slotsHtml += '<button type="button" class="slot-pill py-2 border border-[#C5A059]/20 bg-[#1A1512] text-gray-200 text-[11px] font-bold tracking-wider rounded transition cursor-pointer text-center hover:bg-[#C5A059]/10" onclick="window.handleTimeSelection(this, \'' + timeStr + '\')">' + timeStr + '</button>';
         slotsRenderedCount++;
     }
-
+    
     if (slotsRenderedCount === 0) {
-        slotsHtml += '<p class="text-xs text-[#E53E3E] font-medium col-span-3">This service requires too much open time to complete safely on this day. Please select an earlier date!</p>';
+        slotsHtml += '<p class="text-xs text-[#E53E3E] font-medium col-span-3">No available times fit this service duration today. Please select another date.</p>';
     }
 
     slotsHtml += '</div>';
     slotsContainer.innerHTML = slotsHtml;
 };
 
-/**
- * Handles highlight states and activates checkout panels
- */
 window.handleTimeSelection = function(buttonElement, timeValue) {
     if (!window.servicesView.bookingState) return;
     window.servicesView.bookingState.selectedTime = timeValue;
-
+    
     document.querySelectorAll('.slot-pill').forEach(function(btn) {
         btn.classList.remove('bg-[#C5A059]', 'text-[#110E0C]', 'font-black');
         btn.classList.add('bg-[#1A1512]', 'text-gray-200');
     });
-
+    
     buttonElement.classList.remove('bg-[#1A1512]', 'text-gray-200');
     buttonElement.classList.add('bg-[#C5A059]', 'text-[#110E0C]', 'font-black');
 
     const checkoutBtn = document.getElementById('submit-booking-checkout');
-    if (checkoutBtn) {
-        checkoutBtn.removeAttribute('disabled');
-    }
+    if (checkoutBtn) checkoutBtn.removeAttribute('disabled');
 };
 
-/**
- * Bundles inputs and opens your custom Formspree cloud tunnel endpoint
- */
 window.processValidationAndRedirect = function() {
     const name = document.getElementById('client-name')?.value.trim();
     const email = document.getElementById('client-email')?.value.trim();
@@ -1102,71 +1124,50 @@ window.processValidationAndRedirect = function() {
     const notes = document.getElementById('client-notes')?.value.trim() || "";
 
     if (!name || !email || !phone) {
-        alert('Please complete your Name, Email, and Phone number inputs to secure your suite reservation.');
+        alert('Please complete your Name, Email, and Phone number to secure your reservation.');
         return;
     }
+
+    const state = window.servicesView.bookingState;
+    const bookedSlots = JSON.parse(localStorage.getItem('chevy_booked_slots') || '[]');
+    bookedSlots.push({ date: state.selectedDate, time: state.selectedTime });
+    localStorage.setItem('chevy_booked_slots', JSON.stringify(bookedSlots));
 
     const pendingPayload = {
         clientName: name,
         clientEmail: email,
         clientPhone: phone,
         clientNotes: notes,
-        serviceId: window.servicesView.bookingState ? window.servicesView.bookingState.serviceId : null,
-        bookingDate: window.servicesView.bookingState ? window.servicesView.bookingState.selectedDate : null,
-        bookingTime: window.servicesView.bookingState ? window.servicesView.bookingState.selectedTime : null,
-        calculatedTotalPrice: window.servicesView.bookingState ? window.servicesView.bookingState.calculatedTotalPrice : 85.00
+        service: state.serviceName,
+        date: state.selectedDate,
+        time: state.selectedTime,
+        totalPrice: '$' + state.calculatedTotalPrice.toFixed(2)
     };
 
     localStorage.setItem('pending_booking_state', JSON.stringify(pendingPayload));
-
-    // Fires everything directly into your active form inbox
+    
     fetch('https://formspree.io/f/myeewlby', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
         body: JSON.stringify(pendingPayload)
     })
     .then(function() {
-        window.location.href = "https://buy.stripe.com/fZu14o6vT5YN8cdaFy1B607";
-    })
-    .catch(function() {
-        window.location.href = "https://buy.stripe.com/fZu14o6vT5YN8cdaFy1B607";
-    });
-};
 
-// =========================================================================
-// DEFENSIVE DOM MOUNT TRIGGER (GUARANTEES RENDERING UNDER ALL LAUNCHES)
-// =========================================================================
-document.addEventListener('DOMContentLoaded', function() {
-    const container = document.getElementById('services-view-container') || document.getElementById('app') || document.querySelector('main') || document.body;
-    if (container && window.servicesView) {
-        window.servicesView.render(container);
-    }
+window.location.href = "https://buy.stripe.com/fZu14o6vT5YN8cdaFy1B607";
+})
+.catch(function() {
+window.location.href = "https://buy.stripe.com/fZu14o6vT5YN8cdaFy1B607";
 });
-
-
-// =========================================================================
-// MAIN ROUTER CONNECTION INITIALIZER
-// =========================================================================
-window.servicesView.init = function() {
-    // Explicitly verify the fallback arrays exist to block blank states
-    if (!this.servicesData || this.servicesData.length === 0) {
-        this.servicesData = this.fallbackData.services;
-    }
-
-    // Set your tracking validation flags to true
-    this.isInitialized = true;
-
-    // Track down the primary content viewport container used by your router system
-    const targetViewport = document.getElementById('services-view-container')
-                        || document.getElementById('app')
-                        || document.getElementById('main-content')
-                        || document.querySelector('main');
-
-    if (targetViewport) {
-        // Execute clean DOM markup parsing instantly
-        window.servicesView.render(targetViewport);
-    }
 };
+// =========================================================================
+// MAIN ROUTER & DOM MOUNT BRIDGES
+// =========================================================================
+window.servicesView.renderPortal = function(container) {
+window.servicesView.render(container);
+};
+document.addEventListener('DOMContentLoaded', function() {
+const container = document.getElementById('services-view-container') || document.getElementById('app') || document.querySelector('main');
+if (container && window.servicesView && window.location.hash.includes('services')) {
+window.servicesView.render(container);
+}
+});
