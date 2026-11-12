@@ -969,48 +969,19 @@ window.handleDateSelection = function(dateValue) {
     const slotsContainer = document.getElementById('booking-time-slots');
     if (!slotsContainer) return;
 
-    const currentService = window.servicesView.servicesData.find(function(s) {
-        return s.id === window.servicesView.bookingState.serviceId;
-    });
-
-    let serviceDurationHours = 1.5;
-    if (currentService && currentService.duration) {
-        const parsed = parseFloat(currentService.duration);
-        if (!isNaN(parsed)) serviceDurationHours = parsed;
-    }
-
-    // 6:00 PM hard cutoff so you aren't stuck working late
-    const absoluteClosingHour = 18.0;
     const bookedSlots = JSON.parse(localStorage.getItem('chevy_booked_slots') || '[]');
+    const hoursList = window.servicesView.availableHours || ['09:00 AM', '10:30 AM', '12:00 PM', '01:30 PM', '03:00 PM', '04:30 PM'];
 
     let slotsHtml = '<label class="text-[10px] font-bold tracking-widest text-gray-400 block mb-2 uppercase">AVAILABLE SLOTS FOR ' + dateValue + ':</label><div class="grid grid-cols-3 gap-2">';
-    let slotsRenderedCount = 0;
 
-    for (let i = 0; i < window.servicesView.availableHours.length; i++) {
-        const timeStr = window.servicesView.availableHours[i];
+    for (let i = 0; i < hoursList.length; i++) {
+        const timeStr = hoursList[i];
 
         // Hide slot if already booked on this date
         const isAlreadyBooked = bookedSlots.some(function(b) { return b.date === dateValue && b.time === timeStr; });
         if (isAlreadyBooked) continue;
 
-        // Parse 12-hour format (e.g., "09:30 AM") into 24-hour decimal
-        const parts = timeStr.split(' ');
-        const hm = parts[0].split(':');
-        let hr = parseInt(hm[0], 10);
-        const min = parseInt(hm[1], 10) / 60;
-        if (parts[1] === 'PM' && hr !== 12) hr += 12;
-        if (parts[1] === 'AM' && hr === 12) hr = 0;
-        const appointmentStartDecimal = hr + min;
-
-        // Hide slot if service duration pushes past 6:00 PM
-        if (appointmentStartDecimal + serviceDurationHours > absoluteClosingHour) continue;
-
         slotsHtml += '<button type="button" class="slot-pill py-2 border border-[#C5A059]/20 bg-[#1A1512] text-gray-200 text-[11px] font-bold tracking-wider rounded transition cursor-pointer text-center hover:bg-[#C5A059]/10" onclick="window.handleTimeSelection(this, \'' + timeStr + '\')">' + timeStr + '</button>';
-        slotsRenderedCount++;
-    }
-
-    if (slotsRenderedCount === 0) {
-        slotsHtml += '<p class="text-xs text-[#E53E3E] font-medium col-span-3">No available times fit this service duration today. Please select another date.</p>';
     }
 
     slotsHtml += '</div>';
